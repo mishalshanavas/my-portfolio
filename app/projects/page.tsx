@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { projects } from "./project-data";
+import { projects } from "../lib/config"; 
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -21,7 +21,7 @@ export default function Projects() {
             rel="noopener noreferrer"
           >
             <div className="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
-              <h2 className="text-black dark:text-white">{project.title}</h2>
+              <h2 className="text-black dark:text-white">{project.name}</h2> 
               <p className="text-neutral-600 dark:text-neutral-400">
                 {project.description}
               </p>

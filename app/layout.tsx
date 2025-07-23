@@ -6,9 +6,14 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
-import { metaData } from "./lib/config";
+import { metaData,socialLinks } from "./lib/config";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap',
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-inter'
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -17,6 +22,17 @@ export const metadata: Metadata = {
     template: `%s | ${metaData.title}`,
   },
   description: metaData.description,
+  keywords: [
+    "Full Stack Developer",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Portfolio",
+    "Web Development"
+  ],
+  authors: [{ name: metaData.name }],
+  creator: metaData.name,
   openGraph: {
     images: metaData.ogImage,
     title: metaData.title,
@@ -40,9 +56,18 @@ export const metadata: Metadata = {
   twitter: {
     title: metaData.name,
     card: "summary_large_image",
-  },
+    creator: socialLinks.twitter,
+ },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
+  verification: {
+    google: "your-google-verification-code", // Add your verification code
   },
 };
 
@@ -52,7 +77,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.className}`}>
+    <html 
+      lang="en" 
+      className={`${inter.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <head>
         <link
           rel="alternate"
@@ -72,22 +101,41 @@ export default function RootLayout({
           href="/feed.json"
           title="JSON Feed"
         />
+        <link rel="preload" href="/profile.png" as="image" />
       </head>
-      <body className="antialiased flex flex-col items-center justify-center mx-auto mt-2 lg:mt-8 mb-12">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="flex-auto min-w-0 mt-2 md:mt-6 flex flex-col px-6 sm:px-4 md:px-0 max-w-[624px] w-full">
-            <Navbar />
-            {children}
-            <Footer />
+      <body className="antialiased font-inter bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300">
+        <div className="min-h-screen flex flex-col">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* Skip to main content for accessibility */}
+            <a 
+              href="#main-content" 
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-black text-white px-4 py-2 rounded z-50"
+            >
+              Skip to main content
+            </a>
+            
+            <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+              <Navbar />
+              
+              <main 
+                id="main-content"
+                className="flex-1 px-4 sm:px-6 lg:px-8 py-8"
+              >
+                {children}
+              </main>
+              
+              <Footer />
+            </div>
+            
             <Analytics />
             <SpeedInsights />
-          </main>
-        </ThemeProvider>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );
