@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { socialLinks, experiences, aboutMe, skills, topProjects } from "./lib/config";
+import { hero, socialLinks, experiences, aboutMe, skills, topProjects, contact } from "./lib/config";
 
 export default function Page() {
   return (
@@ -11,7 +11,7 @@ export default function Page() {
         <section className="flex flex-col items-start justify-center mb-20">
           <div className="flex items-center gap-6 mb-6 justify-start">
             <Image
-              src="/profile.png"
+              src={hero.image}
               alt="Profile photo"
               className="rounded-full border-4 border-gray-100 dark:border-gray-800 grayscale hover:grayscale-0 transition-all duration-300"
               unoptimized
@@ -21,10 +21,10 @@ export default function Page() {
             />
             <div className="flex flex-col">
               <h1 className="text-2xl md:text-3xl font-semibold text-black dark:text-white">
-                Mishal Shanavas
+                {hero.name}
               </h1>
               <p className="text-base text-gray-600 dark:text-gray-400 font-light">
-                Full Stack Developer • Open Source Enthusiast
+                {hero.title}
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function Page() {
             Contact
           </h2>
           <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">
-            Feel free to reach out via{" "}
+            {contact.text}{" "}
             <a 
               href={socialLinks.email} 
               className="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
