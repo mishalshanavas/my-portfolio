@@ -56,9 +56,9 @@ export default function Page() {
 
         {/* About Section */}
         <section className="mb-16">
-          <h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
+          {/*<h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             About
-          </h2>
+          </h2>*/}
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-light">
             {aboutMe}
           </p>
@@ -141,25 +141,10 @@ export default function Page() {
           <h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             Contact
           </h2>
-          <p className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">
-            {contact.text}{" "}
-            <a 
-              href={socialLinks.email} 
-              className="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
-            >
-              email
-            </a>
-            {" "}or connect on{" "}
-            <a 
-              href={socialLinks.linkedin} 
-              className="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-            .
-          </p>
+          <p
+            className="text-gray-700 dark:text-gray-300 font-light leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: contact.text }}
+          />
         </section>
       </div>
     </div>

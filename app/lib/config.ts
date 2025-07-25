@@ -21,7 +21,7 @@ export const hero = {
   image: "/profile.png",
 };
 export const contact = {
-  text: "Feel free to reach out via email or connect on LinkedIn.",
+  text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
 };
 
 export const aboutMe = `Linux enthusiast currently learning Rust. I build web applications and automation tools using Python, C, and modern web technologies. Passionate about open source development.  Oh, I use Arch btw...`;
@@ -34,13 +34,6 @@ export const experiences = [
     description:
       "Contributing to MuLearn backend development, implementing JWT authentication, company registration APIs, and job management features for the launchpad platform."
   },
-  {
-    role: "Open Source Contributor",
-    company: "Various Projects",
-    period: "2024 - Present",
-    description:
-      "Active contributor with 301+ contributions in the last year. Working on multiple repositories including backend systems, automation tools, and educational platforms."
-  }
 ];
 
 export const skills = [
@@ -62,11 +55,11 @@ export const projects = [
   {
     name: "G-Tech MuLearn",
     url: "https://github.com/gtech-mulearn/mulearnbackend",
-    description: "Key contributor to the MuLearn backend, building robust APIs, implementing secure JWT authentication, and developing core features for the launchpad platform using Django and mySQL.",
-    image: "https://github.com/user-attachments/assets/19b857b4-46f3-4daf-af79-19e21706ac27",
-    imageAlignment: "object-left",
+    description: "Contributor to G-Tech MuLearn backend, building robust APIs, implementing secure JWT authentication, and developing core features for the launchpad platform using Django and mySQL.",
+    image: "/mulearn.png",
+    imageAlignment: "object-center",
     featured: true,
-    tech: ["Python", "Django", "mySQL", "JWT Authentication"],
+    tech: ["Python", "Django", "Database Design","mySQL", "JWT Authentication"],
   },
   {
     name: "Notes Bot",
