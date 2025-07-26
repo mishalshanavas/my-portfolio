@@ -59,9 +59,14 @@ export default function Page() {
           {/*<h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             About
           </h2>*/}
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-light">
-            {aboutMe}
-          </p>
+          <p
+            className="text-gray-700 dark:text-gray-300 leading-relaxed font-light"
+            dangerouslySetInnerHTML={{
+              __html: aboutMe
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") 
+                .replace(/\n/g, "<br />"), 
+            }}
+          ></p>
         </section>
 
         {/* Experience Section */}
@@ -75,9 +80,14 @@ export default function Page() {
                 <div className="font-light text-lg text-black dark:text-white mb-1">
                   {exp.role}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400 font-light mb-2">
+                <a
+                  href={exp.companyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gray-600 dark:text-gray-400 font-light mb-2 "
+                >
                   {exp.company} • {exp.period}
-                </div>
+                </a>
                 <div className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">
                   {exp.description}
                 </div>
