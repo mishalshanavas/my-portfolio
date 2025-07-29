@@ -18,13 +18,14 @@ export const socialLinks = {
 export const hero = {
   name: metaData.name,
   title: "Backend Developer • Cloud and Linux Enthusiast",
-  image: "/profile.png",
+  image: "/profile.jpg",
 };
 export const contact = {
   text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
 };
-export const aboutMe = `Hey there! I'm **Mishal** — a **Linux enthusiast, backend developer, and automation dude** who loves building things that solve real-world problems. I specialize in creating **lightweight, efficient tools** using **Python, Bash, and occasionally C**. My projects range from **bots that automate Instagram and Snapchat to custom API backends and network utilities**. With a strong background in **networking** and a growing interest in **Rust**, I often dive deep into **system internals, proxy setups, and CLI workflows**.
-When I’m not coding, I’m probably exploring **obscure Linux distros, optimizing my setup, or helping others troubleshoot on Reddit**. I'm passionate about **open source, clean code, and the kind of learning that happens when you break stuff and fix it better**.\n Oh, I use Arch btw!`;
+
+export const aboutMe = `Hey, I'm **Mishal** — a **Linux enjoyer** and **backend dev** who builds **lightweight, efficient tools** with **Python**, **Bash**, and sometimes **C**. I’m into **automation**, **proxies**, and writing **clean CLI flows** that just work. Lately vibing with **Rust** and diving deeper into **system stuff** and **networking**. When I’m not coding, I’m probably **tweaking my linux setup**, testing weird distros, or **helping folks on Reddit**.  
+And yeah... **I use Arch** 😌`;
 
 export const experiences = [
   {
@@ -33,7 +34,7 @@ export const experiences = [
     companyUrl: "https://gtechmulearn.com",
     period: "2025 - Present",
     description:
-      "Contributing to MuLearn backend development, implementing JWT authentication, company registration APIs, and job management features for the launchpad platform."
+      "Developing and maintaining scalable backend APIs for the MuLearn launchpad platform. Implemented secure JWT authentication, company onboarding workflows, and job management modules using Django and mySQL. Collaborated with cross-functional teams to deliver robust features and improve system reliability."
   },
 ];
 
