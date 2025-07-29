@@ -25,7 +25,7 @@ export const contact = {
 };
 
 export const aboutMe = `Hey, I'm **Mishal** — a **Linux enjoyer** and **backend dev** who builds **lightweight, efficient tools** with **Python**, **Bash**, and sometimes **C**. I’m into **automation**, **proxies**, and writing **clean CLI flows** that just work. Lately vibing with **Rust** and diving deeper into **system stuff** and **networking**. When I’m not coding, I’m probably **tweaking my linux setup**, testing weird distros, or **helping folks on Reddit**.  
-And yeah... **I use Arch** 😌`;
+And yeah... **I use Arch**`;
 
 export const experiences = [
   {
