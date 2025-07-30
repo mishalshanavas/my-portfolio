@@ -5,50 +5,42 @@ publishedAt: "2025-02-15"
 summary: "That time I got tired of manually updating my Instagram profile pic and decided to automate my entire aesthetic."
 tags: "Python, Automation, Instagram, Side Projects"
 ----------------------------------------------------
+[![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/Instagram-dp)
 
 Okay, so picture this: It's 2 AM, I'm scrolling through my camera roll, and I realize my Instagram DP has been the same blurry selfie from three months ago. **Peak procrastination energy**, right?
-But instead of just... you know\... changing it like a normal person, my brain went: *"What if I never had to think about this again?"*
-
+But instead of just... you know... changing it like a normal person, my brain went: *"What if I never had to think about this again?"*
 And that's how I ended up building a bot that changes my Instagram profile picture automatically. Because apparently, I'd rather spend 6 hours coding than 30 seconds updating a photo. Make it make sense...
+
+<img src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" style={{ maxWidth: "100%", borderRadius: "12px", margin: "1.5rem 0" }} />
+*^ this is how it works in 100x speed *
 
 ## The "Why Am I Like This" Moment
 
 Look, we've all been there. You take like 47 selfies, finally get one that doesn't look like you were hit by a truck, post it as your DP, and then... forget it exists for months. Meanwhile, your friends are out here rotating their aesthetics like it's a full-time job.
-
 I was getting FOMO from people who actually update their profiles regularly (shoutout to those legends), but I'm also chronically lazy when it comes to this stuff. So naturally, my developer brain kicked in with the most extra solution possible.
-
 But here's the plot twist - instead of just rotating through random pics like a normal person, I took *one* random photo of myself and decided to make it look creepy every time. How? **Background color.** Same face, different vibes. Because apparently I have commitment issues even with my own photos. 💀
-
 
 ## The Tech Stack (AKA What I Googled at 3 AM)
 
 Here's what went into this masterpiece of over-engineering:
-
 * **Python** (because it's the only language that doesn't make me cry)
 * **instagrapi** (this library is literally carrying the entire project)
 * **Azure deployment** (flexing that sweet \$100 student credit)
 * **ONE random photo with 11 color variants** (same face, different vibes)
 * **Pure stubbornness** (the most important dependency)
-
 The psychological move? Instead of curating 47 different photos like some kind of content creator, I took my one shot, made 11 versions with different background colors, and deployed the whole thing to Azure. Same energy as buying the same shirt in 12 different colors, but make it *cloud-native*.
 
 <Callout emoji="🧠">
-Pro tip: `instagrapi` sessions save your login state so you don’t get rate-limited or asked for 2FA every time. Learned that the hard way at 4AM.
+    Pro tip: `instagrapi` sessions save your login state so you don’t get rate-limited or asked for 2FA every time. Learned that the hard way at 4AM.
 </Callout>
 
 ## The Plot Twist Nobody Asked For
-
 Instead of changing the picture every hour like some kind of maniac, I added **random delays**. We're talking 1700-1900 seconds between color changes, because apparently I wanted my bot to have commitment issues too.
-
 Why random? Because Instagram's algorithm is watching 👀, and I didn't want to get my account yeeted into the shadow realm for looking too bot-like. Gotta keep it *natural*, you know?
-
-<img src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" style={{ maxWidth: "100%", borderRadius: "12px", margin: "1.5rem 0" }} />
-*^ this is how it works in 100x speed *
 
 ## The Chaos That Ensued
 
 First day running the bot: **Flawless victory**. I felt like a tech genius watching my DP change automatically while I was in class, probably failing an exam.
-
 Second day: The bot decided to have an existential crisis and crashed. Turns out Instagram doesn't love it when you hit their API too aggressively. Who would've thought? 🤯
 
 Had to add retry logic because apparently my bot needed therapy:
@@ -65,20 +57,16 @@ except Exception as e:
 ## The Real MVPs
 
 Shoutout to the `instagrapi` library for basically doing all the heavy lifting while I just connected some dots.
-
 The session handling in this thing is *chef's kiss* — it actually remembers you're logged in instead of making you authenticate every single time like some kind of digital amnesia patient.
-
 <Callout emoji="🤡">
-Fun fact: I spent more time building this than I would have spent manually changing my DP for the next 5 years. Also burned through my Azure student credits faster than my weekend plans, but hey, it's about the **principle**.
+    Fun fact: I spent more time building this than I would have spent manually changing my DP for the next 5 years. Also burned through my Azure student credits faster than my weekend plans, but hey, it's about the **principle**.
 </Callout>
 
 ## What I Actually Learned (Besides How to Procrastinate Better)
-
 * **Azure deployment hits different.** Nothing says "I'm a real developer" like burning through cloud credits for Instagram aesthetic automation.
 * **Random delays = happy Instagram.** Consistency is suspicious, apparently.
 
 <h2>The Flex That Nobody Asked For</h2>
-
 <table>
     <thead>
         <tr>
@@ -103,19 +91,15 @@ Fun fact: I spent more time building this than I would have spent manually chang
 </table>
 
 ## The Plot Armor (AKA Legal Stuff)
-
 Before y'all start cloning this and breaking Instagram's ToS, let me drop some wisdom: **This is for educational purposes and flexing rights only.**
-
 Instagram might not vibe with automation, and getting your account suspended over a DP bot is probably not the flex you want. I built this to learn about APIs and automation, not to become a social media menace.
 
 <Callout emoji="⚠️">
-**Real talk**: Use this responsibly. Instagram's Terms of Service exist for a reason, and getting banned for automating your aesthetic is not the kind of chaos energy you want in your life.
+    **Real talk**: Use this responsibly. Instagram's Terms of Service exist for a reason, and getting banned for automating your aesthetic is not the kind of chaos energy you want in your life.
 </Callout>
-
 ## What's Next? (My Overthinking Era)
 
 Obviously, this bot needs an upgrade because I can't leave well enough alone:
-
 * **Integration with my mood** (happy songs = bright photos, sad songs = b\&w aesthetic)
 * **AI-generated backgrounds** (because why not make it even more chaotic?)
 * **Scheduled themes** (sync my DP with holidays, seasons, or random world events)
@@ -123,7 +107,6 @@ Obviously, this bot needs an upgrade because I can't leave well enough alone:
 * **Etc the possibilities are endless** (or until I get bored and start a new project)
 
 ## The Real Tea ☕️
-
 Look, could I have just... set a phone reminder to change my DP weekly? Absolutely.
 Did I instead build an entire automation system because my brain works in mysterious ways? Also absolutely.
 Was it worth it? Ask me again when my friends stop asking how my profile pic is always different and I can finally reveal my chaotic neutral energy.

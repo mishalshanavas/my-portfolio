@@ -74,7 +74,7 @@ export const projects = [
   },
   {
     name: "Instagram PFP Switcher",
-    url: "https://github.com/mishalshanavas/Instagram-dp",
+    url: "/blog/instagram-pfp",
     description: "A tool to automate changing your Instagram profile picture, demonstrating Python scripting for interacting with social media platforms.",
     image: "https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6",
     featured: true,
