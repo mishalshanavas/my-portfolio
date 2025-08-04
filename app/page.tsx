@@ -9,11 +9,11 @@ export default function Page() {
 
         {/* Hero Section */}
         <section className="flex flex-col items-start justify-center mb-20">
-          <div className="flex items-center gap-6 mb-6 justify-start">
+            <div className="flex items-center gap-6 mb-6 justify-start">
             <Image
               src={hero.image}
               alt="Profile photo"
-              className="rounded-full border-4 border-gray-100 dark:border-gray-800 grayscale hover:grayscale-0 transition-all duration-300"
+              className="rounded-full border-4 border-gray-100 dark:border-gray-800 transition-all duration-300"
               unoptimized
               width={120}
               height={120}
@@ -21,13 +21,13 @@ export default function Page() {
             />
             <div className="flex flex-col">
               <h1 className="text-2xl md:text-3xl font-semibold text-black dark:text-white">
-                {hero.name}
+              {hero.name}
               </h1>
               <p className="text-base text-gray-600 dark:text-gray-400 font-light">
-                {hero.title}
+              {hero.title}
               </p>
             </div>
-          </div>
+            </div>
           <nav className="flex gap-8 justify-start text-sm">
             <a
               href={socialLinks.github}
