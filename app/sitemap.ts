@@ -2,19 +2,20 @@ import { MetadataRoute } from "next";
 import { getBlogPosts } from "./lib/posts";
 import { metaData } from "./lib/config";
 
+function trimTrailingSlash(url: string): string {
+  return url.replace(/\/+$/, '');
+}
+
 function getBaseUrl(): string {
-  
   if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL;
+    return trimTrailingSlash(process.env.NEXT_PUBLIC_SITE_URL);
   }
   
   if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
+    return trimTrailingSlash(`https://${process.env.VERCEL_URL}`);
   }
   
-  return metaData.baseUrl.endsWith("/")
-    ? metaData.baseUrl.slice(0, -1)
-    : metaData.baseUrl;
+  return trimTrailingSlash(metaData.baseUrl);
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
