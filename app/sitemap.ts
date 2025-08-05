@@ -1,13 +1,15 @@
 import { MetadataRoute } from "next";
 import { getBlogPosts } from "./lib/posts";
 import { metaData } from "./lib/config";
+
 function getBaseUrl(): string {
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
   
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
   }
   
   return metaData.baseUrl.endsWith("/")
