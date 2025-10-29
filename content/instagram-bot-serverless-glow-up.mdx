@@ -1,0 +1,142 @@
+---
+title: "My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)"
+publishedAt: "2025-10-29"
+summary: "That time I migrated my Instagram DP bot from Azure to GitHub Actions because apparently I love over-engineering my own chaos."
+tags: "GitHub Actions, Serverless, Python, DevOps, Instagram Bot"
+---
+
+[![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/Instagram-dp)
+
+Remember that [Instagram DP bot](/blog/instagram-pfp) I built to avoid manually updating my profile picture like a functional human being? Well, plot twist: **it got a serverless makeover**, and now it's running on GitHub Actions instead of slowly draining my Azure student credits like some kind of digital vampire.
+
+Why the migration, you ask? Let me paint you a picture: It's 3 AM, I'm checking my Azure dashboard, and I see my $100 student credits going *poof* faster than my motivation to study for finals. Apparently, keeping a bot alive 24/7 just to change my Instagram DP every few hours is... expensive? Who could have seen that coming? 🤡
+
+## The "My Wallet is Crying" Realization
+
+So there I was, living my best automated life, when Azure decided to send me a friendly reminder that my credits were running lower than my GPA. **Peak broke college student energy**, right?
+
+My brain immediately went into damage control mode: *"What if I never had to pay for this again?"* And that's how I discovered the beautiful world of **GitHub Actions free tier** - 2000 minutes per month of pure, unhinged automation. For FREE.
+
+<Callout emoji="💸">
+    Fun fact: My Azure bill was higher than my coffee budget, and that's saying something because I basically live on caffeine and questionable life choices.
+</Callout>
+
+## The Great Migration (AKA How I Learned to Stop Worrying and Love YAML)
+
+Here's the thing about moving from Azure to GitHub Actions: it's like moving from a fancy apartment to your friend's couch, but the couch is actually **way more comfortable** and doesn't judge your life choices.
+
+**Azure was fancy but expensive.** Like, really expensive. Sure, it made me feel like a real developer with all those cloud services and professional dashboards, but my wallet was crying harder than me during finals week. Plus, setting it up required actual knowledge of cloud architecture, which... let's just say I was mostly copying tutorials and hoping for the best.
+
+**GitHub Actions is just... better?** It lives right in my repo, runs automatically every 3 hours, costs literally nothing, and somehow makes me look like I know what DevOps is. The best part? No more 3 AM anxiety attacks about burning through my student credits.
+
+## The Tech Stack Evolution (Same Chaos, Better Platform)
+
+What changed:
+* **Hosting**: Azure Container Instances → GitHub Actions runners
+* **Scheduling**: Azure Functions timer → GitHub Actions cron
+* **Secrets**: Azure Key Vault → GitHub Secrets (way easier, fight me)
+* **Cost**: $$$ → $0 (the only math that matters)
+* **Complexity**: High → "Fork and forget"
+
+What stayed the same:
+* **Python + instagrapi** (because if it ain't broke, don't fix it)
+* **My questionable photo rotation strategy** (11 color variants of the same selfie)
+* **The bot's commitment issues** (still changes every 3 hours)
+* **My over-engineering tendencies** (some things never change)
+
+<img src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" style={{ maxWidth: "100%", borderRadius: "12px", margin: "1.5rem 0" }} />
+*^ still doing this, but now with 100% more GitHub energy*
+
+## The GitHub Actions Workflow (Or: How I Learned to Stop Worrying and Love YAML)
+
+The beauty of GitHub Actions is that it's basically just a fancy cron job with better documentation. Here's the workflow that's currently running my entire aesthetic:
+
+```yaml
+name: Update Instagram DP
+on:
+  schedule:
+    - cron: '30 1,4,7,10,13,16 * * *'  # Every 3 hours, 6:30 AM - 10:30 PM IST
+  workflow_dispatch:
+    inputs:
+      force_run:
+        description: 'Force run (ignore cooldown)'
+        default: 'false'
+```
+
+Translation: "Hey GitHub, change my DP every 3 hours during reasonable human hours, and let me force it if I'm feeling impatient."
+
+The coolest part? **It just works.** No servers to maintain, no bills to pay, no Azure portal to check every 5 minutes like some kind of cloud hypochondriac.
+
+<Callout emoji="🤖">
+    Pro tip: The `workflow_dispatch` trigger is clutch when you want to test your bot at 2 AM because you can't sleep and need to see immediate validation that your code works.
+</Callout>
+
+## The Setup That Actually Makes Sense Now
+
+Remember when setting up the Azure version required like 47 different services and a PhD in cloud architecture? Yeah, those days are OVER.
+
+New setup process:
+1. **Fork the repo** (literally just click a button)
+2. **Upload your pics** to `assets/images/` (drag and drop, we're not animals)
+3. **Add secrets** in Settings → Secrets → Actions (2 fields, that's it)
+4. **Watch it work** (or force run it because patience is overrated)
+
+That's it. No resource groups, no container registries, no "why is this taking 20 minutes to deploy" moments. Just pure, beautiful simplicity.
+
+## The Unexpected Side Effects
+
+Moving to GitHub Actions accidentally made my bot **more social**. Now other people can actually fork it and run their own versions without needing a cloud computing degree or a trust fund.
+
+The repo went from "cool project I built" to "hey, you can actually use this" in like... a day. Sometimes the best solutions are the ones that make things accessible to more people, you know?
+
+<Callout emoji="🎯">
+    Plot twist: Making something easier to use accidentally made it more useful. Who would have thought that reducing complexity could be... good?
+</Callout>
+
+## What I Actually Learned (Besides How to Read YAML Without Crying)
+
+* **Free tier platforms can be better than paid ones** (sometimes the best things in life really are free)
+* **GitHub Actions is criminally underrated** for simple automation tasks
+* **YAML is actually not that scary** (once you accept the whitespace overlords)
+* **Migration anxiety is usually worse than the actual migration** (like most things in life)
+* **Sometimes the simplest solution is the right solution** (revolutionary concept, I know)
+
+## The Current State of Chaos
+
+The bot is now running smoother than my brain at 8 AM lectures. It changes my DP every 3 hours, sleeps from 11:30 PM to 6:30 AM (better sleep schedule than me), and costs exactly $0.00 to maintain.
+
+My friends still ask how my profile picture is always different, and now I can proudly say: "GitHub Actions automation, baby!" instead of mumbling something about Azure credits and expensive cloud deployments.
+
+## The Real MVP: GitHub's Free Tier
+
+Shoutout to GitHub for having a free tier that actually makes sense for small projects. 2000 minutes per month is enough to run my bot, deploy my side projects, and still have time left over for whatever other chaotic automation ideas my brain comes up with at 3 AM.
+
+<Callout emoji="🏆">
+    **Real talk**: GitHub Actions free tier is probably the best thing that's happened to hobby developers since Stack Overflow. Fight me.
+</Callout>
+
+## What's Next? (My Evolution Never Stops)
+
+Obviously, this bot still needs more features because I can't leave well enough alone:
+
+* **Multiple photo sets** (seasonal vibes, mood-based aesthetics, etc.)
+* **Smart scheduling** (maybe don't change my DP during important meetings?)
+* **Stats tracking** (how many times has this bot saved me from manual labor?)
+* **Integration with my mood tracker** (happy = bright colors, stressed = grayscale)
+* **AI-powered photo selection** (because why not make it even more over-engineered?)
+
+## The Real Tea ☕️
+
+Look, could I have just kept paying for Azure and called it a day? Absolutely.
+
+Did I instead spend a weekend migrating to a free platform because my broke college student energy demanded it? Also absolutely.
+
+Was it worth it? **100%.** Not just because it's free (though that's nice), but because it's actually **better**. Simpler setup, easier sharing, better integration with my existing workflow.
+
+Sometimes the best solution isn't the most expensive one. Sometimes it's the one that just works without making you question your life choices every time you check your credit card statement.
+
+The updated code is still [on GitHub](https://github.com/mishalshanavas/Instagram-dp), now with 100% more serverless energy and 0% Azure bills. Feel free to fork it and join the "my Instagram aesthetic is automated" club.
+
+---
+
+*Built with GitHub Actions, powered by free tier energy, and the eternal quest to avoid manual labor...*
