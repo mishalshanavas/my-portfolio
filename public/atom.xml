@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://www.mishalshanavas.in/</id>
+    <title>mishal shanavas</title>
+    <updated>2025-11-21T12:53:49.622Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="https://www.mishalshanavas.in/"/>
+    <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
+    <subtitle>Linux enthusiast and developer currently learning Rust. Passionate about Cloud Computing, Open Source, and Web Development. I build web applications and automation tools using Python, C, and modern web technologies.</subtitle>
+    <rights>All rights reserved 2025, mishal shanavas</rights>
+    <entry>
+        <title type="html"><![CDATA[We Built an AI Career Guider and Won 2nd Runner-Up]]></title>
+        <id>https://www.mishalshanavas.in/blog/ict-hackathon</id>
+        <link href="https://www.mishalshanavas.in/blog/ict-hackathon"/>
+        <updated>2025-08-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How a last-minute hackathon turned into an accidental meme and a legit AI project.]]></summary>
+        <category label="[&quot;Hackathon&quot;" term="[&quot;Hackathon&quot;"/>
+        <category label="&quot;AI&quot;]" term="&quot;AI&quot;]"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
+        <id>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</id>
+        <link href="https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up"/>
+        <updated>2025-10-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[That time I migrated my Instagram DP bot from Azure to GitHub Actions because apparently I love over-engineering my own chaos.]]></summary>
+        <category label="GitHub Actions" term="GitHub Actions"/>
+        <category label="Serverless" term="Serverless"/>
+        <category label="Python" term="Python"/>
+        <category label="DevOps" term="DevOps"/>
+        <category label="Instagram Bot" term="Instagram Bot"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[I Built a Bot to Change My Instagram DP So I Don't Have To]]></title>
+        <id>https://www.mishalshanavas.in/blog/instagram-pfp</id>
+        <link href="https://www.mishalshanavas.in/blog/instagram-pfp"/>
+        <updated>2025-02-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[That time I got tired of manually updating my Instagram profile pic and decided to automate my entire aesthetic.]]></summary>
+        <category label="Python" term="Python"/>
+        <category label="Automation" term="Automation"/>
+        <category label="Instagram" term="Instagram"/>
+        <category label="Side Projects" term="Side Projects"/>
+    </entry>
+</feed>

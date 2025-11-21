@@ -3,9 +3,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx tsx scripts/generate-feeds.ts && next build",
     "start": "next start",
-    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages",
     "pages:dev": "npx @cloudflare/next-on-pages --watch",
     "pages:deploy": "pnpm pages:build && wrangler pages deploy .vercel/output/static"
   },
@@ -34,8 +34,9 @@
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^4.1.11",
+    "tsx": "^4.19.2",
     "typescript": "^5.8.3",
-    "vercel": "^48.10.6",
-    "wrangler": "^4.50.0"
+    "vercel": "48.10.6",
+    "wrangler": "4.50.0"
   }
 }
