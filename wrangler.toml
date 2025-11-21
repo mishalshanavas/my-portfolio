@@ -1,5 +1,6 @@
 name = "my-portfolio"
 compatibility_date = "2024-11-21"
+compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output/static"
 
 # Cloudflare Pages configuration for Next.js
@@ -10,6 +11,8 @@ pages_build_output_dir = ".vercel/output/static"
 
 [env.production]
 compatibility_date = "2024-11-21"
+compatibility_flags = ["nodejs_compat"]
 
 [env.preview]
 compatibility_date = "2024-11-21"
+compatibility_flags = ["nodejs_compat"]

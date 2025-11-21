@@ -1,23 +1,18 @@
-import { ImageResponse } from "next/og";
 import { metaData } from "app/lib/config";
+import { NextResponse } from "next/server";
 
 export const runtime = 'edge';
 
 export function GET(request: Request) {
-  let url = new URL(request.url);
-  let title = url.searchParams.get("title") || metaData.title;
-
-  return new ImageResponse(
-    (
-      <div tw="flex flex-col w-full h-full items-center justify-center bg-white">
-        <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-8">
-          <h2 tw="flex flex-col text-4xl font-bold text-left">{title}</h2>
-        </div>
-      </div>
-    ),
-    {
-      width: 1200,
-      height: 630,
-    }
-  );
+  // For Cloudflare Pages, we'll redirect to a static OG image
+  // since next/og requires Node.js streams which aren't available in Edge Runtime
+  
+  const url = new URL(request.url);
+  const title = url.searchParams.get("title");
+  
+  // If a custom title is requested, we could use a third-party service
+  // For now, redirect to the static OG image
+  const ogImageUrl = new URL(metaData.ogImage, url.origin);
+  
+  return NextResponse.redirect(ogImageUrl, 302);
 }
