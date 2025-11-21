@@ -1,0 +1,15 @@
+name = "my-portfolio"
+compatibility_date = "2024-11-21"
+pages_build_output_dir = ".vercel/output/static"
+
+# Cloudflare Pages configuration for Next.js
+# This file is used by Wrangler CLI to deploy to Cloudflare Pages
+
+# For local development, run: pnpm pages:dev
+# For deployment, run: pnpm pages:deploy
+
+[env.production]
+compatibility_date = "2024-11-21"
+
+[env.preview]
+compatibility_date = "2024-11-21"

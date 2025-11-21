@@ -4,11 +4,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:dev": "npx @cloudflare/next-on-pages --watch",
+    "pages:deploy": "pnpm pages:build && wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
     "feed": "^5.1.0",
     "katex": "^0.16.22",
     "next": "^15.3.4",
@@ -25,6 +26,7 @@
     "sugar-high": "^0.9.3"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^24.0.4",
@@ -32,6 +34,8 @@
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
     "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vercel": "^48.10.6",
+    "wrangler": "^4.50.0"
   }
 }
