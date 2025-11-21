@@ -2,7 +2,7 @@ export const metaData = {
   baseUrl: "https://www.mishalshanavas.in",
   title: "mishal shanavas",
   name: "Mishal Shanavas",
-  ogImage: "/opengraph-image.png",
+  ogImage: "/profile.jpg",
   description:
     "Linux enthusiast and developer currently learning Rust. Passionate about Cloud Computing, Open Source, and Web Development. I build web applications and automation tools using Python, C, and modern web technologies."
 };
