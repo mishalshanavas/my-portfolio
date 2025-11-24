@@ -14,7 +14,6 @@ export default function Page() {
               src={hero.image}
               alt="Profile photo"
               className="rounded-full border-4 border-gray-100 dark:border-gray-800 transition-all duration-300"
-              unoptimized
               width={120}
               height={120}
               priority
