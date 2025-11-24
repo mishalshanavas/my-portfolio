@@ -6,15 +6,16 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
+  FaRss,
 } from "react-icons/fa6";
 import { TbMailFilled } from "react-icons/tb";
 import { metaData, socialLinks } from "app/lib/config";
 
 const YEAR = new Date().getFullYear();
 
-function SocialLink({ href, icon: Icon }) {
+function SocialLink({ href, icon: Icon, title }: { href: string; icon: React.ComponentType; title?: string }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a href={href} target="_blank" rel="noopener noreferrer" title={title} aria-label={title}>
       <Icon />
     </a>
   );
@@ -23,11 +24,12 @@ function SocialLink({ href, icon: Icon }) {
 function SocialLinks() {
   return (
     <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
-      <SocialLink href={socialLinks.twitter} icon={FaXTwitter} />
-      <SocialLink href={socialLinks.github} icon={FaGithub} />
-      <SocialLink href={socialLinks.instagram} icon={FaInstagram} />
-      <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} />
-      <SocialLink href={socialLinks.email} icon={TbMailFilled} />
+      <SocialLink href={socialLinks.twitter} icon={FaXTwitter} title="Twitter/X" />
+      <SocialLink href={socialLinks.github} icon={FaGithub} title="GitHub" />
+      <SocialLink href={socialLinks.instagram} icon={FaInstagram} title="Instagram" />
+      <SocialLink href={socialLinks.linkedin} icon={FaLinkedinIn} title="LinkedIn" />
+      <SocialLink href={socialLinks.email} icon={TbMailFilled} title="Email" />
+      <SocialLink href="/rss.xml" icon={FaRss} title="RSS Feed" />
     </div>
   );
 }

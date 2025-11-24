@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "app/components/mdx";
-import { formatDate, getBlogPosts } from "app/lib/posts";
+import { formatDate, getBlogPosts, getReadingTime } from "app/lib/posts";
 import { metaData } from "app/lib/config";
 
 export async function generateStaticParams() {
@@ -91,6 +91,9 @@ export default async function Blog({ params }) {
       <div className="flex justify-between items-center mt-2 mb-8 text-medium">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.publishedAt)}
+        </p>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {getReadingTime(post.content)}
         </p>
       </div>
       <article className="prose prose-quoteless prose-neutral dark:prose-invert">

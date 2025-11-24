@@ -54,6 +54,13 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "content"));
 }
 
+export function getReadingTime(content: string): string {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  const readingTime = Math.ceil(words / wordsPerMinute);
+  return `${readingTime} min read`;
+}
+
 export function formatDate(date: string, includeRelative = false) {
   let currentDate = new Date();
   if (!date.includes("T")) {
