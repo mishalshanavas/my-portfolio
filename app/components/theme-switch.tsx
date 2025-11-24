@@ -55,7 +55,9 @@ export const ThemeSwitch: React.FC = () => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = () => {
       const newTheme = mediaQuery.matches ? "dark" : "light";
-      localStorage.setItem(storageKey, newTheme);
+      if (typeof window !== "undefined") {
+        localStorage.setItem(storageKey, newTheme);
+      }
       reflectPreference(newTheme);
     };
 
@@ -66,7 +68,9 @@ export const ThemeSwitch: React.FC = () => {
 
   const toggleTheme = () => {
     const newTheme = currentTheme === "light" ? "dark" : "light";
-    localStorage.setItem(storageKey, newTheme);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(storageKey, newTheme);
+    }
     reflectPreference(newTheme);
   };
 

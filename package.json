@@ -2,7 +2,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--no-experimental-webstorage' next dev",
     "build": "npx tsx scripts/generate-feeds.ts && next build",
     "start": "next start",
     "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages",
