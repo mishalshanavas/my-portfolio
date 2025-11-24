@@ -8,18 +8,18 @@ export default function Page() {
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
         {/* Hero Section */}
-        <section className="flex flex-col items-start justify-center mb-8 sm:mb-12">
-            <div className="flex items-center gap-3 sm:gap-4">
+        <section className="flex flex-col items-start justify-center mb-12 sm:mb-16">
+            <div className="flex items-center gap-4">
             <Image
               src={hero.image}
               alt="Profile photo"
-              className="rounded-full border-4 border-gray-100 dark:border-gray-800 transition-all duration-300"
+              className="rounded-full border-2 border-gray-200 dark:border-gray-800 transition-all duration-200"
               width={120}
               height={120}
               priority
             />
             <div className="flex flex-col">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-black dark:text-white mb-1">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-light text-black dark:text-white mb-1">
               {hero.name}
               </h1>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-light mb-2">
@@ -30,7 +30,7 @@ export default function Page() {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                  className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
                 >
                   GitHub
                 </a>
@@ -38,13 +38,13 @@ export default function Page() {
                   href={socialLinks.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                  className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
                 >
                   LinkedIn
                 </a>
                 <a
                   href={socialLinks.email}
-                  className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                  className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
                 >
                   Email
                 </a>
@@ -55,11 +55,11 @@ export default function Page() {
 
         {/* About Section */}
         <section className="mb-12 sm:mb-16">
-          {/*<h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
+          <h2 className="text-lg sm:text-xl font-light mb-4 sm:mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             About
-          </h2>*/}
+          </h2>
           <p
-            className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed font-light"
+            className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-normal font-light"
             dangerouslySetInnerHTML={{
               __html: aboutMe
                 .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") 
@@ -83,7 +83,7 @@ export default function Page() {
                   href={exp.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-light mb-2 block"
+                  className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white font-light mb-2 block transition-colors duration-200"
                 >
                   {exp.company} • {exp.period}
                 </a>
@@ -104,7 +104,7 @@ export default function Page() {
             {skills.map((skill, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 text-xs font-light bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-800 rounded-sm"
+                className="px-2 py-1 text-xs font-light bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-800 rounded"
               >
                 {skill}
               </span>
@@ -118,10 +118,11 @@ export default function Page() {
             <h2 className="text-lg sm:text-xl font-light text-black dark:text-white">
               Projects
             </h2>
-            <Link href="/projects">
-              <span className="text-xs font-light text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors cursor-pointer border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600">
-                View All →
-              </span>
+            <Link 
+              href="/projects"
+              className="text-xs font-light text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+            >
+              View All →
             </Link>
           </div>
           <div className="space-y-4">
@@ -131,9 +132,9 @@ export default function Page() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block hover:bg-gray-50 dark:hover:bg-gray-950 -mx-2 px-2 py-3 sm:py-2 rounded transition-colors"
+                  className="block hover:bg-gray-50 dark:hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600 -mx-2 px-2 py-3 sm:py-2 rounded transition-colors duration-200"
                 >
-                  <div className="font-light text-base sm:text-base text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                  <div className="font-light text-base sm:text-base text-black dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors duration-200">
                     {project.name}
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-light mt-1">

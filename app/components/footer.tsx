@@ -15,7 +15,14 @@ const YEAR = new Date().getFullYear();
 
 function SocialLink({ href, icon: Icon, title }: { href: string; icon: React.ComponentType; title?: string }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" title={title} aria-label={title}>
+    <a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      title={title} 
+      aria-label={title}
+      className="hover:text-black dark:hover:text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600 rounded"
+    >
       <Icon />
     </a>
   );
@@ -23,7 +30,7 @@ function SocialLink({ href, icon: Icon, title }: { href: string; icon: React.Com
 
 function SocialLinks() {
   return (
-    <div className="flex text-lg gap-3.5 float-right transition-opacity duration-300 hover:opacity-90">
+    <div className="flex text-lg gap-4 text-gray-600 dark:text-gray-400">
       <SocialLink href={socialLinks.twitter} icon={FaXTwitter} title="Twitter/X" />
       <SocialLink href={socialLinks.github} icon={FaGithub} title="GitHub" />
       <SocialLink href={socialLinks.instagram} icon={FaInstagram} title="Instagram" />
@@ -36,25 +43,21 @@ function SocialLinks() {
 
 export default function Footer() {
   return (
-    <small className="block lg:mt-24 mt-16 text-[#1C1C1C] dark:text-[#D4D4D4]">
-      <time>© {YEAR}</time>{" "}
-      <a
-        className="no-underline"
-        href={socialLinks.twitter}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {metaData.title}
-      </a>
-      <style jsx>{`
-        @media screen and (max-width: 480px) {
-          article {
-            padding-top: 2rem;
-            padding-bottom: 4rem;
-          }
-        }
-      `}</style>
-      <SocialLinks />
-    </small>
+    <footer className="mt-16 sm:mt-24 pt-8 border-t border-gray-200 dark:border-gray-800">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <small className="text-gray-600 dark:text-gray-400 text-sm">
+          <time>© {YEAR}</time>{" "}
+          <a
+            className="hover:text-black dark:hover:text-white transition-colors duration-200"
+            href={socialLinks.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {metaData.title}
+          </a>
+        </small>
+        <SocialLinks />
+      </div>
+    </footer>
   );
 }
