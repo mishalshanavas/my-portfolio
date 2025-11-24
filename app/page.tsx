@@ -5,11 +5,11 @@ import { hero, socialLinks, experiences, aboutMe, skills, topProjects, contact }
 export default function Page() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
-      <div className="max-w-3xl mx-auto px-6 py-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
         {/* Hero Section */}
-        <section className="flex flex-col items-start justify-center mb-20">
-            <div className="flex items-center gap-6 mb-6 justify-start">
+        <section className="flex flex-col items-start justify-center mb-8 sm:mb-12">
+            <div className="flex items-center gap-3 sm:gap-4">
             <Image
               src={hero.image}
               alt="Profile photo"
@@ -19,47 +19,47 @@ export default function Page() {
               priority
             />
             <div className="flex flex-col">
-              <h1 className="text-2xl md:text-3xl font-semibold text-black dark:text-white">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold text-black dark:text-white mb-1">
               {hero.name}
               </h1>
-              <p className="text-base text-gray-600 dark:text-gray-400 font-light">
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-light mb-2">
               {hero.title}
               </p>
+              <nav className="flex flex-wrap gap-3 sm:gap-4 text-sm">
+                <a
+                  href={socialLinks.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                >
+                  GitHub
+                </a>
+                <a
+                  href={socialLinks.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href={socialLinks.email}
+                  className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
+                >
+                  Email
+                </a>
+              </nav>
             </div>
             </div>
-          <nav className="flex gap-8 justify-start text-sm">
-            <a
-              href={socialLinks.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
-            >
-              GitHub
-            </a>
-            <a
-              href={socialLinks.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={socialLinks.email}
-              className="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600"
-            >
-              Email
-            </a>
-          </nav>
         </section>
 
         {/* About Section */}
-        <section className="mb-16">
+        <section className="mb-12 sm:mb-16">
           {/*<h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             About
           </h2>*/}
           <p
-            className="text-gray-700 dark:text-gray-300 leading-relaxed font-light"
+            className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed font-light"
             dangerouslySetInnerHTML={{
               __html: aboutMe
                 .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") 
@@ -69,25 +69,25 @@ export default function Page() {
         </section>
 
         {/* Experience Section */}
-        <section className="mb-16">
-          <h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-lg sm:text-xl font-light mb-4 sm:mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             Experience
           </h2>
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {experiences.map((exp, idx) => (
               <div key={idx} className="group">
-                <div className="font-light text-lg text-black dark:text-white mb-1">
+                <div className="font-light text-base sm:text-lg text-black dark:text-white mb-1">
                   {exp.role}
                 </div>
                 <a
                   href={exp.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-gray-600 dark:text-gray-400 font-light mb-2 "
+                  className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-light mb-2 block"
                 >
                   {exp.company} • {exp.period}
                 </a>
-                <div className="text-gray-700 dark:text-gray-300 font-light leading-relaxed">
+                <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 font-light leading-relaxed">
                   {exp.description}
                 </div>
               </div>
@@ -96,8 +96,8 @@ export default function Page() {
         </section>
 
         {/* Skills Section */}
-        <section className="mb-16">
-          <h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
+        <section className="mb-12 sm:mb-16">
+          <h2 className="text-lg sm:text-xl font-light mb-4 sm:mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             Skills
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -113,9 +113,9 @@ export default function Page() {
         </section>
 
         {/* Projects Section */}
-        <section className="mb-16">
-          <div className="flex items-center justify-between mb-6 border-b border-gray-200 dark:border-gray-800 pb-2">
-            <h2 className="text-xl font-light text-black dark:text-white">
+        <section className="mb-12 sm:mb-16">
+          <div className="flex items-center justify-between mb-4 sm:mb-6 border-b border-gray-200 dark:border-gray-800 pb-2">
+            <h2 className="text-lg sm:text-xl font-light text-black dark:text-white">
               Projects
             </h2>
             <Link href="/projects">
@@ -131,12 +131,12 @@ export default function Page() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block hover:bg-gray-50 dark:hover:bg-gray-950 -mx-2 px-2 py-2 rounded transition-colors"
+                  className="block hover:bg-gray-50 dark:hover:bg-gray-950 -mx-2 px-2 py-3 sm:py-2 rounded transition-colors"
                 >
-                  <div className="font-light text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+                  <div className="font-light text-base sm:text-base text-black dark:text-white group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
                     {project.name}
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-light mt-1">
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 font-light mt-1">
                     {project.description}
                   </div>
                 </a>
@@ -147,11 +147,11 @@ export default function Page() {
 
         {/* Contact Section */}
         <section>
-          <h2 className="text-xl font-light mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
+          <h2 className="text-lg sm:text-xl font-light mb-4 sm:mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             Contact
           </h2>
           <p
-            className="text-gray-700 dark:text-gray-300 font-light leading-relaxed"
+            className="text-sm sm:text-base text-gray-700 dark:text-gray-300 font-light leading-relaxed"
             dangerouslySetInnerHTML={{ __html: contact.text }}
           />
         </section>

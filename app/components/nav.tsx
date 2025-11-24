@@ -13,6 +13,7 @@ const navItems = {
 
 export function Navbar() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <nav className="py-3 mb-8 border-b border-gray-200/50 dark:border-gray-800/50">
@@ -25,8 +26,8 @@ export function Navbar() {
           {metaData.title}
         </Link>
 
-        {/* Navigation */}
-        <div className="flex items-center gap-6">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6">
           {Object.entries(navItems).map(([path, { name }]) => {
             const isActive = pathname === path;
             return (
@@ -50,80 +51,67 @@ export function Navbar() {
             <ThemeSwitch />
           </div>
         </div>
+
+        {/* Mobile Menu Button */}
+        <div className="flex md:hidden items-center gap-4">
+          <ThemeSwitch />
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isMenuOpen}
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              {isMenuOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
-    </nav>
-  );
-}
 
-// Mobile Menu Component (if you want mobile functionality)
-function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
-
-  return (
-    <div className="md:hidden">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors"
-        aria-label="Toggle mobile menu"
-      >
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          {isOpen ? (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          ) : (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={1.5}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          )}
-        </svg>
-      </button>
-
-      {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/20 dark:bg-white/10 z-40"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg z-50">
-            <div className="py-2">
-              {Object.entries(navItems).map(([path, { name }]) => {
-                const isActive = pathname === path;
-                return (
-                  <Link
-                    key={path}
-                    href={path}
-                    onClick={() => setIsOpen(false)}
-                    className={`
-                      block px-4 py-2 text-sm font-light transition-colors
-                      ${
-                        isActive
-                          ? "text-black dark:text-white bg-gray-50 dark:bg-gray-950"
-                          : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-950"
-                      }
-                    `}
-                  >
-                    {name}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </>
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden pt-4 pb-2 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200">
+          {Object.entries(navItems).map(([path, { name }]) => {
+            const isActive = pathname === path;
+            return (
+              <Link
+                key={path}
+                href={path}
+                onClick={() => setIsMenuOpen(false)}
+                className={`
+                  block px-3 py-2 rounded text-base font-light transition-colors
+                  ${
+                    isActive
+                      ? "text-black dark:text-white bg-gray-100 dark:bg-gray-900"
+                      : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-950"
+                  }
+                `}
+              >
+                {name}
+              </Link>
+            );
+          })}
+        </div>
       )}
-    </div>
+    </nav>
   );
 }
