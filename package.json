@@ -10,6 +10,7 @@
     "pages:deploy": "pnpm pages:build && wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
+    "cheerio": "^1.1.2",
     "feed": "^5.1.0",
     "katex": "^0.16.22",
     "next": "^15.3.4",
