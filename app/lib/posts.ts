@@ -7,28 +7,62 @@ type Metadata = {
   summary: string;
   tags: string;
   image?: string;
+  slug?: string;
+  draft?: boolean;
 };
 
 function parseFrontmatter(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
+  if (!match) {
+    return { metadata: {} as Metadata, content: fileContent };
+  }
+  let frontMatterBlock = match[1];
   let content = fileContent.replace(frontmatterRegex, "").trim();
   let frontMatterLines = frontMatterBlock.trim().split("\n");
   let metadata: Partial<Metadata> = {};
 
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(": ");
+    if (!key || valueArr.length === 0) return;
     let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); 
-    metadata[key.trim() as keyof Metadata] = value;
+    // Remove quotes
+    value = value.replace(/^['"](.*)['"]$/, "$1");
+    
+    const trimmedKey = key.trim();
+    
+    // Handle Obsidian field aliases
+    if (trimmedKey === "date") {
+      metadata.publishedAt = value;
+    } else if (trimmedKey === "description") {
+      metadata.summary = value;
+    } else if (trimmedKey === "draft") {
+      metadata.draft = value === "true";
+    } else if (trimmedKey === "tags") {
+      // Handle both array format ["tag1", "tag2"] and comma-separated "tag1, tag2"
+      if (value.startsWith("[")) {
+        try {
+          const tagsArray = JSON.parse(value.replace(/'/g, '"'));
+          metadata.tags = Array.isArray(tagsArray) ? tagsArray.join(", ") : value;
+        } catch {
+          metadata.tags = value.replace(/[\[\]"']/g, "");
+        }
+      } else {
+        metadata.tags = value;
+      }
+    } else {
+      (metadata as Record<string, unknown>)[trimmedKey] = value;
+    }
   });
 
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+function getMarkdownFiles(dir: string) {
+  return fs.readdirSync(dir).filter((file) => {
+    const ext = path.extname(file);
+    return ext === ".mdx" || ext === ".md";
+  });
 }
 
 function readMDXFile(filePath: string) {
@@ -36,22 +70,26 @@ function readMDXFile(filePath: string) {
   return parseFrontmatter(rawContent);
 }
 
-function getMDXData(dir: string) {
-  let mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
+function getMarkdownData(dir: string) {
+  let mdFiles = getMarkdownFiles(dir);
+  return mdFiles
+    .map((file) => {
+      let { metadata, content } = readMDXFile(path.join(dir, file));
+      // Use slug from frontmatter if provided, otherwise use filename
+      let slug = metadata.slug || path.basename(file, path.extname(file));
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
-  });
+      return {
+        metadata,
+        slug,
+        content,
+      };
+    })
+    // Filter out drafts
+    .filter((post) => !post.metadata.draft);
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "content"));
+  return getMarkdownData(path.join(process.cwd(), "content"));
 }
 
 export function getReadingTime(content: string): string {

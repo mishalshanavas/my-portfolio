@@ -4,25 +4,34 @@
         <title>mishal shanavas</title>
         <link>https://www.mishalshanavas.in/</link>
         <description>Linux enthusiast and developer currently learning Rust. Passionate about Cloud Computing, Open Source, and Web Development. I build web applications and automation tools using Python, C, and modern web technologies.</description>
-        <lastBuildDate>Fri, 21 Nov 2025 13:08:19 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 23 Dec 2025 07:21:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <copyright>All rights reserved 2025, mishal shanavas</copyright>
         <atom:link href="https://www.mishalshanavas.in/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[Custom MDX Examples]]></title>
+            <link>https://www.mishalshanavas.in/blog/custom-mdx-examples</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/custom-mdx-examples</guid>
+            <pubDate>Sun, 11 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Nextfolio custom MDX examples.]]></description>
+            <category>Custom MDX</category>
+            <category>Web development</category>
+        </item>
+        <item>
             <title><![CDATA[We Built an AI Career Guider and Won 2nd Runner-Up]]></title>
             <link>https://www.mishalshanavas.in/blog/ict-hackathon</link>
             <guid isPermaLink="false">https://www.mishalshanavas.in/blog/ict-hackathon</guid>
-            <pubDate>Tue, 05 Aug 2025 00:00:00 GMT</pubDate>
+            <pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[How a last-minute hackathon turned into an accidental meme and a legit AI project.]]></description>
-            <category>["Hackathon"</category>
-            <category>"AI"]</category>
+            <category>Hackathon</category>
+            <category>AI</category>
         </item>
         <item>
             <title><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
             <link>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</link>
             <guid isPermaLink="false">https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</guid>
-            <pubDate>Wed, 29 Oct 2025 00:00:00 GMT</pubDate>
+            <pubDate>Tue, 29 Oct 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[That time I migrated my Instagram DP bot from Azure to GitHub Actions because apparently I love over-engineering my own chaos.]]></description>
             <category>GitHub Actions</category>
             <category>Serverless</category>
@@ -34,12 +43,22 @@
             <title><![CDATA[I Built a Bot to Change My Instagram DP So I Don't Have To]]></title>
             <link>https://www.mishalshanavas.in/blog/instagram-pfp</link>
             <guid isPermaLink="false">https://www.mishalshanavas.in/blog/instagram-pfp</guid>
-            <pubDate>Sat, 15 Feb 2025 00:00:00 GMT</pubDate>
+            <pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[That time I got tired of manually updating my Instagram profile pic and decided to automate my entire aesthetic.]]></description>
             <category>Python</category>
             <category>Automation</category>
             <category>Instagram</category>
             <category>Side Projects</category>
+        </item>
+        <item>
+            <title><![CDATA[Test Post from Obsidian]]></title>
+            <link>https://www.mishalshanavas.in/blog/test-obsidian-post</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/test-obsidian-post</guid>
+            <pubDate>Tue, 23 Dec 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[This is a test post written in Obsidian to verify the preprocessing pipeline works correctly.]]></description>
+            <category>test</category>
+            <category>obsidian</category>
+            <category>automation</category>
         </item>
     </channel>
 </rss>

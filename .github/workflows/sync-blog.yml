@@ -1,0 +1,103 @@
+name: Sync Blog from Obsidian
+
+on:
+  # Manual trigger
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force rebuild even if no changes'
+        required: false
+        default: 'false'
+        type: boolean
+
+  # Scheduled run - daily at midnight UTC
+  schedule:
+    - cron: '0 0 * * *'
+
+  # Optional: trigger on push to vault repo via repository_dispatch
+  repository_dispatch:
+    types: [obsidian-update]
+
+env:
+  VAULT_REPO: ${{ secrets.OBSIDIAN_REPO }}  # e.g., "username/ObsidianBackup"
+  VAULT_PATH: ./obsidian-vault
+
+jobs:
+  sync-blog:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # Needed to push commits
+    
+    steps:
+      - name: 📥 Checkout portfolio repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 📥 Clone Obsidian vault
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.VAULT_REPO }}
+          token: ${{ secrets.OBSIDIAN_REPO_PAT }}
+          path: ${{ env.VAULT_PATH }}
+          fetch-depth: 1
+
+      - name: 📦 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🔄 Process Obsidian content
+        run: |
+          echo "Processing Obsidian vault..."
+          npx tsx scripts/process-obsidian.ts
+        env:
+          VAULT_PATH: ${{ env.VAULT_PATH }}
+
+      - name: 🧹 Cleanup vault directory
+        run: rm -rf ${{ env.VAULT_PATH }}
+
+      - name: 🔍 Check for changes
+        id: check_changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --staged --stat
+          fi
+
+      - name: 📝 Commit and push changes
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "chore: sync blog content from Obsidian [automated]"
+          git push
+        # Cloudflare Pages will auto-deploy when it detects the new commit
+
+      - name: 📊 Summary
+        run: |
+          echo "## Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check_changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ Changes pushed - Cloudflare Pages will auto-deploy" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No changes detected" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Processed at:** $(date -u)" >> $GITHUB_STEP_SUMMARY
