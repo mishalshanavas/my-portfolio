@@ -18,10 +18,6 @@ on:
   repository_dispatch:
     types: [obsidian-update]
 
-env:
-  VAULT_REPO: ${{ secrets.OBSIDIAN_REPO }}  # e.g., "username/ObsidianBackup"
-  VAULT_PATH: ./obsidian-vault
-
 jobs:
   sync-blog:
     runs-on: ubuntu-latest
@@ -39,9 +35,9 @@ jobs:
       - name: 📥 Clone Obsidian vault
         uses: actions/checkout@v4
         with:
-          repository: ${{ env.VAULT_REPO }}
+          repository: ${{ secrets.OBSIDIAN_REPO }}
           token: ${{ secrets.OBSIDIAN_REPO_PAT }}
-          path: ${{ env.VAULT_PATH }}
+          path: ./obsidian-vault
           fetch-depth: 1
 
       - name: 📦 Setup pnpm
@@ -63,10 +59,10 @@ jobs:
           echo "Processing Obsidian vault..."
           npx tsx scripts/process-obsidian.ts
         env:
-          VAULT_PATH: ${{ env.VAULT_PATH }}
+          VAULT_PATH: ./obsidian-vault
 
       - name: 🧹 Cleanup vault directory
-        run: rm -rf ${{ env.VAULT_PATH }}
+        run: rm -rf ./obsidian-vault
 
       - name: 🔍 Check for changes
         id: check_changes
