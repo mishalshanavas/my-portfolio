@@ -16,7 +16,7 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="py-4 mb-8 border-b border-gray-200 dark:border-gray-800">
+    <nav className="py-3 sm:py-4 mb-4 sm:mb-8 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link

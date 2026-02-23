@@ -20,6 +20,7 @@ export const hero = {
   title: "Backend Developer • Cloud and Linux Enthusiast",
   imageLight: "/profile-wt.jpg",
   imageDark: "/profile-bl.jpg",
+  resumeUrl: "/resume.pdf",
 };
 export const contact = {
   text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
@@ -40,18 +41,38 @@ export const experiences = [
 ];
 
 export const skills = [
-  "Linux",
-  "Rust",
+  // Languages
   "C",
-  "Bash",
   "Python",
+  "Rust",
+  "Bash",
+  // Frontend
+  "Vue.js",
+  "React",
+  "Nuxt",
+  "Tailwind CSS",
+  "SCSS",
+  // Backend
   "Django",
-  "mySQL",
-  "Backend Development",
-  "JWT Authentication",
-  "Docker",
+  // Databases
+  "PostgreSQL",
+  "MySQL",
+  "MongoDB",
+  "Redis",
+  "Firebase",
+  "SQLite",
+  "DynamoDB",
+  // Cloud
   "AWS",
-  "Azure",
+  "GCP",
+  "Lambda",
+  "EC2",
+  "S3",
+  "RDS",
+  "CloudWatch",
+  // DevOps
+  "Docker",
+  "Linux",
 ];
 
 export const projects = [

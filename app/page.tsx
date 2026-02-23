@@ -20,7 +20,7 @@ function renderAbout(text: string) {
 export default function Page() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 sm:py-12">
 
         {/* Hero Section */}
         <section className="flex flex-col items-start justify-center mb-12 sm:mb-16">
@@ -70,6 +70,14 @@ export default function Page() {
                   className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
                 >
                   Email
+                </a>
+                <a
+                  href={hero.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+                >
+                  Resume ↗
                 </a>
               </nav>
             </div>
