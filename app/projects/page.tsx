@@ -13,13 +13,14 @@ export default function Projects() {
     <section>
       <h1 className="mb-8 text-2xl font-light">Projects</h1>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
-        {projects.map((project, index) => (
+        {projects.map((project, index) => {
+          const isExternal = project.url.startsWith("http");
+          return (
           <Link
             key={index}
             href={project.url}
             className="group block overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-700 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600 active:scale-[0.99]"
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             <div className="aspect-video relative overflow-hidden">
               <Image
@@ -52,7 +53,8 @@ export default function Projects() {
               )}
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

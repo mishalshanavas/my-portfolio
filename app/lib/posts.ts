@@ -28,7 +28,7 @@ function parseFrontmatter(fileContent: string) {
 }
 
 function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+  return fs.readdirSync(dir).filter((file) => [".mdx", ".md"].includes(path.extname(file)));
 }
 
 function readMDXFile(filePath: string) {
@@ -50,8 +50,17 @@ function getMDXData(dir: string) {
   });
 }
 
+let postsCache: ReturnType<typeof getMDXData> | null = null;
+
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "content"));
+  if (!postsCache) {
+    postsCache = getMDXData(path.join(process.cwd(), "content"));
+  }
+  return postsCache;
+}
+
+export function invalidatePostsCache() {
+  postsCache = null;
 }
 
 export function getReadingTime(content: string): string {

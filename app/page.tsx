@@ -1,6 +1,21 @@
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { hero, socialLinks, experiences, aboutMe, skills, topProjects, contact } from "./lib/config";
+
+function renderAbout(text: string) {
+  return text.split("\n").map((line, i, arr) => {
+    const parts = line.split(/\*\*(.*?)\*\*/g);
+    return (
+      <React.Fragment key={i}>
+        {parts.map((part, j) =>
+          j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+        )}
+        {i < arr.length - 1 && <br />}
+      </React.Fragment>
+    );
+  });
+}
 
 export default function Page() {
   return (
@@ -11,9 +26,17 @@ export default function Page() {
         <section className="flex flex-col items-start justify-center mb-12 sm:mb-16">
             <div className="flex items-center gap-4">
             <Image
-              src={hero.image}
+              src={hero.imageLight}
               alt="Profile photo"
-              className="rounded-full border-2 border-gray-200 dark:border-gray-800 transition-all duration-200"
+              className="rounded-full border-2 border-gray-200 dark:border-gray-800 transition-all duration-200 dark:hidden"
+              width={120}
+              height={120}
+              priority
+            />
+            <Image
+              src={hero.imageDark}
+              alt="Profile photo"
+              className="rounded-full border-2 border-gray-200 dark:border-gray-800 transition-all duration-200 hidden dark:block"
               width={120}
               height={120}
               priority
@@ -58,14 +81,9 @@ export default function Page() {
           <h2 className="text-lg sm:text-xl font-light mb-4 sm:mb-6 text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2">
             About
           </h2>
-          <p
-            className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-normal font-light"
-            dangerouslySetInnerHTML={{
-              __html: aboutMe
-                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>") 
-                .replace(/\n/g, "<br />"), 
-            }}
-          ></p>
+          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-normal font-light">
+            {renderAbout(aboutMe)}
+          </p>
         </section>
 
         {/* Experience Section */}
@@ -126,12 +144,13 @@ export default function Page() {
             </Link>
           </div>
           <div className="space-y-4">
-            {topProjects.map((project, idx) => (
+            {topProjects.map((project, idx) => {
+              const isExternal = project.url.startsWith("http");
+              return (
               <div key={idx} className="group">
                 <a
                   href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="block hover:bg-gray-50 dark:hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600 -mx-2 px-2 py-3 sm:py-2 rounded transition-colors duration-200"
                 >
                   <div className="font-light text-base sm:text-base text-black dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors duration-200">
@@ -142,7 +161,8 @@ export default function Page() {
                   </div>
                 </a>
               </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 

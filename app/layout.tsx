@@ -92,7 +92,8 @@ export default function RootLayout({
           href="/feed.json"
           title="JSON Feed"
         />
-        <link rel="preload" href="/profile.png" as="image" />
+        <link rel="preload" href="/profile-wt.jpg" as="image" />
+        <link rel="preload" href="/profile-bl.jpg" as="image" />
       </head>
       <body className="antialiased font-inter bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <div className="min-h-screen flex flex-col">

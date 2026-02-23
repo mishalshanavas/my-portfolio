@@ -17,5 +17,5 @@ export async function GET(
   }
 
   // Redirect to the static feed files generated at build time
-  return NextResponse.redirect(new URL(`/${format}`, _?.url || 'https://example.com'), 301);
+  return NextResponse.redirect(new URL(`/${format}`, _.url), 301);
 }
