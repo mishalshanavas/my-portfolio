@@ -2,7 +2,7 @@ export const metaData = {
   baseUrl: "https://www.mishalshanavas.in",
   title: "mishal shanavas",
   name: "Mishal Shanavas",
-  ogImage: "/profile-wt.jpg",
+  ogImage: "/profile-wt.webp",
   description:
     "Linux enthusiast and developer currently learning Rust. Passionate about Cloud Computing, Open Source, and Web Development. I build web applications and automation tools using Python, C, and modern web technologies."
 };
@@ -18,8 +18,8 @@ export const socialLinks = {
 export const hero = {
   name: metaData.name,
   title: "Backend Developer • Cloud and Linux Enthusiast",
-  imageLight: "/profile-wt.jpg",
-  imageDark: "/profile-bl.jpg",
+  imageLight: "/profile-wt.webp",
+  imageDark: "/profile-bl.webp",
   resumeUrl: "/resume.pdf",
 };
 export const contact = {
