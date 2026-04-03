@@ -75,6 +75,7 @@ export default function Page() {
                   href={hero.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  download="mishalshanavas_cv.pdf"
                   className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
                 >
                   Resume ↗

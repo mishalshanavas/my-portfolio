@@ -20,7 +20,7 @@ export const hero = {
   title: "Backend Developer • Cloud and Linux Enthusiast",
   imageLight: "/profile-wt.webp",
   imageDark: "/profile-bl.webp",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/resume",
 };
 export const contact = {
   text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
