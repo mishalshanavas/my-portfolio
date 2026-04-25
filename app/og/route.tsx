@@ -1,4 +1,4 @@
-import { metaData } from "app/lib/config";
+import { metaData } from "../lib/config";
 import { NextResponse } from "next/server";
 
 export const runtime = 'edge';

@@ -1,4 +1,3 @@
-import { Feed } from "feed";
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import { getBlogPosts } from "../app/lib/posts";
@@ -6,6 +5,7 @@ import { metaData } from "../app/lib/config";
 
 async function generateFeeds() {
   try {
+    const { Feed } = await import("feed");
     const BaseUrl = metaData.baseUrl.endsWith("/")
       ? metaData.baseUrl
       : `${metaData.baseUrl}/`;

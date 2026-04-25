@@ -1,17 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData,socialLinks } from "./lib/config";
-
-const inter = Inter({ 
-  subsets: ["latin"],
-  display: 'swap',
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-inter'
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -68,11 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html 
-      lang="en" 
-      className={`${inter.variable} scroll-smooth`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link
           rel="alternate"
@@ -95,7 +83,7 @@ export default function RootLayout({
         <link rel="preload" href="/profile-wt.jpg" as="image" />
         <link rel="preload" href="/profile-bl.jpg" as="image" />
       </head>
-      <body className="antialiased font-inter bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <body className="antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <div className="min-h-screen flex flex-col">
           <ThemeProvider
             attribute="class"
