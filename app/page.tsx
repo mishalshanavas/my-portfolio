@@ -200,7 +200,7 @@ export default async function Page() {
             <section>
               <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 <h2 className="text-base font-light text-black dark:text-white">
-                  Personal Projects
+                  Projects
                 </h2>
                 <Link
                   href="/projects"
