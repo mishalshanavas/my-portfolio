@@ -17,7 +17,6 @@ import {
   skills,
   projects,
   profileMeta,
-  contributionData as fallbackData,
 } from "./lib/config";
 import { getTimelineEvents } from "./lib/activity";
 import { fetchGitHubContributions } from "./lib/github";
@@ -44,18 +43,18 @@ function renderAbout(text: string) {
 export default async function Page() {
   const timelineEvents = getTimelineEvents();
   const ghData = await fetchGitHubContributions(profileMeta.username);
-  const contributionData = ghData.length > 0 ? ghData : fallbackData;
+  const contributionData = ghData;
 
   return (
     <>
         {/* HERO (full width top) */}
-        <section className="flex flex-col sm:flex-row sm:items-center gap-5 pb-8 mb-8 border-b border-gray-200 dark:border-gray-800">
+        <section className="flex flex-col sm:flex-row sm:items-center gap-5 pb-8 mb-8 border-b border-gray-300 dark:border-gray-700">
           {/* Avatar */}
           <div className="flex-shrink-0">
             <Image
               src={hero.imageLight}
               alt="Profile photo"
-              className="rounded-full border-2 border-gray-200 dark:border-gray-800 transition-all duration-200 dark:hidden"
+              className="rounded-full border-2 border-gray-300 dark:border-gray-700 transition-all duration-200 dark:hidden"
               width={90}
               height={90}
               priority
@@ -63,7 +62,7 @@ export default async function Page() {
             <Image
               src={hero.imageDark}
               alt="Profile photo"
-              className="rounded-full border-2 border-gray-200 dark:border-gray-800 transition-all duration-200 hidden dark:block"
+              className="rounded-full border-2 border-gray-300 dark:border-gray-700 transition-all duration-200 hidden dark:block"
               width={90}
               height={90}
               priority
@@ -127,7 +126,7 @@ export default async function Page() {
 
             {/* About */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">
+              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 About
               </h2>
               <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
@@ -137,7 +136,7 @@ export default async function Page() {
 
             {/* Experience */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">
+              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Experience
               </h2>
               <div className="space-y-6">
@@ -164,14 +163,14 @@ export default async function Page() {
 
             {/* Skills */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">
+              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Skills
               </h2>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-1 text-xs font-light bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded"
+                    className="px-2 py-1 text-xs font-light bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700 rounded"
                   >
                     {skill}
                   </span>
@@ -181,17 +180,17 @@ export default async function Page() {
 
             {/* Activity Chart */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">
+              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Activity
               </h2>
-              <div className="border border-gray-200 dark:border-gray-800 rounded-lg p-4 overflow-hidden">
+              <div className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 overflow-hidden">
                 <ContributionChart data={contributionData} />
               </div>
             </section>
 
             {/* Contributions Timeline */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">
+              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Contributions
               </h2>
               <ActivityTimeline events={timelineEvents} />
@@ -199,7 +198,7 @@ export default async function Page() {
 
             {/* Projects */}
             <section>
-              <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2 mb-4">
+              <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 <h2 className="text-base font-light text-black dark:text-white">
                   Personal Projects
                 </h2>
@@ -250,13 +249,13 @@ export default async function Page() {
                   <span>CS major</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiZap className="flex-shrink-0 text-blue-500" />
-                  <span className="text-blue-600 dark:text-blue-400">Available for freelance</span>
+                  <FiZap className="flex-shrink-0 text-[#122C4F] dark:text-[#5b8fd0]" />
+                  <span className="text-[#122C4F] dark:text-[#5b8fd0]">Available for freelance</span>
                 </li>
               </ul>
             </div>
 
-            <div className="border-t border-gray-200 dark:border-gray-800" />
+            <div className="border-t border-gray-300 dark:border-gray-700" />
 
             {/* Contact */}
             <div>

@@ -1,35 +1,15 @@
-import { getBlogPosts } from "./posts";
-import { projects, experiences } from "./config";
+import { experiences, contributionHighlights, launches } from "./config";
 
 export type TimelineEvent = {
   date: string;
   title: string;
   description: string;
-  type: "blog" | "project" | "experience";
+  type: "experience" | "contribution" | "launch";
   url?: string;
+  openSource?: boolean;
 };
 
 export function getTimelineEvents(): TimelineEvent[] {
-  const blogEvents: TimelineEvent[] = getBlogPosts().map((post) => ({
-    date: post.metadata.publishedAt,
-    title: post.metadata.title,
-    description: post.metadata.summary,
-    type: "blog" as const,
-    url: `/blog/${post.slug}`,
-  }));
-
-  const projectEvents: TimelineEvent[] = (
-    projects as (typeof projects[number] & { date?: string })[]
-  )
-    .filter((p) => !!p.date)
-    .map((p) => ({
-      date: p.date!,
-      title: p.name,
-      description: p.description,
-      type: "project" as const,
-      url: p.url,
-    }));
-
   const experienceEvents: TimelineEvent[] = (
     experiences as (typeof experiences[number] & { startDate?: string })[]
   ).map((exp) => ({
@@ -40,7 +20,30 @@ export function getTimelineEvents(): TimelineEvent[] {
     url: exp.companyUrl,
   }));
 
-  return [...blogEvents, ...projectEvents, ...experienceEvents].sort(
+  const launchEvents: TimelineEvent[] = launches.map((item) => ({
+    date: item.date,
+    title: item.title,
+    description: item.description,
+    type: "launch" as const,
+    url: item.url,
+  }));
+
+  const contributionEvents: TimelineEvent[] = contributionHighlights.map(
+    (item) => ({
+      date: item.date,
+      title: item.title,
+      description: item.description,
+      type: "contribution" as const,
+      url: item.url,
+      openSource: (item as { openSource?: boolean }).openSource ?? false,
+    })
+  );
+
+  return [
+    ...contributionEvents,
+    ...launchEvents,
+    ...experienceEvents,
+  ].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 }

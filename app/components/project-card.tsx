@@ -10,6 +10,7 @@ interface Project {
   tech?: string[];
   featured?: boolean;
   imageAlignment?: string;
+  isContributor?: boolean;
 }
 
 interface ProjectCardProps {
@@ -56,15 +57,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Info */}
         <div className="flex-1 min-w-0 flex flex-col">
-          <div className="text-sm font-medium text-black dark:text-white truncate">
+          <div className="text-sm font-medium text-black dark:text-white line-clamp-2 leading-snug">
             {project.name}
           </div>
           <p className="text-xs text-gray-500 dark:text-gray-500 mt-0.5 line-clamp-2 leading-relaxed flex-1">
             {project.description}
           </p>
-          {project.tech && project.tech.length > 0 && (
+          {(project.isContributor || (project.tech && project.tech.length > 0)) && (
             <div className="flex flex-wrap gap-1 mt-2">
-              {project.tech.slice(0, 3).map((t) => (
+              {project.isContributor && (
+                <span className="px-1.5 py-0.5 text-[10px] font-light bg-[#FBF9E4] text-[#122C4F] border border-[#122C4F]/20 rounded dark:bg-[#122C4F] dark:text-[#FBF9E4] dark:border-[#5B88B2]">
+                  Contributor
+                </span>
+              )}
+              {project.tech?.slice(0, 3).map((t) => (
                 <span
                   key={t}
                   className="px-1.5 py-0.5 text-[10px] font-light bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded"

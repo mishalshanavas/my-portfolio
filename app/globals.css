@@ -26,12 +26,12 @@
   --sh-jsxliterals: #525252;
   --sh-property: #404040;
   --sh-entity: #404040;
-  /* Contribution chart – GitLab exact blue #554ef1 */
+  /* Contribution chart – navy #122C4F scale */
   --chart-0: #ededed;
-  --chart-1: #c8c4f5;
-  --chart-2: #9d96f0;
-  --chart-3: #554ef1;
-  --chart-4: #3b35d5;
+  --chart-1: #b8cde0;
+  --chart-2: #5a8db5;
+  --chart-3: #122C4F;
+  --chart-4: #0a1e35;
 }
 
 /* Dark theme colors - adjusted for better monochrome */
@@ -46,12 +46,12 @@
   --sh-jsxliterals: #d4d4d4;
   --sh-property: #e5e5e5;
   --sh-entity: #e5e5e5;
-  /* Contribution chart – dark variants */
-  --chart-0: #1f1f2e;
-  --chart-1: #3f3b7e;
-  --chart-2: #5350b8;
-  --chart-3: #6b6bfc;
-  --chart-4: #9191ff;
+  /* Contribution chart – dark navy variants */
+  --chart-0: #1a1a2e;
+  --chart-1: #1e3a5a;
+  --chart-2: #235087;
+  --chart-3: #2d6abf;
+  --chart-4: #5b8fd0;
 }
 
 html {
