@@ -1,9 +1,17 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData,socialLinks } from "./lib/config";
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -60,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
       <head>
         <link
           rel="alternate"
@@ -83,7 +91,7 @@ export default function RootLayout({
         <link rel="preload" href="/profile-wt.jpg" as="image" />
         <link rel="preload" href="/profile-bl.jpg" as="image" />
       </head>
-      <body className="antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <body className={`${inter.className} antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300`}>
         <div className="min-h-screen flex flex-col">
           <ThemeProvider
             attribute="class"
@@ -99,12 +107,12 @@ export default function RootLayout({
               Skip to main content
             </a>
             
-            <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+            <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full">
               <Navbar />
               
               <main 
                 id="main-content"
-                className="flex-1 px-4 sm:px-6 lg:px-8 py-4 sm:py-8"
+                className="flex-1 px-4 sm:px-6 py-4 sm:py-8"
               >
                 {children}
               </main>

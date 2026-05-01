@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+
 # testing
 /coverage
 
@@ -27,7 +28,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
-.env
+.env.*
 .dev.vars
 
 # vercel

@@ -26,6 +26,12 @@
   --sh-jsxliterals: #525252;
   --sh-property: #404040;
   --sh-entity: #404040;
+  /* Contribution chart – GitLab exact blue #554ef1 */
+  --chart-0: #ededed;
+  --chart-1: #c8c4f5;
+  --chart-2: #9d96f0;
+  --chart-3: #554ef1;
+  --chart-4: #3b35d5;
 }
 
 /* Dark theme colors - adjusted for better monochrome */
@@ -40,6 +46,12 @@
   --sh-jsxliterals: #d4d4d4;
   --sh-property: #e5e5e5;
   --sh-entity: #e5e5e5;
+  /* Contribution chart – dark variants */
+  --chart-0: #1f1f2e;
+  --chart-1: #3f3b7e;
+  --chart-2: #5350b8;
+  --chart-3: #6b6bfc;
+  --chart-4: #9191ff;
 }
 
 html {
@@ -49,7 +61,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -58,7 +70,7 @@ body {
 
 /* Enhanced typography */
 .prose {
-  @apply text-gray-900 dark:text-gray-100 font-light;
+  @apply text-gray-900 dark:text-gray-100;
   line-height: 1.7;
 }
 
