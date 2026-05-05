@@ -10,7 +10,7 @@ export const metaData = {
   name: "Mishal Shanavas",
   ogImage: "/profile-wt.webp",
   description:
-    "Linux enthusiast and developer currently learning Rust. Passionate about Cloud Computing, Open Source, and Web Development. I build web applications and automation tools using Python, C, and modern web technologies."
+    "Backend developer and Linux enthusiast building scalable APIs, open source tools, and automation scripts. Experienced with Django, Python, and cloud infrastructure."
 };
 
 export const socialLinks = {
@@ -26,13 +26,13 @@ export const hero = {
   title: "Backend Developer • Cloud and Linux Enthusiast",
   imageLight: "/profile-wt.webp",
   imageDark: "/profile-bl.webp",
-  resumeUrl: "/resume",
+  resumeUrl: "/resume.pdf",
 };
 export const contact = {
   text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
 };
 
-export const aboutMe = `Hey, I'm **Mishal** — a **Linux enjoyer** and **backend dev** who builds **lightweight, efficient tools** with **Python**, **Bash**, and sometimes **C**. I'm into **automation**, **proxies**, and writing **clean CLI flows** that just work. Lately vibing with **Rust** and diving deeper into **system stuff** and **networking**. When I'm not coding, I'm probably **tweaking my Arch setup**, testing weird distros, or **helping folks on Reddit**.  
+export const aboutMe = `Hey, I'm Mishal — a Linux enjoyer and **backend developer** who builds lightweight, efficient tools with **Python**, Bash, and sometimes C. I'm into automation, proxies, and writing clean CLI flows that just work. Lately vibing with **Rust** and diving deeper into system stuff and networking. When I'm not coding, I'm probably tweaking my Arch setup, testing weird distros, or helping folks on Reddit.  
 And yeah... **I use Arch btw**`
 
 export const experiences = [
@@ -90,6 +90,7 @@ export const projects = [
     image: "/mappix.webp",
     imageAlignment: "object-center",
     featured: true,
+    isSideQuest: true,
     tech: ["Vue.js", "JavaScript", "Computer Vision", "Matter.js", "WebRTC", "Homography"],
   },
   {
@@ -119,9 +120,10 @@ export const projects = [
     date: "2024-06-01",
     url: "https://github.com/mishalshanavas/notes-bot",
     description: "A Python automation script that updates your Instagram notes with the current time, showcasing simple social media automation using Python.",
-    image: "https://github.com/mishalshanavas/notes-bot/assets/70484516/cdd408dd-fae2-43e5-aa51-b6f61c8c0ffa",
+    image: "/notes.gif",
     imageAlignment: "object-left",
     featured: false,
+    isSideQuest: true,
     tech: ["Python"],
   },
   {
@@ -132,6 +134,7 @@ export const projects = [
     image: "/pfp.gif",
     featured: true,
     imageAlignment: "object-left",
+    isSideQuest: true,
     tech: ["Python"],
   },
 ];
@@ -161,7 +164,7 @@ export const contributionHighlights = [
     date: "2026-01-06",
     title: "sahrdaya.ac.in — reworked the entire college website",
     description:
-      "helps in intagrating core netxt js features like image optimization, incremental static regeneration and more...",
+      "Helped integrate core Next.js features including image optimization, incremental static regeneration, and more.",
     url: "https://github.com/arxhr007/sahrdaya_website",
   },
   {

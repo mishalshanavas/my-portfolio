@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.mishalshanavas.in/</id>
     <title>mishal shanavas</title>
-    <updated>2026-05-01T08:45:16.823Z</updated>
+    <updated>2026-05-05T01:10:31.184Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://www.mishalshanavas.in/"/>
     <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
-    <subtitle>Linux enthusiast and developer currently learning Rust. Passionate about Cloud Computing, Open Source, and Web Development. I build web applications and automation tools using Python, C, and modern web technologies.</subtitle>
+    <subtitle>Backend developer and Linux enthusiast building scalable APIs, open source tools, and automation scripts. Experienced with Django, Python, and cloud infrastructure.</subtitle>
     <rights>All rights reserved 2026, mishal shanavas</rights>
     <entry>
         <title type="html"><![CDATA[We Built an AI Career Guider and Won 2nd Runner-Up]]></title>

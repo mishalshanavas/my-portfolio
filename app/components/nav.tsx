@@ -35,11 +35,11 @@ export function Navbar() {
                 key={path}
                 href={path}
                 className={`
-                  text-sm font-light transition-colors duration-200
+                  text-sm font-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-600 dark:focus-visible:ring-gray-400 rounded pb-0.5
                   ${
                     isActive
-                      ? "text-black dark:text-white"
-                      : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                      ? "text-black dark:text-white border-b border-black dark:border-white"
+                      : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white border-b border-transparent"
                   }
                 `}
               >
@@ -55,7 +55,7 @@ export function Navbar() {
           <ThemeSwitch />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+            className="p-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
           >
@@ -102,7 +102,7 @@ export function Navbar() {
                   href={path}
                   onClick={() => setIsMenuOpen(false)}
                   className={`
-                    block px-3 py-2 rounded text-sm font-light transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-600
+                    block px-3 py-2 rounded text-sm font-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-600 dark:focus-visible:ring-gray-400
                     ${
                       isActive
                         ? "text-black dark:text-white bg-gray-50 dark:bg-gray-900"

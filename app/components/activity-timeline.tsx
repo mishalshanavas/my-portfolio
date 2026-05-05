@@ -62,7 +62,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
             {/* Left: icon + connecting line */}
             <div className="relative flex flex-col items-center flex-shrink-0 w-6">
               <div className="relative z-10 flex items-center justify-center w-6 h-6 mt-2.5">
-                <VscGitCommit className="text-lg text-gray-400 dark:text-gray-500" />
+                <VscGitCommit className="text-lg text-gray-400 dark:text-gray-500" aria-hidden="true" />
               </div>
               {(!isLast || hasMore) && (
                 <div className="flex-1 w-px bg-gray-300 dark:bg-gray-700 mt-0.5" />
@@ -88,7 +88,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
                       {...(isExternal
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="text-[#122C4F] dark:text-[#5b8fd0] hover:underline"
+                      className="text-[#2563EB] dark:text-[#60A5FA] hover:underline"
                     >
                       {event.title}
                     </Link>
@@ -99,7 +99,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
                   )}
                 </p>
                 {event.description && (
-                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-0.5 leading-relaxed">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
                     {event.description}
                   </p>
                 )}

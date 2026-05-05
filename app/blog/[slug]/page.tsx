@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "../../components/mdx";
 import { formatDate, getBlogPosts, getReadingTime } from "../../lib/posts";
@@ -66,7 +67,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
   }
 
   return (
-    <section>
+    <section className="max-w-2xl overflow-x-hidden">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -89,12 +90,18 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           }),
         }}
       />
-      <h1 className="title mb-3 font-light text-2xl">{post.metadata.title}</h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-medium">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+      <Link
+        href="/blog"
+        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-150 mb-8"
+      >
+        &larr; Blog
+      </Link>
+      <h1 className="mb-3 font-medium text-2xl tracking-tight">{post.metadata.title}</h1>
+      <div className="flex justify-between items-center mt-2 mb-8">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           {formatDate(post.metadata.publishedAt)}
         </p>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           {getReadingTime(post.content)}
         </p>
       </div>

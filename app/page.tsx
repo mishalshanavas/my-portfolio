@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -19,8 +19,7 @@ import {
   profileMeta,
 } from "./lib/config";
 import { getTimelineEvents } from "./lib/activity";
-import { fetchGitHubContributions } from "./lib/github";
-import ContributionChart from "./components/contribution-chart";
+import ContributionSection from "./components/contribution-section";
 import ActivityTimeline from "./components/activity-timeline";
 import ProjectCard from "./components/project-card";
 import HorizontalScroll from "./components/horizontal-scroll";
@@ -40,10 +39,8 @@ function renderAbout(text: string) {
   });
 }
 
-export default async function Page() {
+export default function Page() {
   const timelineEvents = getTimelineEvents();
-  const ghData = await fetchGitHubContributions(profileMeta.username);
-  const contributionData = ghData;
 
   return (
     <>
@@ -62,6 +59,7 @@ export default async function Page() {
             <Image
               src={hero.imageDark}
               alt="Profile photo"
+              aria-hidden="true"
               className="rounded-full border-2 border-gray-300 dark:border-gray-700 transition-all duration-200 hidden dark:block"
               width={90}
               height={90}
@@ -71,24 +69,24 @@ export default async function Page() {
 
           {/* Name + username + title */}
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-3xl font-light text-black dark:text-white leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-medium text-black dark:text-white leading-tight">
               {hero.name}
             </h1>
-            <p className="text-sm text-gray-400 dark:text-gray-500 font-light mt-0.5">
+            <p className="text-sm text-gray-600 dark:text-gray-400 font-light mt-0.5">
               @{profileMeta.username}
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400 font-light mt-1">
+            <p className="text-sm text-gray-600 dark:text-gray-400 font-light mt-1">
               {hero.title}
             </p>
           </div>
 
           {/* Social text links */}
-          <nav className="flex flex-wrap gap-3 sm:gap-4 text-sm flex-shrink-0">
+          <nav aria-label="Social links" className="flex flex-wrap gap-3 sm:gap-4 text-sm flex-shrink-0">
             <a
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+              className="py-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
             >
               GitHub
             </a>
@@ -96,29 +94,41 @@ export default async function Page() {
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+              className="py-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
             >
               LinkedIn
-            </a>
-            <a
-              href={socialLinks.email}
-              className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
-            >
-              Email
             </a>
             <a
               href={hero.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               download="mishalshanavas_cv.pdf"
-              className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+              className="py-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
             >
               Resume ↗
             </a>
           </nav>
         </section>
 
-        {/* ── TWO-COLUMN BODY ───────────────────────────────────── */}
+        {/* Mobile-only: contact availability strip */}
+        <div className="lg:hidden -mt-4 mb-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-light">
+          <a
+            href={socialLinks.email}
+            className="flex items-center gap-1.5 text-[#2563EB] dark:text-[#60A5FA] hover:underline"
+          >
+            <FiZap className="flex-shrink-0" aria-hidden="true" />
+            Available for freelance
+          </a>
+          <span className="text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
+          <a
+            href={socialLinks.email}
+            className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 truncate"
+          >
+            mishalshanavas@yahoo.com
+          </a>
+        </div>
+
+        {/* ── TWO-COLUMN BODY ─────────────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_210px] gap-8 items-start">
 
           {/* ── LEFT MAIN ─────────────────────────────────────── */}
@@ -126,7 +136,7 @@ export default async function Page() {
 
             {/* About */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 About
               </h2>
               <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
@@ -136,13 +146,13 @@ export default async function Page() {
 
             {/* Experience */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Experience
               </h2>
               <div className="space-y-6">
                 {experiences.map((exp, idx) => (
                   <div key={idx}>
-                    <div className="font-light text-sm text-black dark:text-white mb-0.5">
+                    <div className="font-medium text-sm text-black dark:text-white mb-0.5">
                       {exp.role}
                     </div>
                     <a
@@ -163,14 +173,14 @@ export default async function Page() {
 
             {/* Skills */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Skills
               </h2>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-2 py-1 text-xs font-light bg-gray-50 dark:bg-gray-950 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700 rounded"
+                    className="px-2 py-1 text-xs font-light bg-transparent text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700 rounded"
                   >
                     {skill}
                   </span>
@@ -180,17 +190,17 @@ export default async function Page() {
 
             {/* Activity Chart */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Activity
               </h2>
-              <div className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 overflow-hidden">
-                <ContributionChart data={contributionData} />
-              </div>
+              <Suspense fallback={<div className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
+                <ContributionSection />
+              </Suspense>
             </section>
 
             {/* Contributions Timeline */}
             <section>
-              <h2 className="text-base font-light text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Contributions
               </h2>
               <ActivityTimeline events={timelineEvents} />
@@ -199,7 +209,7 @@ export default async function Page() {
             {/* Projects */}
             <section>
               <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
-                <h2 className="text-base font-light text-black dark:text-white">
+                <h2 className="text-base font-medium text-black dark:text-white">
                   Projects
                 </h2>
                 <Link
@@ -237,20 +247,25 @@ export default async function Page() {
               </h3>
               <ul className="space-y-2 text-sm font-light text-gray-600 dark:text-gray-400">
                 <li className="flex items-center gap-2">
-                  <FiMapPin className="flex-shrink-0 text-gray-400" />
+                  <FiMapPin className="flex-shrink-0 text-gray-400" aria-hidden="true" />
                   <span>{profileMeta.location}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiClock className="flex-shrink-0 text-gray-400" />
+                  <FiClock className="flex-shrink-0 text-gray-400" aria-hidden="true" />
                   <LocalTime />
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiBook className="flex-shrink-0 text-gray-400" />
+                  <FiBook className="flex-shrink-0 text-gray-400" aria-hidden="true" />
                   <span>CS major</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiZap className="flex-shrink-0 text-[#122C4F] dark:text-[#5b8fd0]" />
-                  <span className="text-[#122C4F] dark:text-[#5b8fd0]">Available for freelance</span>
+                  <FiZap className="flex-shrink-0 text-[#2563EB] dark:text-[#60A5FA]" aria-hidden="true" />
+                  <a
+                    href={socialLinks.email}
+                    className="text-[#2563EB] dark:text-[#60A5FA] hover:underline"
+                  >
+                    Available for freelance
+                  </a>
                 </li>
               </ul>
             </div>
@@ -270,7 +285,7 @@ export default async function Page() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
                   >
-                    <FaGithub className="text-base flex-shrink-0" />
+                    <FaGithub className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">github.com/{profileMeta.username}</span>
                   </a>
                 </li>
@@ -279,7 +294,7 @@ export default async function Page() {
                     href={socialLinks.email}
                     className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
                   >
-                    <TbMailFilled className="text-base flex-shrink-0" />
+                    <TbMailFilled className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishalshanavas@yahoo.com</span>
                   </a>
                 </li>
@@ -290,7 +305,7 @@ export default async function Page() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
                   >
-                    <FaLinkedinIn className="text-base flex-shrink-0" />
+                    <FaLinkedinIn className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishalshanavas</span>
                   </a>
                 </li>
@@ -301,7 +316,7 @@ export default async function Page() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
                   >
-                    <FaXTwitter className="text-base flex-shrink-0" />
+                    <FaXTwitter className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishal_shanavas</span>
                   </a>
                 </li>
@@ -312,7 +327,7 @@ export default async function Page() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
                   >
-                    <FaInstagram className="text-base flex-shrink-0" />
+                    <FaInstagram className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishal_shanavas</span>
                   </a>
                 </li>
