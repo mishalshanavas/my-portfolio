@@ -45,6 +45,15 @@ export const experiences = [
     description:
       "Developing and maintaining scalable backend APIs for the MuLearn launchpad platform. Implemented secure JWT authentication, company onboarding workflows, and job management modules using Django and mySQL. Collaborated with cross-functional teams to deliver robust features and improve system reliability."
   },
+  {
+    role: "AUR Package Maintainer",
+    company: "networkmanager-git",
+    companyUrl: "https://aur.archlinux.org/packages/networkmanager-git",
+    period: "2026 - Present",
+    startDate: "2026-06-10",
+    description:
+      "Maintain the networkmanager-git AUR package for Arch Linux, migrating the build to meson and resolving libsoup3 compatibility issues to keep the package building cleanly against upstream changes."
+  },
 ];
 
 export const skills = [
@@ -77,7 +86,9 @@ export const skills = [
   // Cloud & DevOps
   "AWS",
   "GCP",
+  "Terraform",
   "Docker",
+  "Cloudflare",
   "Linux",
 ];
 
@@ -103,6 +114,15 @@ export const projects = [
     isContributor: true,
     featured: true,
     tech: ["Go", "GitHub Actions", "Blockchain", "CI/CD", "Hyperledger Fabric"],
+  },
+  {
+    name: "Terramine",
+    date: "2026-06-01",
+    url: "https://github.com/accidental-stuff/mc-server",
+    description: "A fully infrastructure-as-code deployment on GCP — VM, networking, and DNS provisioned via Terraform and Cloudflare, reverse proxied through Caddy, with containerized workloads in Docker Compose and automated backups to Cloudflare R2.",
+    featured: true,
+    isSideQuest: true,
+    tech: ["Terraform", "GCP", "Docker", "Caddy", "Cloudflare"],
   },
   {
     name: "G-Tech MuLearn",
@@ -152,6 +172,14 @@ export const launches = [
 ];
 
 export const contributionHighlights = [
+  {
+    date: "2026-06-10",
+    title: "networkmanager-git — AUR package maintainer",
+    description:
+      "Took over maintenance of the orphaned networkmanager-git AUR package for Arch Linux, migrating the build to meson and resolving libsoup3 compatibility issues to keep the package building cleanly against upstream changes.",
+    url: "https://aur.archlinux.org/packages/networkmanager-git",
+    openSource: true,
+  },
   {
     date: "2026-04-30",
     title: "Linux Foundation Hyperledger Fabric — fixed CI workflow",
