@@ -40,7 +40,7 @@ export const experiences = [
     role: "Backend Developer - Intern",
     company: "GTech MuLearn",
     companyUrl: "https://gtechmulearn.com",
-    period: "2025 - Present",
+    period: "2025 - 2026",
     startDate: "2025-01-01",
     description:
       "Developing and maintaining scalable backend APIs for the MuLearn launchpad platform. Implemented secure JWT authentication, company onboarding workflows, and job management modules using Django and mySQL. Collaborated with cross-functional teams to deliver robust features and improve system reliability."
