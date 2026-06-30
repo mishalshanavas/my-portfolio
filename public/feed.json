@@ -1,9 +1,9 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "mishal shanavas",
+    "title": "Mishal Shanavas",
     "home_page_url": "https://www.mishalshanavas.in/",
     "feed_url": "https://www.mishalshanavas.in/feed.json",
-    "description": "Backend developer and Linux enthusiast building scalable APIs, open source tools, and automation scripts. Experienced with Django, Python, and cloud infrastructure.",
+    "description": "Backend developer specializing in Python, Django, and MySQL. Builds scalable APIs, open source tools, and cloud infrastructure on GCP and AWS.",
     "items": [
         {
             "id": "https://www.mishalshanavas.in/blog/ict-hackathon",

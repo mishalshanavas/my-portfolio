@@ -19,7 +19,7 @@ function getRelativeTime(dateStr: string): string {
   return `${years}y ago`;
 }
 
-const INITIAL_SHOW = 3;
+const INITIAL_SHOW = 4;
 
 function getLabel(event: TimelineEvent): string {
   if (event.type === "contribution") {

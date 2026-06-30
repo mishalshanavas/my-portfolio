@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>mishal shanavas</title>
+        <title>Mishal Shanavas</title>
         <link>https://www.mishalshanavas.in/</link>
-        <description>Backend developer and Linux enthusiast building scalable APIs, open source tools, and automation scripts. Experienced with Django, Python, and cloud infrastructure.</description>
-        <lastBuildDate>Tue, 30 Jun 2026 06:40:54 GMT</lastBuildDate>
+        <description>Backend developer specializing in Python, Django, and MySQL. Builds scalable APIs, open source tools, and cloud infrastructure on GCP and AWS.</description>
+        <lastBuildDate>Tue, 30 Jun 2026 12:44:58 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <copyright>All rights reserved 2026, mishal shanavas</copyright>

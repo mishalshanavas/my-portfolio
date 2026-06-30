@@ -10,7 +10,7 @@ export const metaData = {
   name: "Mishal Shanavas",
   ogImage: "/profile-wt.webp",
   description:
-    "Backend developer and Linux enthusiast building scalable APIs, open source tools, and automation scripts. Experienced with Django, Python, and cloud infrastructure."
+    "Backend developer specializing in Python, Django, and MySQL. Builds scalable APIs, open source tools, and cloud infrastructure on GCP and AWS."
 };
 
 export const socialLinks = {
@@ -23,7 +23,7 @@ export const socialLinks = {
 
 export const hero = {
   name: metaData.name,
-  title: "Backend Developer • Cloud and Linux Enthusiast",
+  title: "Backend Developer & Cloud Enthusiast",
   imageLight: "/profile-wt.webp",
   imageDark: "/profile-bl.webp",
   resumeUrl: "/resume.pdf",
@@ -32,19 +32,9 @@ export const contact = {
   text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
 };
 
-export const aboutMe = `Hey, I'm Mishal — a Linux enjoyer and **backend developer** who builds lightweight, efficient tools with **Python**, Bash, and sometimes C. I'm into automation, proxies, and writing clean CLI flows that just work. Lately vibing with **Rust** and diving deeper into system stuff and networking. When I'm not coding, I'm probably tweaking my Arch setup, testing weird distros, or helping folks on Reddit.  
-And yeah... **I use Arch btw**`
+export const aboutMe = `Hey, I'm Mishal. A **backend developer** focused on databases and APIs, building with **Python**, **Django**, and **MySQL**. I'm into automation, proxies, and writing clean CLI flows that just work. Lately expanding into **Terraform** and cloud infrastructure on **GCP** and **AWS**, while diving deeper into **Rust** and systems programming. When I'm not coding, I'm probably maintaining AUR packages, tweaking my Arch setup, or helping folks on Reddit.`
 
 export const experiences = [
-  {
-    role: "Backend Developer - Intern",
-    company: "GTech MuLearn",
-    companyUrl: "https://gtechmulearn.com",
-    period: "2025 - 2026",
-    startDate: "2025-01-01",
-    description:
-      "Developing and maintaining scalable backend APIs for the MuLearn launchpad platform. Implemented secure JWT authentication, company onboarding workflows, and job management modules using Django and mySQL. Collaborated with cross-functional teams to deliver robust features and improve system reliability."
-  },
   {
     role: "AUR Package Maintainer",
     company: "networkmanager-git",
@@ -54,72 +44,59 @@ export const experiences = [
     description:
       "Maintain the networkmanager-git AUR package for Arch Linux, migrating the build to meson and resolving libsoup3 compatibility issues to keep the package building cleanly against upstream changes."
   },
+  {
+    role: "Backend Developer - Intern",
+    company: "GTech MuLearn",
+    companyUrl: "https://gtechmulearn.com",
+    period: "2025 - 2026",
+    startDate: "2025-01-01",
+    description:
+      "Developing and maintaining scalable backend APIs for the MuLearn launchpad platform. Implemented secure JWT authentication, company onboarding workflows, and job management modules using Django and mySQL. Collaborated with cross-functional teams to deliver robust features and improve system reliability."
+  },
 ];
 
-export const skills = [
-  // Languages
-  "C",
-  "Python",
-  "Rust",
-  "Bash",
-  "JavaScript",
-  "TypeScript",
-  "Kotlin",
-  // Frontend
-  "Vue.js",
-  "React",
-  "Nuxt",
-  "Tailwind CSS",
-  "SCSS",
-  // Backend
-  "Django",
-  "Express",
-  "Node.js",
-  // Databases
-  "PostgreSQL",
-  "MySQL",
-  "MongoDB",
-  "Redis",
-  "Firebase",
-  "SQLite",
-  "DynamoDB",
-  // Cloud & DevOps
-  "AWS",
-  "GCP",
-  "Terraform",
-  "Docker",
-  "Cloudflare",
-  "Linux",
+export const skillGroups = [
+  {
+    name: "Languages",
+    skills: ["C", "Python", "Rust", "Bash", "JavaScript", "TypeScript", "Kotlin"],
+  },
+  {
+    name: "Frontend",
+    skills: ["Vue.js", "React", "Nuxt", "Tailwind CSS", "SCSS"],
+  },
+  {
+    name: "Backend",
+    skills: ["Django", "Express", "Node.js"],
+  },
+  {
+    name: "Databases",
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Firebase", "SQLite", "DynamoDB"],
+  },
+  {
+    name: "Cloud & DevOps",
+    skills: ["AWS", "GCP", "Terraform", "Docker", "Cloudflare", "Linux"],
+  },
 ];
+
+export const skills = skillGroups.flatMap((g) => g.skills);
 
 export const projects = [
-  {
-    name: "Mappix",
-    date: "2026-05-01",
-    url: "https://mappix.isacool.monster",
-    description: "Interactive projection mapping in the browser — a webcam detects physical sticky notes on a wall using Gray-code structured light calibration, and physics balls (Matter.js) bounce off them in real time. Homography maps every projector pixel to its camera counterpart for sub-pixel accuracy.",
-    image: "/mappix.webp",
-    imageAlignment: "object-center",
-    featured: true,
-    isSideQuest: true,
-    tech: ["Vue.js", "JavaScript", "Computer Vision", "Matter.js", "WebRTC", "Homography"],
-  },
   {
     name: "Linux Foundation Hyperledger Fabric",
     date: "2026-04-30",
     url: "https://github.com/hyperledger/fabric",
-    description: "Fixed a broken CI workflow in the official Hyperledger Fabric repo, the Linux Foundation's enterprise blockchain framework powering production systems at IBM, Walmart, and HSBC. PR received 7 review comments from core maintainers.",
+    description: "Merged a CI fix into the Linux Foundation's flagship enterprise blockchain framework, the same codebase running in production at IBM, Walmart, and HSBC. PR reviewed by core maintainers.",
     image: "/fabric.webp",
     imageAlignment: "object-contain",
     isContributor: true,
     featured: true,
-    tech: ["Go", "GitHub Actions", "Blockchain", "CI/CD", "Hyperledger Fabric"],
+    tech: ["Go", "GitHub Actions", "CI/CD", "Hyperledger Fabric"],
   },
   {
     name: "Terramine",
     date: "2026-06-01",
     url: "https://github.com/accidental-stuff/mc-server",
-    description: "A fully infrastructure-as-code deployment on GCP — VM, networking, and DNS provisioned via Terraform and Cloudflare, reverse proxied through Caddy, with containerized workloads in Docker Compose and automated backups to Cloudflare R2.",
+    description: "A fully infrastructure-as-code deployment on GCP: VM, networking, and DNS provisioned via Terraform and Cloudflare, reverse proxied through Caddy, with containerized workloads in Docker Compose and automated backups to Cloudflare R2.",
     featured: true,
     isSideQuest: true,
     tech: ["Terraform", "GCP", "Docker", "Caddy", "Cloudflare"],
@@ -134,6 +111,17 @@ export const projects = [
     imageAlignment: "object-center",
     featured: true,
     tech: ["Python", "Django", "Database Design","mySQL", "JWT auth"],
+  },
+  {
+    name: "Mappix",
+    date: "2026-05-01",
+    url: "https://mappix.isacool.monster",
+    description: "Real-time projection mapping in the browser. Point a webcam at a wall with sticky notes and physics balls bounce off them live. Built with Gray-code structured light calibration for sub-pixel accuracy and homography-based projector-camera mapping.",
+    image: "/mappix.webp",
+    imageAlignment: "object-center",
+    featured: true,
+    isSideQuest: true,
+    tech: ["Vue.js", "JavaScript", "Computer Vision", "Matter.js", "WebRTC"],
   },
   {
     name: "Notes Bot",
@@ -152,7 +140,7 @@ export const projects = [
     url: "/blog/instagram-pfp",
     description: "A tool to automate changing your Instagram profile picture, demonstrating Python scripting for interacting with social media platforms.",
     image: "/pfp.gif",
-    featured: true,
+    featured: false,
     imageAlignment: "object-left",
     isSideQuest: true,
     tech: ["Python"],
@@ -174,7 +162,7 @@ export const launches = [
 export const contributionHighlights = [
   {
     date: "2026-06-10",
-    title: "networkmanager-git — AUR package maintainer",
+    title: "networkmanager-git: AUR package maintainer",
     description:
       "Took over maintenance of the orphaned networkmanager-git AUR package for Arch Linux, migrating the build to meson and resolving libsoup3 compatibility issues to keep the package building cleanly against upstream changes.",
     url: "https://aur.archlinux.org/packages/networkmanager-git",
@@ -182,15 +170,15 @@ export const contributionHighlights = [
   },
   {
     date: "2026-04-30",
-    title: "Linux Foundation Hyperledger Fabric — fixed CI workflow",
+    title: "Linux Foundation Hyperledger Fabric: fixed CI workflow",
     description:
-      "Fixed a broken CI workflow in the official Hyperledger Fabric repo — the Linux Foundation's flagship enterprise blockchain framework running in production at IBM, HSBC etc. ",
+      "Fixed a broken CI workflow in the official Hyperledger Fabric repo, the Linux Foundation's flagship enterprise blockchain framework running in production at IBM, HSBC etc. ",
     url: "https://github.com/hyperledger/fabric/",
     openSource: true,
   },
   {
     date: "2026-01-06",
-    title: "sahrdaya.ac.in — reworked the entire college website",
+    title: "sahrdaya.ac.in: reworked the entire college website",
     description:
       "Helped integrate core Next.js features including image optimization, incremental static regeneration, and more.",
     url: "https://github.com/arxhr007/sahrdaya_website",
@@ -199,7 +187,7 @@ export const contributionHighlights = [
     date: "2025-03-01",
     title: "gtech-mulearn/mulearnbackend",
     description:
-      "Contributor to MuLearn's open-source Django backend — JWT auth, company onboarding flows, and job management APIs used by thousands of students across Kerala's tech ecosystem.",
+      "Contributor to MuLearn's open-source Django backend: JWT auth, company onboarding flows, and job management APIs used by thousands of students across Kerala's tech ecosystem.",
     url: "https://github.com/gtech-mulearn/mulearnbackend",
     openSource: true,
   },

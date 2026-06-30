@@ -73,12 +73,12 @@ export default function Projects() {
               <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 <span>{meta}</span>
                 {project.isContributor && (
-                  <span className="px-1.5 py-0.5 text-xs font-medium bg-black/[0.07] text-black border border-black/30 rounded dark:bg-white/[0.07] dark:text-white dark:border-white/30">
+                  <span className="px-1.5 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-400 border border-gray-400/40 dark:border-gray-500/40 rounded">
                     Contributor
                   </span>
                 )}
                 {project.isSideQuest && (
-                  <span className="px-1.5 py-0.5 text-xs font-light bg-transparent text-black border border-dashed border-black/40 rounded dark:text-white dark:border-white/40">
+                  <span className="px-1.5 py-0.5 text-xs font-light text-gray-500 dark:text-gray-500 border border-dashed border-gray-400/40 dark:border-gray-500/40 rounded">
                     Side Quest
                   </span>
                 )}

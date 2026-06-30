@@ -11,7 +11,7 @@ async function generateFeeds() {
       : `${metaData.baseUrl}/`;
 
     const feed = new Feed({
-      title: metaData.title,
+      title: metaData.name,
       description: metaData.description,
       id: BaseUrl,
       link: BaseUrl,

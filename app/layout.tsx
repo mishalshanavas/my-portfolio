@@ -21,13 +21,15 @@ export const metadata: Metadata = {
   },
   description: metaData.description,
   keywords: [
-    "Full Stack Developer",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Portfolio",
-    "Web Development"
+    "Backend Developer",
+    "Cloud",
+    "Python",
+    "Django",
+    "MySQL",
+    "Terraform",
+    "GCP",
+    "API Development",
+    "Portfolio"
   ],
   authors: [{ name: metaData.name }],
   creator: metaData.name,

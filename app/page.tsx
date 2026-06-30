@@ -15,6 +15,7 @@ import {
   experiences,
   aboutMe,
   skills,
+  skillGroups,
   projects,
   profileMeta,
 } from "./lib/config";
@@ -111,18 +112,16 @@ export default function Page() {
         </section>
 
         {/* Mobile-only: contact availability strip */}
-        <div className="lg:hidden -mt-4 mb-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm font-light">
+        <div className="lg:hidden -mt-4 mb-8 flex items-center gap-2 text-sm font-light">
+          <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+          </span>
+          <span className="text-gray-600 dark:text-gray-400">Available for hire</span>
+          <span className="text-gray-300 dark:text-gray-700">·</span>
           <a
             href={socialLinks.email}
-            className="flex items-center gap-1.5 text-[#2563EB] dark:text-[#60A5FA] hover:underline"
-          >
-            <FiZap className="flex-shrink-0" aria-hidden="true" />
-            Available for freelance
-          </a>
-          <span className="text-gray-300 dark:text-gray-700" aria-hidden="true">·</span>
-          <a
-            href={socialLinks.email}
-            className="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 truncate"
+            className="text-gray-500 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors duration-200 truncate"
           >
             mishalshanavas@yahoo.com
           </a>
@@ -176,15 +175,23 @@ export default function Page() {
               <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
                 Skills
               </h2>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2 py-1 text-xs font-light bg-transparent text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700 rounded"
-                  >
-                    {skill}
-                  </span>
-                ))}
+              <div className="flex flex-wrap gap-1.5">
+                {skillGroups.flatMap((group, gi) => {
+                  const badges = group.skills.map((skill: string, si: number) => (
+                    <span
+                      key={`${group.name}-${si}`}
+                      className="px-2 py-0.5 text-xs font-light bg-transparent text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700 rounded"
+                    >
+                      {skill}
+                    </span>
+                  ));
+                  if (gi < skillGroups.length - 1) {
+                    badges.push(
+                      <span key={`div-${gi}`} className="w-px h-5 self-center bg-gray-300 dark:bg-gray-700" aria-hidden="true" />
+                    );
+                  }
+                  return badges;
+                })}
               </div>
             </section>
 
@@ -256,7 +263,7 @@ export default function Page() {
                 </li>
                 <li className="flex items-center gap-2">
                   <FiBook className="flex-shrink-0 text-gray-400" aria-hidden="true" />
-                  <span>CS major</span>
+                  <span>CS Major · 2028</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <FiZap className="flex-shrink-0 text-[#2563EB] dark:text-[#60A5FA]" aria-hidden="true" />
@@ -264,7 +271,7 @@ export default function Page() {
                     href={socialLinks.email}
                     className="text-[#2563EB] dark:text-[#60A5FA] hover:underline"
                   >
-                    Available for freelance
+                    Available for hire
                   </a>
                 </li>
               </ul>
