@@ -34,11 +34,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <Link
       href={project.url}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="flex flex-col h-44 border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-600 dark:focus-visible:ring-gray-400"
+      className="flex flex-col h-44 border border-gray-200 dark:border-gray-700 rounded-md p-4 hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-150"
     >
       <div className="flex items-start gap-3">
         {/* Avatar: image or initial */}
-        <div className="w-11 h-11 rounded-lg flex-shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
+        <div className="w-11 h-11 rounded-md flex-shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
           {project.image ? (
             <div className="relative w-full h-full">
               <Image
@@ -50,7 +50,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               />
             </div>
           ) : (
-            <span className="text-lg font-light text-gray-500 dark:text-gray-400">
+            <span className="text-lg font-medium text-gray-400 dark:text-gray-500">
               {initial}
             </span>
           )}
@@ -58,7 +58,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Info */}
         <div className="flex-1 min-w-0 flex flex-col">
-          <div className="text-sm font-medium text-black dark:text-white line-clamp-1 leading-snug">
+          <div className="text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-1 leading-snug">
             {project.name}
           </div>
           {project.date && (
@@ -72,19 +72,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {(project.isContributor || project.isSideQuest || (project.tech && project.tech.length > 0)) && (
             <div className="flex flex-wrap gap-1 mt-2">
               {project.isContributor && (
-                <span className="px-1.5 py-0.5 text-xs font-medium text-gray-600 dark:text-gray-400 border border-gray-400/40 dark:border-gray-500/40 rounded">
+                <span className="px-1.5 py-0.5 text-[10px] font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md">
                   Contributor
                 </span>
               )}
               {project.isSideQuest && (
-                <span className="px-1.5 py-0.5 text-xs font-light text-gray-500 dark:text-gray-500 border border-dashed border-gray-400/40 dark:border-gray-500/40 rounded">
+                <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-400 dark:text-gray-500 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
                   Side Quest
                 </span>
               )}
               {project.tech?.slice(0, 3).map((t) => (
                 <span
                   key={t}
-                  className="px-1.5 py-0.5 text-xs font-light bg-transparent text-black border border-black/20 rounded dark:text-white dark:border-white/20"
+                  className="px-1.5 py-0.5 text-[10px] font-normal text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md"
                 >
                   {t}
                 </span>

@@ -109,13 +109,13 @@ export default function BlogPosts() {
 
   return (
     <section>
-      <h1 className="mb-8 text-2xl font-medium">Blog</h1>
-      <div className="border-t border-gray-300 dark:border-gray-800 divide-y divide-gray-300 dark:divide-gray-800">
+      <h1 className="mb-8 text-2xl font-semibold text-gray-900 dark:text-gray-100">Blog</h1>
+      <div className="border-t border-gray-200 dark:border-gray-800 divide-y divide-gray-200 dark:divide-gray-800">
         {sortedBlogs.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex gap-4 py-4 -mx-2 px-2 rounded transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-600 dark:focus-visible:ring-gray-400"
+            className="group flex gap-4 py-4 -mx-2 px-2 rounded-md transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -125,7 +125,7 @@ export default function BlogPosts() {
               alt=""
             />
             <div className="min-w-0 flex-1">
-              <div className="text-sm font-medium text-black dark:text-white leading-snug">
+              <div className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug">
                 {post.metadata.title}
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-0.5">
@@ -133,13 +133,13 @@ export default function BlogPosts() {
                 <span aria-hidden="true">&middot;</span>
                 <span>{getReadingTime(post.content)}</span>
               </div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
                 {post.metadata.summary}
               </p>
             </div>
             <FiChevronRight
               aria-hidden="true"
-              className="mt-1 flex-shrink-0 text-gray-400 dark:text-gray-600 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-all duration-200 group-hover:translate-x-0.5"
+              className="mt-1 flex-shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-all duration-150 group-hover:translate-x-0.5"
             />
           </Link>
         ))}

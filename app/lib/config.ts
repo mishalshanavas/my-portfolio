@@ -10,7 +10,7 @@ export const metaData = {
   name: "Mishal Shanavas",
   ogImage: "/profile-wt.webp",
   description:
-    "Backend developer specializing in Python, Django, and MySQL. Builds scalable APIs, open source tools, and cloud infrastructure on GCP and AWS."
+    "Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS."
 };
 
 export const socialLinks = {
@@ -29,10 +29,10 @@ export const hero = {
   resumeUrl: "/resume.pdf",
 };
 export const contact = {
-  text: `I'm always open to connecting! Reach out via <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">email</a> or connect on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
+  text: `Reach me at <a href="mailto:mishalshanavas@yahoo.com" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">mishalshanavas@yahoo.com</a> or on <a href="https://www.linkedin.com/in/mishalshanavas" target="_blank" rel="noopener noreferrer" class="text-black dark:text-white border-b border-transparent hover:border-gray-300 dark:hover:border-gray-600 transition-colors">LinkedIn</a>.`,
 };
 
-export const aboutMe = `Hey, I'm Mishal. A **backend developer** focused on databases and APIs, building with **Python**, **Django**, and **MySQL**. I'm into automation, proxies, and writing clean CLI flows that just work. Lately expanding into **Terraform** and cloud infrastructure on **GCP** and **AWS**, while diving deeper into **Rust** and systems programming. When I'm not coding, I'm probably maintaining AUR packages, tweaking my Arch setup, or helping folks on Reddit.`
+export const aboutMe = `Hey, I'm Mishal. A **backend developer**. I work with databases and APIs, building with **Python**, **Django**, and **MySQL**. I'm into automation, proxies, and writing clean CLI flows that just work. Picking up **Terraform** and cloud infrastructure on **GCP** and **AWS**, and learning **Rust** and systems programming. When I'm not coding, I'm probably maintaining AUR packages, tweaking my Arch setup, or helping folks on Reddit.`
 
 export const experiences = [
   {
@@ -42,7 +42,7 @@ export const experiences = [
     period: "2026 - Present",
     startDate: "2026-06-10",
     description:
-      "Maintain the networkmanager-git AUR package for Arch Linux, migrating the build to meson and resolving libsoup3 compatibility issues to keep the package building cleanly against upstream changes."
+      "Maintain the networkmanager-git AUR package for Arch Linux. Migrated the build to meson and resolved libsoup3 compatibility issues so it builds cleanly against upstream."
   },
   {
     role: "Backend Developer - Intern",
@@ -51,7 +51,7 @@ export const experiences = [
     period: "2025 - 2026",
     startDate: "2025-01-01",
     description:
-      "Developing and maintaining scalable backend APIs for the MuLearn launchpad platform. Implemented secure JWT authentication, company onboarding workflows, and job management modules using Django and mySQL. Collaborated with cross-functional teams to deliver robust features and improve system reliability."
+      "Built backend APIs for MuLearn's launchpad platform. Shipped JWT authentication, company onboarding flows, and job management with Django and MySQL. Worked alongside frontend and design teams to deliver features used by students across Kerala."
   },
 ];
 
@@ -96,7 +96,7 @@ export const projects = [
     name: "Terramine",
     date: "2026-06-01",
     url: "https://github.com/accidental-stuff/mc-server",
-    description: "A fully infrastructure-as-code deployment on GCP: VM, networking, and DNS provisioned via Terraform and Cloudflare, reverse proxied through Caddy, with containerized workloads in Docker Compose and automated backups to Cloudflare R2.",
+    description: "Minecraft server deployed with infra-as-code on GCP. Terraform and Cloudflare handle networking and DNS, Caddy reverse-proxies, Docker Compose runs the workloads, backups land in Cloudflare R2.",
     featured: true,
     isSideQuest: true,
     tech: ["Terraform", "GCP", "Docker", "Caddy", "Cloudflare"],
@@ -105,7 +105,7 @@ export const projects = [
     name: "G-Tech MuLearn",
     date: "2025-03-01",
     url: "https://github.com/gtech-mulearn/mulearnbackend",
-    description: "Building robust APIs, implementing secure JWT authentication, and developing core features for the launchpad platform using Django and mySQL.",
+    description: "Built APIs for MuLearn's launchpad platform: JWT auth, company onboarding, and job management. Django and MySQL. Used by students across Kerala.",
     image: "/mulogo.webp",
     isContributor: true,
     imageAlignment: "object-center",
@@ -127,7 +127,7 @@ export const projects = [
     name: "Notes Bot",
     date: "2024-06-01",
     url: "https://github.com/mishalshanavas/notes-bot",
-    description: "A Python automation script that updates your Instagram notes with the current time, showcasing simple social media automation using Python.",
+    description: "Python script that updates your Instagram notes with the current time. Because typing the time manually was too much work.",
     image: "/notes.gif",
     imageAlignment: "object-left",
     featured: false,
@@ -138,7 +138,7 @@ export const projects = [
     name: "Instagram PFP Switcher",
     date: "2024-02-15",
     url: "/blog/instagram-pfp",
-    description: "A tool to automate changing your Instagram profile picture, demonstrating Python scripting for interacting with social media platforms.",
+    description: "Automates changing your Instagram profile picture. Python script that talks to Instagram so you don't have to.",
     image: "/pfp.gif",
     featured: false,
     imageAlignment: "object-left",
@@ -164,7 +164,7 @@ export const contributionHighlights = [
     date: "2026-06-10",
     title: "networkmanager-git: AUR package maintainer",
     description:
-      "Took over maintenance of the orphaned networkmanager-git AUR package for Arch Linux, migrating the build to meson and resolving libsoup3 compatibility issues to keep the package building cleanly against upstream changes.",
+      "Took over maintenance of the orphaned networkmanager-git AUR package for Arch Linux. Migrated the build to meson and resolved libsoup3 compatibility issues so it builds cleanly against upstream.",
     url: "https://aur.archlinux.org/packages/networkmanager-git",
     openSource: true,
   },
@@ -172,7 +172,7 @@ export const contributionHighlights = [
     date: "2026-04-30",
     title: "Linux Foundation Hyperledger Fabric: fixed CI workflow",
     description:
-      "Fixed a broken CI workflow in the official Hyperledger Fabric repo, the Linux Foundation's flagship enterprise blockchain framework running in production at IBM, HSBC etc. ",
+      "Fixed a broken CI workflow in Hyperledger Fabric, the Linux Foundation's flagship blockchain framework. Runs in production at IBM, HSBC, and Walmart.",
     url: "https://github.com/hyperledger/fabric/",
     openSource: true,
   },
@@ -180,7 +180,7 @@ export const contributionHighlights = [
     date: "2026-01-06",
     title: "sahrdaya.ac.in: reworked the entire college website",
     description:
-      "Helped integrate core Next.js features including image optimization, incremental static regeneration, and more.",
+      "Reworked the college website with Next.js: image optimization, incremental static regeneration, and performance fixes.",
     url: "https://github.com/arxhr007/sahrdaya_website",
   },
   {

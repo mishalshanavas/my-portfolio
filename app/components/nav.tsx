@@ -16,18 +16,18 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="py-3 sm:py-4 mb-4 sm:mb-8 border-b border-gray-200 dark:border-gray-800">
+    <nav className="py-3 sm:py-4 mb-6 sm:mb-10 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="text-xl font-light text-black dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors duration-200"
+          className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 transition-colors duration-150"
         >
           {metaData.title}
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {Object.entries(navItems).map(([path, { name }]) => {
             const isActive = pathname === path;
             return (
@@ -35,11 +35,11 @@ export function Navbar() {
                 key={path}
                 href={path}
                 className={`
-                  text-sm font-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-600 dark:focus-visible:ring-gray-400 rounded pb-0.5
+                  text-sm font-normal transition-colors duration-150 rounded-sm
                   ${
                     isActive
-                      ? "text-black dark:text-white border-b border-black dark:border-white"
-                      : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white border-b border-transparent"
+                      ? "text-gray-900 dark:text-gray-100"
+                      : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                   }
                 `}
               >
@@ -51,11 +51,11 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-4">
+        <div className="flex md:hidden items-center gap-3">
           <ThemeSwitch />
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+            className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
           >
@@ -69,14 +69,14 @@ export function Navbar() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   d="M6 18L18 6M6 6l12 12"
                 />
               ) : (
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               )}
@@ -93,7 +93,7 @@ export function Navbar() {
             onClick={() => setIsMenuOpen(false)}
             aria-hidden="true"
           />
-          <div className="md:hidden pt-4 pb-2 px-4 sm:px-6 space-y-1 relative z-50">
+          <div className="md:hidden pt-3 pb-2 px-4 sm:px-6 space-y-0.5 relative z-50">
             {Object.entries(navItems).map(([path, { name }]) => {
               const isActive = pathname === path;
               return (
@@ -102,11 +102,11 @@ export function Navbar() {
                   href={path}
                   onClick={() => setIsMenuOpen(false)}
                   className={`
-                    block px-3 py-2 rounded text-sm font-light transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-600 dark:focus-visible:ring-gray-400
+                    block px-3 py-2 rounded-md text-sm font-normal transition-colors duration-150
                     ${
                       isActive
-                        ? "text-black dark:text-white bg-gray-50 dark:bg-gray-900"
-                        : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-900"
+                        ? "text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900"
+                        : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
                     }
                   `}
                 >

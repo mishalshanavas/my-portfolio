@@ -92,7 +92,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
       />
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-150 mb-8"
+        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150 mb-8"
       >
         &larr; Blog
       </Link>

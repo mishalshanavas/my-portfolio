@@ -30,7 +30,7 @@ export const ThemeSwitch: React.FC = () => {
       id="theme-toggle"
       aria-label="Toggle theme"
       onClick={toggleTheme}
-      className="flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 cursor-pointer"
+      className="flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150 cursor-pointer p-1 rounded-md"
     >
       {/* Moon shown in light mode, hidden in dark */}
       <FiMoon className="h-[16px] w-[16px] dark:hidden" />

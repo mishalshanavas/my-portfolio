@@ -65,7 +65,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
                 <VscGitCommit className="text-lg text-gray-400 dark:text-gray-500" aria-hidden="true" />
               </div>
               {(!isLast || hasMore) && (
-                <div className="flex-1 w-px bg-gray-300 dark:bg-gray-700 mt-0.5" />
+                <div className="flex-1 w-px bg-gray-200 dark:bg-gray-700 mt-0.5" />
               )}
             </div>
 
@@ -73,7 +73,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
             <div
               className={`flex-1 flex items-start justify-between gap-4 min-w-0 pb-5 ${
                 !isLast || hasMore
-                  ? "border-b border-gray-300 dark:border-gray-700"
+                  ? "border-b border-gray-200 dark:border-gray-800"
                   : ""
               }`}
             >
@@ -88,23 +88,24 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
                       {...(isExternal
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="text-[#2563EB] dark:text-[#60A5FA] hover:underline"
+                      className="font-medium hover:underline"
+                      style={{ color: 'var(--accent)' }}
                     >
                       {event.title}
                     </Link>
                   ) : (
-                    <span className="text-black dark:text-white">
+                    <span className="text-gray-900 dark:text-gray-100">
                       {event.title}
                     </span>
                   )}
                 </p>
                 {event.description && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                  <p className="text-xs text-gray-500 dark:text-gray-500 mt-0.5 leading-relaxed font-normal">
                     {event.description}
                   </p>
                 )}
               </div>
-              <span className="text-xs text-gray-400 dark:text-gray-600 whitespace-nowrap flex-shrink-0 mt-3">
+              <span className="text-xs text-gray-400 dark:text-gray-500 whitespace-nowrap flex-shrink-0 mt-3 font-normal">
                 {getRelativeTime(event.date)}
               </span>
             </div>
@@ -117,7 +118,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
           <div className="flex-shrink-0 w-6" />
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="text-xs text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200 pt-1"
+            className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150 pt-1 font-normal"
           >
             {expanded
               ? "Show less ↑"

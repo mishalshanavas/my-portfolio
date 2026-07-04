@@ -46,13 +46,13 @@ export default function Page() {
   return (
     <>
         {/* HERO (full width top) */}
-        <section className="flex flex-col sm:flex-row sm:items-center gap-5 pb-8 mb-8 border-b border-gray-300 dark:border-gray-700">
+        <section className="flex flex-col sm:flex-row sm:items-center gap-5 pb-10 mb-10 border-b border-gray-200 dark:border-gray-800">
           {/* Avatar */}
           <div className="flex-shrink-0">
             <Image
               src={hero.imageLight}
               alt="Profile photo"
-              className="rounded-full border-2 border-gray-300 dark:border-gray-700 transition-all duration-200 dark:hidden"
+              className="rounded-full border border-gray-200 dark:border-gray-700 transition-all duration-200 dark:hidden"
               width={90}
               height={90}
               priority
@@ -61,7 +61,7 @@ export default function Page() {
               src={hero.imageDark}
               alt="Profile photo"
               aria-hidden="true"
-              className="rounded-full border-2 border-gray-300 dark:border-gray-700 transition-all duration-200 hidden dark:block"
+              className="rounded-full border border-gray-200 dark:border-gray-700 transition-all duration-200 hidden dark:block"
               width={90}
               height={90}
               priority
@@ -70,24 +70,24 @@ export default function Page() {
 
           {/* Name + username + title */}
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl sm:text-3xl font-medium text-black dark:text-white leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-gray-100 leading-tight">
               {hero.name}
             </h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400 font-light mt-0.5">
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-normal mt-0.5">
               @{profileMeta.username}
             </p>
-            <p className="text-sm text-gray-600 dark:text-gray-400 font-light mt-1">
+            <p className="text-sm text-gray-500 dark:text-gray-400 font-normal mt-1">
               {hero.title}
             </p>
           </div>
 
           {/* Social text links */}
-          <nav aria-label="Social links" className="flex flex-wrap gap-3 sm:gap-4 text-sm flex-shrink-0">
+          <nav aria-label="Social links" className="flex flex-wrap gap-4 sm:gap-5 text-sm flex-shrink-0">
             <a
               href={socialLinks.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+              className="py-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
             >
               GitHub
             </a>
@@ -95,7 +95,7 @@ export default function Page() {
               href={socialLinks.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="py-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+              className="py-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
             >
               LinkedIn
             </a>
@@ -104,65 +104,51 @@ export default function Page() {
               target="_blank"
               rel="noopener noreferrer"
               download="mishalshanavas_cv.pdf"
-              className="py-3 text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+              className="py-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
             >
               Resume ↗
             </a>
           </nav>
         </section>
 
-        {/* Mobile-only: contact availability strip */}
-        <div className="lg:hidden -mt-4 mb-8 flex items-center gap-2 text-sm font-light">
-          <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
-          </span>
-          <span className="text-gray-600 dark:text-gray-400">Available for hire</span>
-          <span className="text-gray-300 dark:text-gray-700">·</span>
-          <a
-            href={socialLinks.email}
-            className="text-gray-500 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors duration-200 truncate"
-          >
-            mishalshanavas@yahoo.com
-          </a>
-        </div>
+
 
         {/* ── TWO-COLUMN BODY ─────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_210px] gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-10 items-start">
 
           {/* ── LEFT MAIN ─────────────────────────────────────── */}
-          <div className="space-y-12 min-w-0">
+          <div className="space-y-14 min-w-0">
 
             {/* About */}
             <section>
-              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 About
               </h2>
-              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-light">
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
                 {renderAbout(aboutMe)}
               </p>
             </section>
 
             {/* Experience */}
             <section>
-              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 Experience
               </h2>
               <div className="space-y-6">
                 {experiences.map((exp, idx) => (
                   <div key={idx}>
-                    <div className="font-medium text-sm text-black dark:text-white mb-0.5">
+                    <div className="font-medium text-sm text-gray-900 dark:text-gray-100 mb-0.5">
                       {exp.role}
                     </div>
                     <a
                       href={exp.companyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white font-light mb-2 block transition-colors duration-200"
+                      className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-normal mb-2 block transition-colors duration-150"
                     >
                       {exp.company} · {exp.period}
                     </a>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 font-normal leading-relaxed">
                       {exp.description}
                     </p>
                   </div>
@@ -172,7 +158,7 @@ export default function Page() {
 
             {/* Skills */}
             <section>
-              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 Skills
               </h2>
               <div className="flex flex-wrap gap-1.5">
@@ -180,14 +166,14 @@ export default function Page() {
                   const badges = group.skills.map((skill: string, si: number) => (
                     <span
                       key={`${group.name}-${si}`}
-                      className="px-2 py-0.5 text-xs font-light bg-transparent text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700 rounded"
+                      className="px-2.5 py-0.5 text-xs font-normal text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md"
                     >
                       {skill}
                     </span>
                   ));
                   if (gi < skillGroups.length - 1) {
                     badges.push(
-                      <span key={`div-${gi}`} className="w-px h-5 self-center bg-gray-300 dark:bg-gray-700" aria-hidden="true" />
+                      <span key={`div-${gi}`} className="w-px h-5 self-center bg-gray-200 dark:bg-gray-700" aria-hidden="true" />
                     );
                   }
                   return badges;
@@ -197,17 +183,17 @@ export default function Page() {
 
             {/* Activity Chart */}
             <section>
-              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 Activity
               </h2>
-              <Suspense fallback={<div className="border border-gray-300 dark:border-gray-700 rounded-lg p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
+              <Suspense fallback={<div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
                 <ContributionSection />
               </Suspense>
             </section>
 
             {/* Contributions Timeline */}
             <section>
-              <h2 className="text-base font-medium text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 Contributions
               </h2>
               <ActivityTimeline events={timelineEvents} />
@@ -215,13 +201,13 @@ export default function Page() {
 
             {/* Projects */}
             <section>
-              <div className="flex items-center justify-between border-b border-gray-300 dark:border-gray-700 pb-2 mb-4">
-                <h2 className="text-base font-medium text-black dark:text-white">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                   Projects
                 </h2>
                 <Link
                   href="/projects"
-                  className="text-xs font-light text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-200"
+                  className="text-xs font-normal text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
                 >
                   View all →
                 </Link>
@@ -235,7 +221,7 @@ export default function Page() {
                 {/* View all card */}
                 <Link
                   href="/projects"
-                  className="flex-shrink-0 w-36 flex flex-col items-center justify-center gap-2 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg hover:border-gray-400 dark:hover:border-gray-500 transition-colors duration-200 text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white"
+                  className="flex-shrink-0 w-36 flex flex-col items-center justify-center gap-2 border border-dashed border-gray-200 dark:border-gray-700 rounded-md hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-150 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
                 >
                   <span className="text-2xl">→</span>
                   <span className="text-xs font-light">View all</span>
@@ -249,27 +235,28 @@ export default function Page() {
 
             {/* Info */}
             <div>
-              <h3 className="text-xs font-medium text-black dark:text-white uppercase tracking-wider mb-3">
+              <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
                 Info
               </h3>
-              <ul className="space-y-2 text-sm font-light text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2.5 text-sm font-normal text-gray-600 dark:text-gray-400">
                 <li className="flex items-center gap-2">
-                  <FiMapPin className="flex-shrink-0 text-gray-400" aria-hidden="true" />
+                  <FiMapPin className="flex-shrink-0 text-gray-400 dark:text-gray-500" aria-hidden="true" />
                   <span>{profileMeta.location}</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiClock className="flex-shrink-0 text-gray-400" aria-hidden="true" />
+                  <FiClock className="flex-shrink-0 text-gray-400 dark:text-gray-500" aria-hidden="true" />
                   <LocalTime />
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiBook className="flex-shrink-0 text-gray-400" aria-hidden="true" />
+                  <FiBook className="flex-shrink-0 text-gray-400 dark:text-gray-500" aria-hidden="true" />
                   <span>CS Major · 2028</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <FiZap className="flex-shrink-0 text-[#2563EB] dark:text-[#60A5FA]" aria-hidden="true" />
+                  <FiZap className="flex-shrink-0" style={{ color: 'var(--accent)' }} aria-hidden="true" />
                   <a
                     href={socialLinks.email}
-                    className="text-[#2563EB] dark:text-[#60A5FA] hover:underline"
+                    className="font-normal hover:underline"
+                    style={{ color: 'var(--accent)' }}
                   >
                     Available for hire
                   </a>
@@ -277,20 +264,20 @@ export default function Page() {
               </ul>
             </div>
 
-            <div className="border-t border-gray-300 dark:border-gray-700" />
+            <div className="border-t border-gray-200 dark:border-gray-700" />
 
             {/* Contact */}
             <div>
-              <h3 className="text-xs font-medium text-black dark:text-white uppercase tracking-wider mb-3">
+              <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
                 Contact
               </h3>
-              <ul className="space-y-2.5 text-sm font-light text-gray-600 dark:text-gray-400">
+              <ul className="space-y-2.5 text-sm font-normal text-gray-600 dark:text-gray-400">
                 <li>
                   <a
                     href={socialLinks.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
                   >
                     <FaGithub className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">github.com/{profileMeta.username}</span>
@@ -299,7 +286,7 @@ export default function Page() {
                 <li>
                   <a
                     href={socialLinks.email}
-                    className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
                   >
                     <TbMailFilled className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishalshanavas@yahoo.com</span>
@@ -310,7 +297,7 @@ export default function Page() {
                     href={socialLinks.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
                   >
                     <FaLinkedinIn className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishalshanavas</span>
@@ -321,7 +308,7 @@ export default function Page() {
                     href={socialLinks.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
                   >
                     <FaXTwitter className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishal_shanavas</span>
@@ -332,7 +319,7 @@ export default function Page() {
                     href={socialLinks.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 hover:text-black dark:hover:text-white transition-colors duration-200"
+                    className="flex items-center gap-2.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
                   >
                     <FaInstagram className="text-base flex-shrink-0" aria-hidden="true" />
                     <span className="truncate">mishal_shanavas</span>
