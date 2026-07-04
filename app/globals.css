@@ -26,13 +26,13 @@
   --sh-jsxliterals: #116329;
   --sh-property: #953800;
   --sh-entity: #8250df;
-  /* Pajamas-inspired neutral chart scale */
-  --chart-0: #f0f0f0;
-  --chart-1: #dcdcde;
-  --chart-2: #bfbfbf;
-  --chart-3: #999999;
-  --chart-4: #666666;
-  /* Pajamas primary – used only for interaction */
+  /* Chart scale – blue tint, matches page accent */
+  --chart-0: #eff6ff;
+  --chart-1: #dbeafe;
+  --chart-2: #93c5fd;
+  --chart-3: #3b82f6;
+  --chart-4: #1d4ed8;
+  /* Accent – used only for interaction */
   --accent: #1f75cb;
   --accent-hover: #1559a0;
 }
@@ -49,13 +49,13 @@
   --sh-jsxliterals: #7ee787;
   --sh-property: #ffa657;
   --sh-entity: #d2a8ff;
-  /* Pajamas-inspired neutral chart scale */
-  --chart-0: #1a1a1a;
-  --chart-1: #2e2e2e;
-  --chart-2: #4a4a4a;
-  --chart-3: #757575;
-  --chart-4: #adadad;
-  /* Pajamas primary – used only for interaction */
+  /* Chart scale – blue tint, matches page accent */
+  --chart-0: #0c1a3a;
+  --chart-1: #162d5a;
+  --chart-2: #1e3a8a;
+  --chart-3: #2563eb;
+  --chart-4: #60a5fa;
+  /* Accent – used only for interaction */
   --accent: #5fa3e3;
   --accent-hover: #7ab8f0;
 }
