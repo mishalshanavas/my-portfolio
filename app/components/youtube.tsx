@@ -1,7 +1,7 @@
 "use client";
-import YT from "react-youtube";
+import YT, { type YouTubeProps } from "react-youtube";
 
-export function YouTubeComponent(props: any) {
+export function YouTubeComponent({ title = "Embedded YouTube video", ...props }: YouTubeProps) {
   return (
     <div className="relative w-full h-0 pb-[56.25%] my-6">
       <YT
@@ -10,6 +10,8 @@ export function YouTubeComponent(props: any) {
           width: '100%',
         }}
         {...props}
+        title={title}
+        loading="lazy"
         className="absolute top-0 left-0 w-full h-full"
       />
     </div>

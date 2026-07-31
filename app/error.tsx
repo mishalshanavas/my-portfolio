@@ -19,7 +19,7 @@ export default function Error({
         Something went wrong
       </h1>
       <p className="mb-8 text-gray-600 dark:text-gray-400">
-        {error.message || "An unexpected error occurred."}
+        Please try again. If the problem persists, contact me by email.
       </p>
       <button
         onClick={reset}

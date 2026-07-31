@@ -3,7 +3,7 @@
     "title": "Mishal Shanavas",
     "home_page_url": "https://www.mishalshanavas.in/",
     "feed_url": "https://www.mishalshanavas.in/feed.json",
-    "description": "Backend developer specializing in Python, Django, and MySQL. Builds scalable APIs, open source tools, and cloud infrastructure on GCP and AWS.",
+    "description": "Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS.",
     "items": [
         {
             "id": "https://www.mishalshanavas.in/blog/ict-hackathon",

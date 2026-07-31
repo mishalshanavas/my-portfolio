@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
-import { metaData,socialLinks } from "./lib/config";
+import { metaData } from "./lib/config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     title: metaData.name,
     card: "summary_large_image",
-    creator: socialLinks.twitter,
+    creator: "@mishal_shanavas",
  },
   icons: {
     icon: "/favicon.ico",
@@ -90,8 +90,6 @@ export default function RootLayout({
           href="/feed.json"
           title="JSON Feed"
         />
-        <link rel="preload" href="/profile-wt.jpg" as="image" />
-        <link rel="preload" href="/profile-bl.jpg" as="image" />
       </head>
       <body className={`${inter.className} antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300`}>
         <div className="min-h-screen flex flex-col">

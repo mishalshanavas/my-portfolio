@@ -29,8 +29,16 @@ function CustomLink({ href, children, ...rest }: LinkProps) {
 
 type RoundedImageProps = React.ComponentProps<typeof Image>;
 
-function RoundedImage({ alt = "", ...props }: RoundedImageProps) {
-  return <Image alt={alt} className="rounded-lg" {...props} />;
+function RoundedImage({ alt = "", width, height, ...props }: RoundedImageProps) {
+  return (
+    <Image
+      alt={alt}
+      className="rounded-lg"
+      height={height ?? 960}
+      width={width ?? 1920}
+      {...props}
+    />
+  );
 }
 
 type CodeProps = { children: string } & React.HTMLAttributes<HTMLElement>;
@@ -135,8 +143,7 @@ function PreBlock({ children }: React.HTMLAttributes<HTMLPreElement>) {
   return (
     <div
       className="not-prose my-8 rounded-xl overflow-hidden border border-gray-200 dark:border-[#2a2a2a] shadow-sm"
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      {...({ "data-code-wrapper": "" } as any)}
+      data-code-wrapper=""
     >
       {/* Title bar */}
       <div className="flex items-center justify-between px-4 py-2.5 bg-[#f0f0f0] dark:bg-[#1c1c1c] border-b border-gray-200 dark:border-[#2a2a2a]">

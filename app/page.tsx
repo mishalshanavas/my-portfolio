@@ -14,7 +14,6 @@ import {
   socialLinks,
   experiences,
   aboutMe,
-  skills,
   skillGroups,
   projects,
   profileMeta,
@@ -82,7 +81,7 @@ export default function Page() {
           </div>
 
           {/* Social text links */}
-          <nav aria-label="Social links" className="flex flex-wrap gap-4 sm:gap-5 text-sm flex-shrink-0">
+          <nav aria-label="Primary profile links" className="flex flex-wrap gap-4 sm:gap-5 text-sm flex-shrink-0">
             <a
               href={socialLinks.github}
               target="_blank"
@@ -98,6 +97,12 @@ export default function Page() {
               className="py-3 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-150"
             >
               LinkedIn
+            </a>
+            <a
+              href={socialLinks.email}
+              className="py-3 font-medium text-[color:var(--accent)] hover:underline transition-colors duration-150"
+            >
+              Email me
             </a>
             <a
               href={hero.resumeUrl}

@@ -43,11 +43,9 @@ export default function Projects() {
             .filter(Boolean)
             .join(" · ");
           return (
-          <Link
+          <article
             key={index}
-            href={project.url}
             className="group flex gap-4 py-4 -mx-2 px-2 rounded-md transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
-            {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
           >
             <div className="w-10 h-10 rounded-md flex-shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
               {project.image ? (
@@ -67,9 +65,19 @@ export default function Projects() {
               )}
             </div>
             <div className="min-w-0 flex-1">
-              <div className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug">
-                {project.name}
-              </div>
+              {project.caseStudy ? (
+                <Link href={`/projects/${project.slug}`} className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug hover:underline">
+                  {project.name}
+                </Link>
+              ) : (
+                <Link
+                  href={project.url}
+                  className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug hover:underline"
+                  {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  {project.name}
+                </Link>
+              )}
               <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 <span>{meta}</span>
                 {project.isContributor && (
@@ -78,7 +86,7 @@ export default function Projects() {
                   </span>
                 )}
                 {project.isSideQuest && (
-                  <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-400 dark:text-gray-500 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
+                  <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-600 dark:text-gray-400 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
                     Side Quest
                   </span>
                 )}
@@ -86,12 +94,24 @@ export default function Projects() {
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
                 {project.description}
               </p>
+              <div className="mt-2 flex items-center gap-3 text-xs">
+                {project.caseStudy && (
+                  <Link href={`/projects/${project.slug}`} className="font-medium text-[color:var(--accent)] hover:underline">
+                    Case study →
+                  </Link>
+                )}
+                {isExternal && (
+                  <Link href={project.url} target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-300 hover:underline">
+                    {getProjectSource(project.url)} ↗
+                  </Link>
+                )}
+              </div>
             </div>
             <FiChevronRight
               aria-hidden="true"
               className="mt-1 flex-shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-all duration-150 group-hover:translate-x-0.5"
             />
-          </Link>
+          </article>
           );
         })}
       </div>

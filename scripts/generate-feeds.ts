@@ -10,6 +10,15 @@ async function generateFeeds() {
       ? metaData.baseUrl
       : `${metaData.baseUrl}/`;
 
+    const allPosts = getBlogPosts();
+    const latestPostDate = allPosts.reduce<Date>(
+      (latest, post) => {
+        const publishedAt = new Date(post.metadata.publishedAt);
+        return publishedAt > latest ? publishedAt : latest;
+      },
+      new Date(0)
+    );
+
     const feed = new Feed({
       title: metaData.name,
       description: metaData.description,
@@ -22,9 +31,8 @@ async function generateFeeds() {
         atom: `${BaseUrl}atom.xml`,
         rss: `${BaseUrl}rss.xml`,
       },
+      updated: latestPostDate,
     });
-
-    const allPosts = await getBlogPosts();
 
     if (!allPosts || allPosts.length === 0) {
       console.log("⚠️  No blog posts found. Generating empty feeds.");

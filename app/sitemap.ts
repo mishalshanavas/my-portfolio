@@ -20,9 +20,17 @@ function getBaseUrl(): string {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getBaseUrl();
-  const currentDate = new Date().toISOString();
+  const blogPosts = getBlogPosts();
+  const latestPostDate = blogPosts.reduce(
+    (latest, post) =>
+      new Date(post.metadata.publishedAt) > latest
+        ? new Date(post.metadata.publishedAt)
+        : latest,
+    new Date(0)
+  );
+  const lastModified = latestPostDate.toISOString();
 
-  const blogs = getBlogPosts().map((post) => ({
+  const blogs = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.metadata.publishedAt).toISOString(),
     changeFrequency: "monthly" as const,
@@ -32,19 +40,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     {
       url: baseUrl,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 1.0,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },

@@ -6,7 +6,22 @@ export default async function ContributionSection() {
   const data = await fetchGitHubContributions(profileMeta.username);
   return (
     <div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 overflow-hidden">
-      <ContributionChart data={data} />
+      {data.length > 0 ? (
+        <ContributionChart data={data} />
+      ) : (
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          GitHub activity is unavailable right now. Visit the{" "}
+          <a
+            className="text-[color:var(--accent)] hover:underline"
+            href={`https://github.com/${profileMeta.username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub profile
+          </a>{" "}
+          for recent work.
+        </p>
+      )}
     </div>
   );
 }

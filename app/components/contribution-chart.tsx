@@ -95,7 +95,7 @@ export default function ContributionChart({ data }: ContributionChartProps) {
   const totalContributions = days.reduce((sum, d) => sum + d.count, 0);
 
   return (
-    <div className="w-full" ref={containerRef}>
+    <div className="w-full" ref={containerRef} aria-label={`${totalContributions} GitHub contributions in the last year`}>
       {maxWeeks === 0 ? (
         <div className="w-full overflow-hidden" aria-hidden>
           {/* skeleton month label row */}
@@ -131,7 +131,7 @@ export default function ContributionChart({ data }: ContributionChartProps) {
             {visibleWeeks.map((_, wi) => (
               <div
                 key={wi}
-                className="text-[10px] text-gray-400 dark:text-gray-600"
+                className="text-[10px] text-gray-500 dark:text-gray-400"
                 style={{ width: 13, marginRight: 3, flexShrink: 0 }}
               >
                 {visibleMonthLabels[wi] ?? ""}
@@ -149,7 +149,7 @@ export default function ContributionChart({ data }: ContributionChartProps) {
               {["", "M", "", "W", "", "F", ""].map((label, i) => (
                 <div
                   key={i}
-                  className="text-[10px] text-gray-400 dark:text-gray-600 flex items-center justify-end"
+                  className="text-[10px] text-gray-500 dark:text-gray-400 flex items-center justify-end"
                   style={{ height: 13 }}
                 >
                   {label}
@@ -193,7 +193,7 @@ export default function ContributionChart({ data }: ContributionChartProps) {
             />
           ))}
         </div>
-        <span className="text-[11px] text-gray-400 dark:text-gray-500">
+        <span className="text-[11px] text-gray-500 dark:text-gray-400">
           Issues, merge requests, pushes, and comments.
         </span>
       </div>

@@ -3,6 +3,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=--no-experimental-webstorage next dev",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "check": "pnpm typecheck && pnpm lint && pnpm build",
     "build": "npx tsx scripts/generate-feeds.ts && next build",
     "start": "next start",
     "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages",
@@ -35,6 +38,8 @@
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.24",
     "cross-env": "^7.0.3",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.12",
     "tailwindcss": "^4.2.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",

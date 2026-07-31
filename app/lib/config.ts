@@ -80,9 +80,31 @@ export const skillGroups = [
 
 export const skills = skillGroups.flatMap((g) => g.skills);
 
-export const projects = [
+export type ProjectCaseStudy = {
+  context: string;
+  contribution: string;
+  outcome: string;
+};
+
+export type Project = {
+  name: string;
+  slug?: string;
+  date: string;
+  url: string;
+  description: string;
+  image?: string;
+  imageAlignment?: string;
+  featured: boolean;
+  isContributor?: boolean;
+  isSideQuest?: boolean;
+  tech: string[];
+  caseStudy?: ProjectCaseStudy;
+};
+
+export const projects: Project[] = [
   {
     name: "Linux Foundation Hyperledger Fabric",
+    slug: "hyperledger-fabric-ci",
     date: "2026-04-30",
     url: "https://github.com/hyperledger/fabric",
     description: "Merged a CI fix into the Linux Foundation's flagship enterprise blockchain framework, the same codebase running in production at IBM, Walmart, and HSBC. PR reviewed by core maintainers.",
@@ -91,18 +113,30 @@ export const projects = [
     isContributor: true,
     featured: true,
     tech: ["Go", "GitHub Actions", "CI/CD", "Hyperledger Fabric"],
+    caseStudy: {
+      context: "Hyperledger Fabric is an enterprise blockchain framework maintained under the Linux Foundation.",
+      contribution: "Investigated and fixed a broken CI workflow, then worked through review with core maintainers.",
+      outcome: "The CI fix was merged upstream into the project’s main codebase.",
+    },
   },
   {
     name: "Terramine",
+    slug: "terramine",
     date: "2026-06-01",
     url: "https://github.com/accidental-stuff/mc-server",
     description: "Minecraft server deployed with infra-as-code on GCP. Terraform and Cloudflare handle networking and DNS, Caddy reverse-proxies, Docker Compose runs the workloads, backups land in Cloudflare R2.",
     featured: true,
     isSideQuest: true,
     tech: ["Terraform", "GCP", "Docker", "Caddy", "Cloudflare"],
+    caseStudy: {
+      context: "A Minecraft server needed repeatable infrastructure and reliable networking without manual server setup.",
+      contribution: "Defined infrastructure with Terraform on GCP, configured Cloudflare DNS and networking, and ran workloads through Docker Compose and Caddy.",
+      outcome: "The deployment, routing, and backup path are documented as infrastructure rather than one-off server configuration.",
+    },
   },
   {
     name: "G-Tech MuLearn",
+    slug: "gtech-mulearn",
     date: "2025-03-01",
     url: "https://github.com/gtech-mulearn/mulearnbackend",
     description: "Built APIs for MuLearn's launchpad platform: JWT auth, company onboarding, and job management. Django and MySQL. Used by students across Kerala.",
@@ -110,10 +144,16 @@ export const projects = [
     isContributor: true,
     imageAlignment: "object-center",
     featured: true,
-    tech: ["Python", "Django", "Database Design","mySQL", "JWT auth"],
+    tech: ["Python", "Django", "Database Design", "MySQL", "JWT auth"],
+    caseStudy: {
+      context: "MuLearn’s launchpad platform needed backend foundations for companies and students to use its job-management flows.",
+      contribution: "Built Django and MySQL APIs for JWT authentication, company onboarding, and job management alongside frontend and design teams.",
+      outcome: "The work shipped to a platform used by students across Kerala.",
+    },
   },
   {
     name: "Mappix",
+    slug: "mappix",
     date: "2026-05-01",
     url: "https://mappix.isacool.monster",
     description: "Real-time projection mapping in the browser. Point a webcam at a wall with sticky notes and physics balls bounce off them live. Built with Gray-code structured light calibration for sub-pixel accuracy and homography-based projector-camera mapping.",
@@ -122,6 +162,11 @@ export const projects = [
     featured: true,
     isSideQuest: true,
     tech: ["Vue.js", "JavaScript", "Computer Vision", "Matter.js", "WebRTC"],
+    caseStudy: {
+      context: "Projection mapping needs calibration that connects a physical wall and sticky notes to a browser-based experience.",
+      contribution: "Built Gray-code structured-light calibration and homography-based projector-camera mapping, then connected it to real-time physics and webcam input.",
+      outcome: "Users can point a webcam at a wall and see physics balls react to detected sticky notes in real time.",
+    },
   },
   {
     name: "Notes Bot",

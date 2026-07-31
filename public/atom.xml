@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.mishalshanavas.in/</id>
     <title>Mishal Shanavas</title>
-    <updated>2026-06-30T12:44:58.173Z</updated>
+    <updated>2024-10-29T00:00:00.000Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://www.mishalshanavas.in/"/>
     <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
-    <subtitle>Backend developer specializing in Python, Django, and MySQL. Builds scalable APIs, open source tools, and cloud infrastructure on GCP and AWS.</subtitle>
+    <subtitle>Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS.</subtitle>
     <rights>All rights reserved 2026, mishal shanavas</rights>
     <entry>
         <title type="html"><![CDATA[We Built an AI Career Guider and Won 2nd Runner-Up]]></title>

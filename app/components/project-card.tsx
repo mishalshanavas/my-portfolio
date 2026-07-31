@@ -1,18 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-interface Project {
-  name: string;
-  url: string;
-  description: string;
-  image?: string;
-  date?: string;
-  tech?: string[];
-  featured?: boolean;
-  imageAlignment?: string;
-  isContributor?: boolean;
-  isSideQuest?: boolean;
-}
+import type { Project } from "../lib/config";
 
 interface ProjectCardProps {
   project: Project;
@@ -27,12 +15,13 @@ function formatCardDate(dateStr?: string): string {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const isExternal = project.url.startsWith("http");
   const initial = project.name.charAt(0).toUpperCase();
+  const href = project.slug ? `/projects/${project.slug}` : project.url;
+  const isExternal = href.startsWith("http");
 
   return (
     <Link
-      href={project.url}
+      href={href}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="flex flex-col h-44 border border-gray-200 dark:border-gray-700 rounded-md p-4 hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-150"
     >
@@ -45,7 +34,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 src={project.image}
                 alt={project.name}
                 fill
-                className="object-cover"
+                className={`object-cover ${project.imageAlignment ?? ""}`}
                 sizes="44px"
               />
             </div>
@@ -62,7 +51,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             {project.name}
           </div>
           {project.date && (
-            <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
               {formatCardDate(project.date)}
             </div>
           )}
@@ -77,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 </span>
               )}
               {project.isSideQuest && (
-                <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-400 dark:text-gray-500 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
+                <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-600 dark:text-gray-400 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
                   Side Quest
                 </span>
               )}

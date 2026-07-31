@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeSwitch } from "./theme-switch";
 import { metaData } from "../lib/config";
 
@@ -14,6 +14,27 @@ const navItems = {
 export function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    menuRef.current?.querySelector<HTMLAnchorElement>("a")?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    menuButtonRef.current?.focus();
+  };
 
   return (
     <nav className="py-3 sm:py-4 mb-6 sm:mb-10 border-b border-gray-200 dark:border-gray-800">
@@ -54,10 +75,12 @@ export function Navbar() {
         <div className="flex md:hidden items-center gap-3">
           <ThemeSwitch />
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            ref={menuButtonRef}
+            onClick={() => setIsMenuOpen((open) => !open)}
             className="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
             aria-label="Toggle mobile menu"
             aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <svg
               className="w-5 h-5"
@@ -90,17 +113,17 @@ export function Navbar() {
         <>
           <div 
             className="fixed inset-0 bg-black/20 dark:bg-white/10 z-40 md:hidden"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
             aria-hidden="true"
           />
-          <div className="md:hidden pt-3 pb-2 px-4 sm:px-6 space-y-0.5 relative z-50">
+          <div ref={menuRef} id="mobile-navigation" className="md:hidden pt-3 pb-2 px-4 sm:px-6 space-y-0.5 relative z-50">
             {Object.entries(navItems).map(([path, { name }]) => {
               const isActive = pathname === path;
               return (
                 <Link
                   key={path}
                   href={path}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenu}
                   className={`
                     block px-3 py-2 rounded-md text-sm font-normal transition-colors duration-150
                     ${

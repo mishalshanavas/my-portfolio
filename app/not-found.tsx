@@ -14,7 +14,7 @@ export default function NotFound() {
         404 - Page not found
       </h1>
       <p className="mb-8 text-gray-600 dark:text-gray-400">
-        Oops! The page you're looking for doesn't seem to exist.
+        Oops! The page you&rsquo;re looking for doesn&rsquo;t seem to exist.
       </p>
       <div className="flex gap-4">
         <Link

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import {
   FaXTwitter,
   FaGithub,
@@ -45,12 +46,12 @@ export default function Footer() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <small className="text-gray-500 dark:text-gray-400 text-sm font-normal">
           <time>© {YEAR}</time>{" "}
-          <a
+          <Link
             className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
             href="/"
           >
             {metaData.title}
-          </a>
+          </Link>
         </small>
         <SocialLinks />
       </div>

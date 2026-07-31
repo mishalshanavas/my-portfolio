@@ -42,7 +42,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
 
   if (events.length === 0) {
     return (
-      <p className="text-sm text-gray-400 dark:text-gray-600">
+      <p className="text-sm text-gray-600 dark:text-gray-400">
         No activity yet.
       </p>
     );
@@ -105,7 +105,7 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
                   </p>
                 )}
               </div>
-              <span className="text-xs text-gray-400 dark:text-gray-500 whitespace-nowrap flex-shrink-0 mt-3 font-normal">
+              <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap flex-shrink-0 mt-3 font-normal">
                 {getRelativeTime(event.date)}
               </span>
             </div>
@@ -129,4 +129,3 @@ export default function ActivityTimeline({ events }: ActivityTimelineProps) {
     </div>
   );
 }
-
