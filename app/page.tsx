@@ -110,6 +110,58 @@ export default function Page() {
           </nav>
         </section>
 
+        {/* Compact profile details for mobile */}
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-10 mb-10 border-b border-gray-200 dark:border-gray-800 lg:hidden">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
+              Based in
+            </p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">{profileMeta.location}</p>
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
+              Availability
+            </p>
+            <a
+              href={socialLinks.email}
+              className="text-sm text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
+            >
+              Available for hire
+            </a>
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
+              Links
+            </p>
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm">
+              <a
+                href={socialLinks.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
+              >
+                GitHub
+              </a>
+              <a
+                href={socialLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
+              >
+                LinkedIn
+              </a>
+              <a
+                href={hero.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
+              >
+                Résumé
+              </a>
+            </div>
+          </div>
+        </section>
+
 
 
         {/* ── TWO-COLUMN BODY ─────────────────────────────────────────────── */}
@@ -180,24 +232,6 @@ export default function Page() {
               </div>
             </section>
 
-            {/* Activity Chart */}
-            <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Activity
-              </h2>
-              <Suspense fallback={<div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
-                <ContributionSection />
-              </Suspense>
-            </section>
-
-            {/* Contributions Timeline */}
-            <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Contributions
-              </h2>
-              <ActivityTimeline events={timelineEvents} />
-            </section>
-
             {/* Projects */}
             <section>
               <div className="flex items-center justify-between mb-4">
@@ -227,10 +261,28 @@ export default function Page() {
                 </Link>
               </HorizontalScroll>
             </section>
+
+            {/* Activity Chart */}
+            <section>
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                Activity
+              </h2>
+              <Suspense fallback={<div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
+                <ContributionSection />
+              </Suspense>
+            </section>
+
+            {/* Contributions Timeline */}
+            <section>
+              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                Contributions
+              </h2>
+              <ActivityTimeline events={timelineEvents} />
+            </section>
           </div>
 
           {/* ── RIGHT SIDEBAR ──────────────────────────────────── */}
-          <aside className="lg:sticky lg:top-8 space-y-6">
+          <aside className="hidden lg:block lg:sticky lg:top-8 space-y-6">
 
             {/* Info */}
             <div>

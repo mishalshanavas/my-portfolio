@@ -11,7 +11,7 @@ export function GET(request: Request) {
     (
       <div
         style={{
-          background: "#ffffff",
+          background: "#f7faff",
           color: "#111827",
           display: "flex",
           flexDirection: "column",

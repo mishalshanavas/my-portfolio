@@ -6,12 +6,12 @@
 
 /* Enhanced selection colors for monochrome theme */
 ::selection {
-  background-color: #000000;
+  background-color: var(--accent);
   color: #ffffff;
 }
 
 .dark ::selection {
-  background-color: #ffffff;
+  background-color: var(--accent);
   color: #000000;
 }
 
@@ -26,15 +26,15 @@
   --sh-jsxliterals: #116329;
   --sh-property: #953800;
   --sh-entity: #8250df;
-  /* Chart scale – high-contrast blue, aligned with the site accent */
-  --chart-0: #e9edf1;
-  --chart-1: #bfdbfe;
-  --chart-2: #60a5fa;
-  --chart-3: #2563eb;
-  --chart-4: #1e40af;
+  /* Chart scale – balanced navy, aligned with the site accent */
+  --chart-0: #e5e7eb;
+  --chart-1: #c9daf0;
+  --chart-2: #8eadd4;
+  --chart-3: #4f78b5;
+  --chart-4: #1f4b99;
   /* Accent – used only for interaction */
-  --accent: #1f75cb;
-  --accent-hover: #1559a0;
+  --accent: #1f4b99;
+  --accent-hover: #173b78;
 }
 
 /* Dark theme colors - adjusted for better monochrome */
@@ -49,15 +49,15 @@
   --sh-jsxliterals: #7ee787;
   --sh-property: #ffa657;
   --sh-entity: #d2a8ff;
-  /* Chart scale – high-contrast blue, aligned with the site accent */
-  --chart-0: #161b22;
-  --chart-1: #172554;
-  --chart-2: #1e40af;
-  --chart-3: #2563eb;
-  --chart-4: #60a5fa;
+  /* Chart scale – balanced navy, aligned with the site accent */
+  --chart-0: #1f2937;
+  --chart-1: #162f52;
+  --chart-2: #245488;
+  --chart-3: #4e7fc0;
+  --chart-4: #8ab4f8;
   /* Accent – used only for interaction */
-  --accent: #5fa3e3;
-  --accent-hover: #7ab8f0;
+  --accent: #8ab4f8;
+  --accent-hover: #b8d2ff;
 }
 
 html {
@@ -222,13 +222,13 @@ input[type="email"]:focus,
 textarea:focus {
   @apply outline-none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(31, 117, 203, 0.15);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
 }
 
 .dark input[type="text"]:focus,
 .dark input[type="email"]:focus,
 .dark textarea:focus {
-  box-shadow: 0 0 0 3px rgba(95, 163, 227, 0.2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 32%, transparent);
 }
 
 /* Pajamas buttons – minimal */
@@ -238,7 +238,7 @@ button {
 
 button:focus-visible {
   @apply outline-none;
-  box-shadow: 0 0 0 3px rgba(31, 117, 203, 0.35);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 36%, transparent);
 }
 
 .prose .tweet a {

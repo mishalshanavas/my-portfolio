@@ -42,7 +42,7 @@ export function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 transition-colors duration-150"
+          className="text-lg font-semibold text-gray-900 dark:text-gray-100 hover:text-[color:var(--accent)] transition-colors duration-150"
         >
           {metaData.title}
         </Link>
@@ -59,7 +59,7 @@ export function Navbar() {
                   text-sm font-normal transition-colors duration-150 rounded-sm
                   ${
                     isActive
-                      ? "text-gray-900 dark:text-gray-100"
+                      ? "text-[color:var(--accent)]"
                       : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                   }
                 `}
@@ -128,7 +128,7 @@ export function Navbar() {
                     block px-3 py-2 rounded-md text-sm font-normal transition-colors duration-150
                     ${
                       isActive
-                        ? "text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900"
+                        ? "text-[color:var(--accent)] bg-gray-50 dark:bg-gray-900"
                         : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900"
                     }
                   `}

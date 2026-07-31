@@ -21,7 +21,7 @@ function SocialLink({ href, icon: Icon, title }: { href: string; icon: React.Com
       rel="noopener noreferrer" 
       title={title} 
       aria-label={title}
-      className="p-2.5 -m-2.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150 rounded"
+      className="p-2.5 -m-2.5 text-gray-500 dark:text-gray-400 hover:text-[color:var(--accent)] transition-colors duration-150 rounded"
     >
       <Icon />
     </a>
@@ -47,7 +47,7 @@ export default function Footer() {
         <small className="text-gray-500 dark:text-gray-400 text-sm font-normal">
           <time>© {YEAR}</time>{" "}
           <Link
-            className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
+            className="hover:text-[color:var(--accent)] transition-colors duration-150"
             href="/"
           >
             {metaData.title}
