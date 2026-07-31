@@ -26,12 +26,12 @@
   --sh-jsxliterals: #116329;
   --sh-property: #953800;
   --sh-entity: #8250df;
-  /* Chart scale – blue tint, matches page accent */
-  --chart-0: #eff6ff;
-  --chart-1: #dbeafe;
-  --chart-2: #93c5fd;
-  --chart-3: #3b82f6;
-  --chart-4: #1d4ed8;
+  /* Chart scale – high-contrast blue, aligned with the site accent */
+  --chart-0: #e9edf1;
+  --chart-1: #bfdbfe;
+  --chart-2: #60a5fa;
+  --chart-3: #2563eb;
+  --chart-4: #1e40af;
   /* Accent – used only for interaction */
   --accent: #1f75cb;
   --accent-hover: #1559a0;
@@ -49,10 +49,10 @@
   --sh-jsxliterals: #7ee787;
   --sh-property: #ffa657;
   --sh-entity: #d2a8ff;
-  /* Chart scale – blue tint, matches page accent */
-  --chart-0: #0c1a3a;
-  --chart-1: #162d5a;
-  --chart-2: #1e3a8a;
+  /* Chart scale – high-contrast blue, aligned with the site accent */
+  --chart-0: #161b22;
+  --chart-1: #172554;
+  --chart-2: #1e40af;
   --chart-3: #2563eb;
   --chart-4: #60a5fa;
   /* Accent – used only for interaction */

@@ -99,12 +99,6 @@ export default function Page() {
               LinkedIn
             </a>
             <a
-              href={socialLinks.email}
-              className="py-3 font-medium text-[color:var(--accent)] hover:underline transition-colors duration-150"
-            >
-              Email me
-            </a>
-            <a
               href={hero.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
