@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 import { getBlogPosts } from "./lib/posts";
-import { metaData } from "./lib/config";
+import { metaData, projects } from "./lib/config";
 
 function trimTrailingSlash(url: string): string {
   return url.replace(/\/+$/, '');
@@ -28,7 +28,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         : latest,
     new Date(0)
   );
-  const lastModified = latestPostDate.toISOString();
+  const latestProjectDate = projects.reduce(
+    (latest, project) =>
+      new Date(project.date) > latest ? new Date(project.date) : latest,
+    new Date(0)
+  );
+  const lastModified = new Date(
+    Math.max(latestPostDate.getTime(), latestProjectDate.getTime())
+  ).toISOString();
 
   const blogs = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
@@ -36,6 +43,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
+
+  const projectPages = projects
+    .filter((project) => project.slug && project.caseStudy)
+    .map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified: new Date(project.date).toISOString(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
 
   const routes = [
     {
@@ -58,5 +74,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  return [...routes, ...blogs].sort((a, b) => (b.priority || 0) - (a.priority || 0));
+  return [...routes, ...projectPages, ...blogs].sort(
+    (a, b) => (b.priority || 0) - (a.priority || 0)
+  );
 }

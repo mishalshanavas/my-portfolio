@@ -22,10 +22,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `${project.name} case study`;
   const image = `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const canonicalUrl = `${metaData.baseUrl}/projects/${project.slug}`;
   return {
     title,
     description: project.description,
-    openGraph: { title, description: project.description, type: "article", images: [image] },
+    authors: [{ name: metaData.name, url: metaData.baseUrl }],
+    keywords: project.tech,
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      title,
+      description: project.description,
+      type: "article",
+      url: canonicalUrl,
+      publishedTime: project.date,
+      images: [image],
+    },
     twitter: { card: "summary_large_image", title, description: project.description, images: [image] },
   };
 }
@@ -37,9 +48,35 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
   const isExternal = project.url.startsWith("http");
   const study = project.caseStudy;
+  const canonicalUrl = `${metaData.baseUrl}/projects/${project.slug}`;
+  const image = `${metaData.baseUrl}/og?title=${encodeURIComponent(`${project.name} case study`)}`;
 
   return (
     <article className="max-w-2xl">
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            headline: `${project.name} case study`,
+            description: project.description,
+            datePublished: project.date,
+            dateModified: project.date,
+            image,
+            url: canonicalUrl,
+            mainEntityOfPage: canonicalUrl,
+            keywords: project.tech,
+            about: project.tech,
+            author: {
+              "@type": "Person",
+              name: metaData.name,
+              url: metaData.baseUrl,
+            },
+          }),
+        }}
+      />
       <Link href="/projects" className="mb-6 inline-flex items-center gap-1 text-xs text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
         ← Projects
       </Link>

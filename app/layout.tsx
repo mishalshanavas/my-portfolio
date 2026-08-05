@@ -16,8 +16,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
   title: {
-    default: metaData.title,
-    template: `%s | ${metaData.title}`,
+    default: `${metaData.name} | Backend Developer`,
+    template: `%s | ${metaData.name}`,
   },
   description: metaData.description,
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   creator: metaData.name,
   openGraph: {
     images: metaData.ogImage,
-    title: metaData.title,
+    title: `${metaData.name} | Backend Developer`,
     description: metaData.description,
     url: metaData.baseUrl,
     siteName: metaData.name,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: metaData.name,
+    title: `${metaData.name} | Backend Developer`,
     card: "summary_large_image",
     creator: "@mishal_shanavas",
  },

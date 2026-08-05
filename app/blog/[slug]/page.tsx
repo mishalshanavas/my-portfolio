@@ -33,16 +33,23 @@ export async function generateMetadata({
   let ogImage = image
     ? image
     : `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const canonicalUrl = `${metaData.baseUrl}/blog/${post.slug}`;
+  const keywords = post.metadata.tags
+    ? post.metadata.tags.split(",").map((tag) => tag.trim())
+    : [];
 
   return {
     title,
     description,
+    authors: [{ name: metaData.name, url: metaData.baseUrl }],
+    keywords,
+    alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
       description,
       type: "article",
       publishedTime,
-      url: `${metaData.baseUrl}/blog/${post.slug}`,
+      url: canonicalUrl,
       images: [
         {
           url: ogImage,
@@ -66,6 +73,14 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
     notFound();
   }
 
+  const canonicalUrl = `${metaData.baseUrl}/blog/${post.slug}`;
+  const imageUrl = post.metadata.image
+    ? `${metaData.baseUrl}${post.metadata.image}`
+    : `${metaData.baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`;
+  const keywords = post.metadata.tags
+    ? post.metadata.tags.split(",").map((tag) => tag.trim())
+    : [];
+
   return (
     <section className="max-w-2xl overflow-x-hidden">
       <script
@@ -79,13 +94,14 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
-            image: post.metadata.image
-              ? `${metaData.baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-            url: `${metaData.baseUrl}/blog/${post.slug}`,
+            image: imageUrl,
+            url: canonicalUrl,
+            mainEntityOfPage: canonicalUrl,
+            keywords,
             author: {
               "@type": "Person",
               name: metaData.name,
+              url: metaData.baseUrl,
             },
           }),
         }}

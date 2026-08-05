@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   FaXTwitter,
   FaGithub,
@@ -17,12 +18,33 @@ import {
   skillGroups,
   projects,
   profileMeta,
+  metaData,
 } from "./lib/config";
 import { getTimelineEvents } from "./lib/activity";
 import ContributionSection from "./components/contribution-section";
 import ActivityTimeline from "./components/activity-timeline";
 import ProjectCard from "./components/project-card";
 import LocalTime from "./components/local-time";
+
+export const metadata: Metadata = {
+  title: "Mishal Shanavas | Backend Developer",
+  description:
+    "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Mishal Shanavas | Backend Developer",
+    description:
+      "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mishal Shanavas | Backend Developer",
+    description:
+      "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.",
+  },
+};
 
 function renderAbout(text: string) {
   return text.split("\n").map((line, i, arr) => {
@@ -43,8 +65,39 @@ export default function Page() {
 
   return (
     <>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfilePage",
+              name: `${metaData.name} portfolio`,
+              description: metadata.description,
+              url: metaData.baseUrl,
+              mainEntity: {
+                "@type": "Person",
+                name: metaData.name,
+                url: metaData.baseUrl,
+                image: `${metaData.baseUrl}${hero.imageLight}`,
+                jobTitle: hero.title,
+                homeLocation: {
+                  "@type": "Place",
+                  name: profileMeta.location,
+                },
+                sameAs: [
+                  socialLinks.github,
+                  socialLinks.linkedin,
+                  socialLinks.twitter,
+                  socialLinks.instagram,
+                ],
+                knowsAbout: skillGroups.flatMap((group) => group.skills),
+              },
+            }),
+          }}
+        />
         {/* HERO (full width top) */}
-        <section className="flex flex-col sm:flex-row sm:items-center gap-5 pb-10 mb-10 border-b border-gray-200 dark:border-gray-800">
+        <section className="mb-8 flex flex-col gap-4 border-b border-gray-200 pb-8 dark:border-gray-800 sm:mb-10 sm:flex-row sm:items-center sm:gap-5 sm:pb-10">
           {/* Avatar */}
           <div className="flex-shrink-0">
             <Image
@@ -77,6 +130,9 @@ export default function Page() {
             <p className="text-sm text-gray-500 dark:text-gray-400 font-normal mt-1">
               {hero.title}
             </p>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 sm:hidden">
+              {profileMeta.location}
+            </p>
           </div>
 
           {/* Social text links */}
@@ -107,58 +163,6 @@ export default function Page() {
               Resume ↗
             </a>
           </nav>
-        </section>
-
-        {/* Compact profile details for mobile */}
-        <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-10 mb-10 border-b border-gray-200 dark:border-gray-800 lg:hidden">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-              Based in
-            </p>
-            <p className="text-sm text-gray-700 dark:text-gray-300">{profileMeta.location}</p>
-          </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-              Availability
-            </p>
-            <a
-              href={socialLinks.email}
-              className="text-sm text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
-            >
-              Available for hire
-            </a>
-          </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">
-              Links
-            </p>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-sm">
-              <a
-                href={socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
-              >
-                GitHub
-              </a>
-              <a
-                href={socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
-              >
-                LinkedIn
-              </a>
-              <a
-                href={hero.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[color:var(--accent)] hover:text-[color:var(--accent-hover)] transition-colors duration-150"
-              >
-                Résumé
-              </a>
-            </div>
-          </div>
         </section>
 
 
@@ -206,6 +210,28 @@ export default function Page() {
               </div>
             </section>
 
+            {/* Projects */}
+            <section>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+                  Projects
+                </h2>
+                <Link
+                  href="/projects"
+                  className="text-xs font-normal text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
+                >
+                  View all →
+                </Link>
+              </div>
+              <div className="divide-y divide-gray-200 border-t border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+                {projects.slice(0, 4).map((project, idx) => (
+                  <div key={idx}>
+                    <ProjectCard project={project} />
+                  </div>
+                ))}
+              </div>
+            </section>
+
             {/* Skills */}
             <section>
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
@@ -228,28 +254,6 @@ export default function Page() {
                   }
                   return badges;
                 })}
-              </div>
-            </section>
-
-            {/* Projects */}
-            <section>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                  Projects
-                </h2>
-                <Link
-                  href="/projects"
-                  className="text-xs font-normal text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
-                >
-                  View all →
-                </Link>
-              </div>
-              <div className="divide-y divide-gray-200 border-t border-gray-200 dark:divide-gray-800 dark:border-gray-800">
-                {projects.slice(0, 4).map((project, idx) => (
-                  <div key={idx}>
-                    <ProjectCard project={project} />
-                  </div>
-                ))}
               </div>
             </section>
 

@@ -2,11 +2,28 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { FiChevronRight } from "react-icons/fi";
-import { projects } from "../lib/config";
+import { metaData, projects } from "../lib/config";
+
+const description =
+  "Selected backend, infrastructure, open-source, automation, and interactive projects by Mishal Shanavas.";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Projects and open source contributions by Mishal Shanavas — backend tools, automation, and web apps.",
+  description,
+  alternates: { canonical: "/projects" },
+  openGraph: {
+    title: `Projects | ${metaData.name}`,
+    description,
+    url: "/projects",
+    type: "website",
+    images: [`/og?title=${encodeURIComponent("Projects & open-source work")}`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Projects | ${metaData.name}`,
+    description,
+    images: [`/og?title=${encodeURIComponent("Projects & open-source work")}`],
+  },
 };
 
 function formatListDate(dateStr?: string): string {
@@ -34,6 +51,32 @@ function getProjectSource(url: string): string {
 export default function Projects() {
   return (
     <section>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: `Projects | ${metaData.name}`,
+            description,
+            url: `${metaData.baseUrl}/projects`,
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: projects.map((project, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: project.name,
+                url: project.slug
+                  ? `${metaData.baseUrl}/projects/${project.slug}`
+                  : project.url.startsWith("http")
+                    ? project.url
+                    : `${metaData.baseUrl}${project.url}`,
+              })),
+            },
+          }),
+        }}
+      />
       <h1 className="mb-8 text-2xl font-semibold text-gray-900 dark:text-gray-100">Projects</h1>
       <div className="border-t border-gray-200 dark:border-gray-800 divide-y divide-gray-200 dark:divide-gray-800">
         {projects.map((project, index) => {

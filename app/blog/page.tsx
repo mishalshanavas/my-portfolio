@@ -1,10 +1,29 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { FiChevronRight } from "react-icons/fi";
+import { metaData } from "../lib/config";
 import { formatDate, getBlogPosts, getReadingTime } from "../lib/posts";
 
-export const metadata = {
+const description =
+  "Technical notes and project stories about backend development, infrastructure, Linux, automation, and open source.";
+
+export const metadata: Metadata = {
   title: "Blog",
-  description: "Posts about backend development, Linux, open source, and things I find interesting.",
+  description,
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: `Blog | ${metaData.name}`,
+    description,
+    url: "/blog",
+    type: "website",
+    images: [`/og?title=${encodeURIComponent("Technical notes & project stories")}`],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Blog | ${metaData.name}`,
+    description,
+    images: [`/og?title=${encodeURIComponent("Technical notes & project stories")}`],
+  },
 };
 
 function getCoverSVG(slug: string): string {
@@ -109,6 +128,28 @@ export default function BlogPosts() {
 
   return (
     <section>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: `Blog | ${metaData.name}`,
+            description,
+            url: `${metaData.baseUrl}/blog`,
+            mainEntity: {
+              "@type": "ItemList",
+              itemListElement: sortedBlogs.map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: post.metadata.title,
+                url: `${metaData.baseUrl}/blog/${post.slug}`,
+              })),
+            },
+          }),
+        }}
+      />
       <h1 className="mb-8 text-2xl font-semibold text-gray-900 dark:text-gray-100">Blog</h1>
       <div className="border-t border-gray-200 dark:border-gray-800 divide-y divide-gray-200 dark:divide-gray-800">
         {sortedBlogs.map((post) => (

@@ -156,9 +156,8 @@ export const projects: Project[] = [
     slug: "gtech-mulearn",
     date: "2025-03-01",
     url: "https://github.com/gtech-mulearn/mulearnbackend",
-    description: "Built APIs for MuLearn's launchpad platform: JWT auth, company onboarding, and job management. Django and MySQL. Used by students across Kerala.",
+    description: "Built APIs during my MuLearn internship: JWT authentication, company onboarding, and job management with Django and MySQL.",
     image: "/mulogo.webp",
-    isContributor: true,
     imageAlignment: "object-center",
     featured: true,
     tech: ["Python", "Django", "Database Design", "MySQL", "JWT auth"],
@@ -252,13 +251,5 @@ export const contributionHighlights = [
     description:
       "Reworked the college website with Next.js: image optimization, incremental static regeneration, and performance fixes.",
     url: "https://github.com/arxhr007/sahrdaya_website",
-  },
-  {
-    date: "2025-03-01",
-    title: "gtech-mulearn/mulearnbackend",
-    description:
-      "Contributor to MuLearn's open-source Django backend: JWT auth, company onboarding flows, and job management APIs used by thousands of students across Kerala's tech ecosystem.",
-    url: "https://github.com/gtech-mulearn/mulearnbackend",
-    openSource: true,
   },
 ];
