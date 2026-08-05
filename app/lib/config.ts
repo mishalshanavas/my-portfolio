@@ -103,6 +103,23 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Hyperledger Besu",
+    slug: "hyperledger-besu-rlp",
+    date: "2026-07-16",
+    url: "https://github.com/besu-eth/besu/pull/10736",
+    description: "Fixed malformed raw transaction handling in the Java Ethereum client so empty RLP input returns JSON-RPC Invalid params instead of an internal server error. Added regression coverage across eight malformed payloads.",
+    image: "/besu.webp",
+    imageAlignment: "object-contain",
+    isContributor: true,
+    featured: true,
+    tech: ["Java", "Ethereum", "JSON-RPC", "RLP", "JUnit"],
+    caseStudy: {
+      context: "Hyperledger Besu is an enterprise-grade Java Ethereum client for public, private, and permissioned networks. Its eth_sendRawTransaction method was misclassifying malformed client input as an internal server failure.",
+      contribution: "Traced the 0x80 RLP payload to empty transaction bytes in TransactionDecoder, added an explicit validation guard, and covered eight malformed payload shapes with parameterized RPC tests that also verify the transaction pool is never touched.",
+      outcome: "PR #10736 merged into main after maintainer review with 36 checks passing and no regressions in RPC compatibility Hive tests. The fix shipped in Besu 26.7.1.",
+    },
+  },
+  {
     name: "Linux Foundation Hyperledger Fabric",
     slug: "hyperledger-fabric-ci",
     date: "2026-04-30",
@@ -205,6 +222,14 @@ export const launches = [
 ];
 
 export const contributionHighlights = [
+  {
+    date: "2026-07-16",
+    title: "Hyperledger Besu: fixed malformed RLP transaction handling",
+    description:
+      "Fixed eth_sendRawTransaction so malformed RLP payloads return JSON-RPC Invalid params instead of Internal Error, with regression coverage for eight invalid input shapes.",
+    url: "https://github.com/besu-eth/besu/pull/10736",
+    openSource: true,
+  },
   {
     date: "2026-06-10",
     title: "networkmanager-git: AUR package maintainer",

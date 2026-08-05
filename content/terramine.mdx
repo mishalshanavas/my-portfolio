@@ -1,0 +1,119 @@
+---
+title: "I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy"
+publishedAt: "2026-06-08"
+summary: "How a Minecraft server turned into Terraform, Docker, automatic TLS, Cloudflare DNS, and a backup system with trust issues."
+tags: "Terraform, GCP, Docker, Cloudflare, Caddy, Minecraft"
+---
+
+[![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/accidental-stuff/mc-server)
+
+The original plan was simple: put a Minecraft server online and play with friends.
+
+Somewhere between "create a VM" and "share the IP," the server acquired reproducible infrastructure, automatic TLS, DNS records, a web control panel, off-site backups, and a restore path that would not turn our world into digital archaeology.
+
+So I built **Terramine**: a Minecraft server deployed on Google Cloud with Terraform, managed by Crafty Controller, reverse-proxied by Caddy, reachable through Cloudflare DNS, and backed up to Cloudflare R2.
+
+It stopped being just a server fairly quickly.
+
+## The "Just One VM" Architecture
+
+Terraform creates the whole public-facing layer:
+
+- A Debian 12 Compute Engine VM (`e2-standard-2`, 50 GB balanced disk)
+- A reserved static IP, so DNS does not develop commitment issues
+- A dedicated VPC and firewall rules for Minecraft, Bedrock, HTTP, HTTPS, and the map port
+- Cloudflare A records for the game server and Crafty panel
+- An SRV record, so players can join without typing `:25565` like it is 2012
+
+The VM itself runs two Docker containers. Crafty Controller manages the Minecraft server, console, schedules, and backups. Caddy sits in front of Crafty's local HTTPS port and handles the public certificate.
+
+```yaml
+services:
+  crafty:
+    image: arcadiatechnology/crafty-4:latest
+    ports:
+      - "127.0.0.1:8443:8443"
+      - "25565:25565"
+    volumes:
+      - /home/mcs/docker/servers:/crafty/servers
+      - /home/mcs/docker/backups:/crafty/backups
+
+  caddy:
+    image: caddy:2
+    ports:
+      - "80:80"
+      - "443:443"
+```
+
+Crafty's admin port only binds to localhost. Caddy reaches it over the internal Docker network, terminates public TLS, forwards the WebSocket headers needed for the live console, and disables response buffering so console output arrives while it is still useful.
+
+In other words: nobody has to explain a self-signed certificate warning to their browser at 1 AM.
+
+## Making the VM Repeatable
+
+Creating a VM was the easy part. Making a fresh VM turn itself into the *same working server every time* was where the project became interesting.
+
+Terraform renders the Docker Compose file, backup scripts, restore script, R2 credentials, and domain into a startup script using `templatefile`. A tiny wrapper writes that payload to `/opt/mc-startup.sh` and launches it outside the metadata-script process.
+
+The bootstrap then:
+
+1. Installs Docker, AWS CLI, `jq`, and the other required tools.
+2. Creates a dedicated `mcs` user and persistent directory layout.
+3. Adds 2 GB of swap for the moments when modded Minecraft remembers what RAM is.
+4. Writes the Caddy and Compose configuration.
+5. Downloads and validates the latest world backup from R2.
+6. Starts Crafty and waits for both its credentials and API.
+7. Imports the Forge server, accepts the EULA, fixes the execution command, and enables autostart.
+8. Creates the backup schedule and installs the R2 sync timer.
+
+A deployment marker makes the script idempotent. Rebooting the VM starts the containers; it does not reinstall half the internet and import the world again.
+
+<Callout>
+    A startup script is not "done" when the command exits successfully. It is done when the service is healthy, its API answers, its state exists, and running the script twice does not create a second universe.
+</Callout>
+
+## The EULA Bug
+
+The most stubborn bug was not networking, Terraform, or TLS. It was `eula.txt`.
+
+Crafty imported the server archive correctly, but its runtime server path could still be unset after a Java import. The file existed on disk and said `eula=true`; Crafty still could not complete its own EULA action because the in-memory server object did not know where the server lived.
+
+The fix ended up being aggressively practical: detect the imported server directory, write and verify `eula.txt` from inside the container, repair the stored path in Crafty's SQLite database, reload Crafty, authenticate again, and then call its EULA API action.
+
+It is not a beautiful workaround. It did make imported servers start consistently, which earned it a spot in the bootstrap.
+
+## Backups That Leave the VM
+
+A backup on the same disk as the server is less of a backup and more of a hopeful duplicate.
+
+Crafty creates a compressed daily backup after shutting the server down cleanly. A systemd timer runs every five minutes and looks for the newest ZIP that has not changed for at least two minutes. That stability window matters: uploading a backup while Crafty is still writing it is a very efficient way to preserve half a world.
+
+```bash
+NEWEST_ZIP=$(find "$BACKUPS_DIR" -name '*.zip' -mmin +2 \
+  -printf '%T@ %p\n' | sort -rn | head -1 | awk '{print $2}')
+
+aws s3 cp "$NEWEST_ZIP" "s3://$R2_BUCKET/latest.zip" \
+  --endpoint-url "$R2_ENDPOINT"
+```
+
+The sync keeps a moving `latest.zip`, writes timestamped copies under `backups/`, tracks the last uploaded filename to avoid duplicates, and retains the three newest remote snapshots.
+
+The restore path is deliberately more cautious. It downloads a selected R2 object, asks Crafty to stop Minecraft gracefully, stops the container, and moves the current server directory aside before extracting anything. Only after finding a server JAR in the restored directory does it delete that rollback copy.
+
+Because "the restore script deleted the last good world" is a sentence I would prefer never to type.
+
+## What Terramine Actually Taught Me
+
+The point was not merely hosting Minecraft. It was turning a one-off machine into something I could rebuild without relying on `final-setup-notes-REAL.txt`.
+
+Terraform owns the cloud resources and DNS. Docker Compose owns the services. Caddy owns public TLS. Crafty owns the game process. R2 owns the off-site copies. The shell scripts connect those boundaries and verify that each handoff actually worked.
+
+The result is one VM running one Minecraft server, with infrastructure as code, health checks, automatic certificates, scheduled backups, and disaster recovery.
+
+You know. Casual gaming.
+
+The code is [on GitHub](https://github.com/accidental-stuff/mc-server). Bring your own GCP project, Cloudflare zone, R2 bucket, and inability to leave a simple idea alone.
+
+---
+
+*Built with Terraform, powered by Docker, and stress-tested by one surprisingly complicated EULA file.*

@@ -47,7 +47,7 @@ export default function Projects() {
             key={index}
             className="group flex gap-4 py-4 -mx-2 px-2 rounded-md transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
           >
-            <div className="w-10 h-10 rounded-md flex-shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+            <div className="w-10 h-10 flex-shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
               {project.image ? (
                 <Image
                   src={project.image}
@@ -81,14 +81,10 @@ export default function Projects() {
               <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 <span>{meta}</span>
                 {project.isContributor && (
-                  <span className="px-1.5 py-0.5 text-[10px] font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md">
-                    Contributor
-                  </span>
+                  <><span aria-hidden="true">·</span><span>Contributor</span></>
                 )}
                 {project.isSideQuest && (
-                  <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-600 dark:text-gray-400 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
-                    Side Quest
-                  </span>
+                  <><span aria-hidden="true">·</span><span>Side Quest</span></>
                 )}
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">

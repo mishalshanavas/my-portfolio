@@ -40,11 +40,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
 
   return (
     <article className="max-w-2xl">
-      <Link href="/projects" className="inline-flex items-center gap-1 text-xs text-gray-600 dark:text-gray-300 hover:underline mb-8">
+      <Link href="/projects" className="mb-6 inline-flex items-center gap-1 text-xs text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
         ← Projects
       </Link>
-      <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300 mb-3">Case study</p>
-      <h1 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">{project.name}</h1>
+      <p className="mb-2 text-xs text-gray-500 dark:text-gray-400">Case study</p>
+      <h1 className="text-balance text-2xl font-medium leading-tight text-gray-900 dark:text-gray-100">{project.name}</h1>
       <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{project.description}</p>
 
       <dl className="mt-10 space-y-8 text-sm leading-relaxed">
@@ -62,10 +62,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
         </div>
       </dl>
 
-      <div className="mt-10 flex flex-wrap gap-2">
-        {project.tech.map((tech) => (
-          <span key={tech} className="rounded-md border border-gray-200 bg-gray-50 px-2.5 py-1 text-xs text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
-            {tech}
+      <div className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+        {project.tech.map((tech, index) => (
+          <span key={tech} className="contents">
+            {index > 0 && <span aria-hidden="true">·</span>}
+            <span>{tech}</span>
           </span>
         ))}
       </div>

@@ -2,20 +2,32 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.mishalshanavas.in/</id>
     <title>Mishal Shanavas</title>
-    <updated>2024-10-29T00:00:00.000Z</updated>
+    <updated>2026-06-08T00:00:00.000Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://www.mishalshanavas.in/"/>
     <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
     <subtitle>Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS.</subtitle>
     <rights>All rights reserved 2026, mishal shanavas</rights>
     <entry>
+        <title type="html"><![CDATA[A Bad Regex Got Me Into Hyperledger Fabric]]></title>
+        <id>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</id>
+        <link href="https://www.mishalshanavas.in/blog/hyperledger-fabric-ci"/>
+        <updated>2026-04-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How I found a broken documentation workflow, got corrected in review, and merged my first fix into Hyperledger Fabric.]]></summary>
+        <category label="Open Source" term="Open Source"/>
+        <category label="Hyperledger Fabric" term="Hyperledger Fabric"/>
+        <category label="GitHub Actions" term="GitHub Actions"/>
+        <category label="CI" term="CI"/>
+        <category label="Regex" term="Regex"/>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[We Built an AI Career Guider and Won 2nd Runner-Up]]></title>
         <id>https://www.mishalshanavas.in/blog/ict-hackathon</id>
         <link href="https://www.mishalshanavas.in/blog/ict-hackathon"/>
         <updated>2024-08-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[How a last-minute hackathon turned into an accidental meme and a legit AI project.]]></summary>
-        <category label="[&quot;Hackathon&quot;" term="[&quot;Hackathon&quot;"/>
-        <category label="&quot;AI&quot;]" term="&quot;AI&quot;]"/>
+        <category label="Hackathon" term="Hackathon"/>
+        <category label="AI" term="AI"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
@@ -39,5 +51,18 @@
         <category label="Automation" term="Automation"/>
         <category label="Instagram" term="Instagram"/>
         <category label="Side Projects" term="Side Projects"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy]]></title>
+        <id>https://www.mishalshanavas.in/blog/terramine</id>
+        <link href="https://www.mishalshanavas.in/blog/terramine"/>
+        <updated>2026-06-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[How a Minecraft server turned into Terraform, Docker, automatic TLS, Cloudflare DNS, and a backup system with trust issues.]]></summary>
+        <category label="Terraform" term="Terraform"/>
+        <category label="GCP" term="GCP"/>
+        <category label="Docker" term="Docker"/>
+        <category label="Cloudflare" term="Cloudflare"/>
+        <category label="Caddy" term="Caddy"/>
+        <category label="Minecraft" term="Minecraft"/>
     </entry>
 </feed>

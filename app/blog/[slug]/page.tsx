@@ -92,11 +92,11 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
       />
       <Link
         href="/blog"
-        className="inline-flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150 mb-8"
+        className="mb-6 inline-flex items-center gap-1 text-xs text-gray-500 transition-colors duration-150 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
       >
         &larr; Blog
       </Link>
-      <h1 className="mb-3 font-medium text-2xl tracking-tight">{post.metadata.title}</h1>
+      <h1 className="mb-3 text-balance text-2xl font-medium leading-tight">{post.metadata.title}</h1>
       <div className="flex justify-between items-center mt-2 mb-8">
         <p className="text-sm text-gray-500 dark:text-gray-400">
           {formatDate(post.metadata.publishedAt)}

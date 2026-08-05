@@ -11,7 +11,7 @@ Okay, so picture this: It's 2 AM, I'm scrolling through my camera roll, and I re
 That's how I ended up spending 6 hours building something that saves me 30 seconds. Make it make sense.
 
 <Image src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" width={1920} height={960} />
-*^ this is how it works in 100x speed*
+<Caption>This is how it works at 100x speed.</Caption>
 
 ## The Plan
 
@@ -28,9 +28,7 @@ Instead of changing photos every hour like a maniac, I added random delays — 1
 
 ## The Part Where It Broke
 
-First day: flawless. I felt like a tech genius watching my DP change while I was probably failing an exam.
-
-Second day: existential crisis. Turns out Instagram doesn't love it when you hit their API too aggressively. Had to add retry logic, because apparently my bot needed therapy:
+The first day was flawless. On the second, Instagram pushed back when the API calls got too aggressive. Retry logic followed:
 
 ```python
 try:

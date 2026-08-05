@@ -6,14 +6,28 @@
     "description": "Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS.",
     "items": [
         {
+            "id": "https://www.mishalshanavas.in/blog/hyperledger-fabric-ci",
+            "content_html": "How I found a broken documentation workflow, got corrected in review, and merged my first fix into Hyperledger Fabric.",
+            "url": "https://www.mishalshanavas.in/blog/hyperledger-fabric-ci",
+            "title": "A Bad Regex Got Me Into Hyperledger Fabric",
+            "date_modified": "2026-04-30T00:00:00.000Z",
+            "tags": [
+                "Open Source",
+                "Hyperledger Fabric",
+                "GitHub Actions",
+                "CI",
+                "Regex"
+            ]
+        },
+        {
             "id": "https://www.mishalshanavas.in/blog/ict-hackathon",
             "content_html": "How a last-minute hackathon turned into an accidental meme and a legit AI project.",
             "url": "https://www.mishalshanavas.in/blog/ict-hackathon",
             "title": "We Built an AI Career Guider and Won 2nd Runner-Up",
             "date_modified": "2024-08-05T00:00:00.000Z",
             "tags": [
-                "[\"Hackathon\"",
-                "\"AI\"]"
+                "Hackathon",
+                "AI"
             ]
         },
         {
@@ -41,6 +55,21 @@
                 "Automation",
                 "Instagram",
                 "Side Projects"
+            ]
+        },
+        {
+            "id": "https://www.mishalshanavas.in/blog/terramine",
+            "content_html": "How a Minecraft server turned into Terraform, Docker, automatic TLS, Cloudflare DNS, and a backup system with trust issues.",
+            "url": "https://www.mishalshanavas.in/blog/terramine",
+            "title": "I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy",
+            "date_modified": "2026-06-08T00:00:00.000Z",
+            "tags": [
+                "Terraform",
+                "GCP",
+                "Docker",
+                "Cloudflare",
+                "Caddy",
+                "Minecraft"
             ]
         }
     ]

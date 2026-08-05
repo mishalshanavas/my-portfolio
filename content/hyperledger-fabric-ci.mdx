@@ -1,0 +1,102 @@
+---
+title: "A Bad Regex Got Me Into Hyperledger Fabric"
+publishedAt: "2026-04-30"
+summary: "How I found a broken documentation workflow, got corrected in review, and merged my first fix into Hyperledger Fabric."
+tags: "Open Source, Hyperledger Fabric, GitHub Actions, CI, Regex"
+image: "/fabric.webp"
+---
+
+[![View the merged PR](https://img.shields.io/badge/Merged_PR-%235468-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/hyperledger/fabric/pull/5468)
+
+I was looking through Hyperledger Fabric's GitHub Actions workflows when I found a broken-link checker with enough small bugs to justify a pull request.
+
+Two days later, my fix was merged into **Hyperledger Fabric**, a Linux Foundation project used to build permissioned distributed ledgers.
+
+The first clue was a regex that did not believe dots should be literal.
+
+## Fabric in Brief
+
+Hyperledger Fabric is not a public cryptocurrency network where anonymous nodes race to mine blocks. It is an enterprise-grade, **permissioned** distributed ledger: participants have identities, organizations define policies, and the architecture is modular enough to swap components such as consensus and identity management.
+
+Fabric also uses an **execute-order-validate** transaction model. Peers first simulate and endorse a transaction, the ordering service establishes its order, and peers then validate it against the endorsement policy before committing it. Smart contracts, called chaincode, can be written in general-purpose languages including Go, Java, and JavaScript.
+
+Fabric is a large, serious system. My contribution was YAML and regex.
+
+## The Workflow That Checked the Docs
+
+Fabric's documentation spans the latest release, older versions, and multiple translations. A scheduled GitHub Actions workflow runs Muffet against those sites to find dead links, while excluding URLs that intentionally point to non-target versions or contributor templates.
+
+The workflow had accumulated several small problems:
+
+- Both job IDs said `broken-lint-checker` instead of `broken-link-checker`.
+- The exclusion regex used `[A-z]`, which includes punctuation between `Z` and `a` in ASCII.
+- Version patterns used bare dots, so `v2.5.1` also matched strings such as `v2x5x1`.
+- The `github.com` pattern had the same unescaped-dot problem.
+- The response buffer was set to `2147483647`, the maximum signed 32-bit integer, while response bodies were already capped separately.
+- Long or stuck scans had no practical job timeout.
+
+The corrected version pattern was small but precise:
+
+```text
+v[\d]+\.[\d]+\.[\d]+
+```
+
+Literal dots became `\.`, `[A-z]` became `[A-Za-z]`, the buffer dropped to 8 MB, both jobs got a 45-minute timeout, and the scheduled-run condition lost a redundant event-name check.
+
+Nothing here rewrote Fabric's consensus layer. It did make the automation responsible for checking a large documentation site less ambiguous and less likely to run forever, which is exactly the sort of boring reliability work that keeps large projects healthy.
+
+## Then CI Turned Red
+
+My first version removed an exclusion for this template URL:
+
+```text
+https://github.com/YOURGITHUBID/fabric-docs-i18n/pull/new/newtranslation
+```
+
+It looked fake because it *was* fake. The documentation intentionally shows it as a template for translation contributors, so checking it as a real URL guarantees a 404.
+
+The maintainer liked the changes but would not merge while the link-check job was red. Fair. A fix for the link checker should ideally survive the link checker.
+
+I restored the exclusion, initially broadening it to match user-specific `fabric-docs-i18n` pull URLs. That made CI happier, but it also excluded 14 valid links, including actual translation repositories. The maintainer caught it during review.
+
+So I tightened the rule back to the exact placeholder URL and only fixed what was actually wrong: the unescaped dot in `github.com`.
+
+```yaml
+--exclude="https://github\.com/YOURGITHUBID/fabric-docs-i18n/pull/new/newtranslation"
+```
+
+That review mattered. A regex can be valid and still encode the wrong boundary. My first correction solved the failing check by hiding too much from it; the final one preserved the intentional exception without making real links invisible.
+
+<Callout>
+    Passing CI is evidence, not proof. If a link checker passes because the regex stopped checking links, congratulations: you have invented a very fast link checker.
+</Callout>
+
+## The Details That Mattered
+
+The buffer change also needed restraint. The old value, `2147483647`, was an absurd ceiling for this job, but changing performance-related flags without context can introduce a new failure while fixing an old one. The workflow already limited response bodies to 100 MB, and an 8 MB buffer was enough for the scanner without carrying an INT32_MAX-shaped question mark.
+
+The timeout came from observed behavior rather than a random round number. Existing runs took roughly 7 to 25 minutes, so 45 minutes left headroom for a slow documentation crawl while still terminating a genuinely hung job long before GitHub's six-hour default.
+
+Even the simplified condition kept an important behavior:
+
+```yaml
+if: github.event_name != 'schedule' || github.repository == 'hyperledger/fabric'
+```
+
+Manual and pull-request runs still work in forks. Scheduled runs only execute in the upstream repository, preventing every fork from waking up on Sunday to crawl the same documentation.
+
+## Merged, After Actually Being Reviewed
+
+The pull request went through requested changes, a force-pushed correction, another review round, and finally approval. On April 30, 2026, commit [`8e8b3a5`](https://github.com/hyperledger/fabric/commit/8e8b3a573c08cec71f3134ef30ec18fac25795e4) landed on `main` and closed the long-running broken-link-checker issue.
+
+The final diff touched one workflow file: 13 additions and 16 deletions.
+
+The size of the diff and the size of the codebase do not need to match. You can contribute to a project with thousands of files by understanding one neglected path deeply enough to improve it, then being willing to hear that the first fix is not quite right.
+
+I went in to repair a typo, a buffer, and some regex. I came out with my name in Hyperledger Fabric's commit history and a fresh reminder that `.` means "any character" until explicitly told to calm down.
+
+The merged pull request is [#5468](https://github.com/hyperledger/fabric/pull/5468). One file changed, one issue closed, several dots successfully contained.
+
+---
+
+*Built with GitHub Actions, reviewed in public, and made possible by reading the line everyone else had learned to scroll past.*

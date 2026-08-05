@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Fragment } from "react";
 import type { Project } from "../lib/config";
 
 interface ProjectCardProps {
@@ -18,69 +19,56 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const initial = project.name.charAt(0).toUpperCase();
   const href = project.slug ? `/projects/${project.slug}` : project.url;
   const isExternal = href.startsWith("http");
+  const details = [
+    formatCardDate(project.date),
+    project.isContributor ? "Contributor" : "",
+    project.isSideQuest ? "Side Quest" : "",
+  ].filter(Boolean);
 
   return (
     <Link
       href={href}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="flex flex-col h-44 border border-gray-200 dark:border-gray-700 rounded-md p-4 hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-150"
+      className="group flex gap-3 rounded-md py-4 transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
     >
-      <div className="flex items-start gap-3">
-        {/* Avatar: image or initial */}
-        <div className="w-11 h-11 rounded-md flex-shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-          {project.image ? (
-            <div className="relative w-full h-full">
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                className={`object-cover ${project.imageAlignment ?? ""}`}
-                sizes="44px"
-              />
-            </div>
-          ) : (
-            <span className="text-lg font-medium text-gray-400 dark:text-gray-500">
-              {initial}
-            </span>
-          )}
-        </div>
-
-        {/* Info */}
-        <div className="flex-1 min-w-0 flex flex-col">
-          <div className="text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-1 leading-snug">
-            {project.name}
+      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
+        {project.image ? (
+          <div className="relative h-full w-full">
+            <Image
+              src={project.image}
+              alt=""
+              fill
+              className={`object-cover ${project.imageAlignment ?? ""}`}
+              sizes="40px"
+            />
           </div>
-          {project.date && (
-            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-              {formatCardDate(project.date)}
-            </div>
-          )}
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2 leading-relaxed flex-1">
-            {project.description}
-          </p>
-          {(project.isContributor || project.isSideQuest || (project.tech && project.tech.length > 0)) && (
-            <div className="flex flex-wrap gap-1 mt-2">
-              {project.isContributor && (
-                <span className="px-1.5 py-0.5 text-[10px] font-medium text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md">
-                  Contributor
-                </span>
-              )}
-              {project.isSideQuest && (
-                <span className="px-1.5 py-0.5 text-[10px] font-normal text-gray-600 dark:text-gray-400 border border-dashed border-gray-200 dark:border-gray-700 rounded-md">
-                  Side Quest
-                </span>
-              )}
-              {project.tech?.slice(0, 3).map((t) => (
-                <span
-                  key={t}
-                  className="px-1.5 py-0.5 text-[10px] font-normal text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
+        ) : (
+          <span className="text-sm font-medium text-gray-400 dark:text-gray-500">
+            {initial}
+          </span>
+        )}
+      </div>
+
+      <div className="min-w-0 flex-1">
+        <div className="text-sm font-medium leading-snug text-gray-900 group-hover:underline dark:text-gray-100">
+          {project.name}
         </div>
+        <div className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-xs text-gray-500 dark:text-gray-400">
+          {details.map((detail, index) => (
+            <Fragment key={detail}>
+              {index > 0 && <span aria-hidden="true">·</span>}
+              <span>{detail}</span>
+            </Fragment>
+          ))}
+        </div>
+        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+          {project.description}
+        </p>
+        {project.tech.length > 0 && (
+          <p className="mt-1.5 truncate text-[11px] text-gray-400 dark:text-gray-500">
+            {project.tech.slice(0, 4).join(" · ")}
+          </p>
+        )}
       </div>
     </Link>
   );

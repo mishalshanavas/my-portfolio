@@ -20,6 +20,7 @@ export function CopyButton() {
     <button
       onClick={handleCopy}
       aria-label="Copy code to clipboard"
+      title={copied ? "Copied" : "Copy code"}
       className="text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition-colors duration-150"
     >
       {copied ? (

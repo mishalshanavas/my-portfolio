@@ -20,7 +20,7 @@ Azure made me feel like a real developer. Professional dashboard, cloud architec
 The Python + instagrapi core stayed the same — if it ain't broke, etc. — but hosting, scheduling, and secrets all moved over. Azure Key Vault became GitHub Secrets (two fields, fight me). Azure Container Instances became GitHub runners. The cron trigger that used to cost me real money now costs me nothing.
 
 <Image src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" width={1920} height={960} />
-*^ still doing this, but now with 100% more GitHub energy*
+<Caption>Still doing this, now with GitHub handling the schedule.</Caption>
 
 ## The YAML That Runs My Aesthetic
 
@@ -38,7 +38,7 @@ on:
         default: 'false'
 ```
 
-Translation: "Hey GitHub, change my DP every 3 hours during reasonable human hours, and let me force it if I'm feeling impatient."
+GitHub changes the DP every three hours during the day, with a manual trigger for testing.
 
 <Callout emoji="🤖">
     Pro tip: The `workflow_dispatch` trigger is clutch when you want to test your bot at 2 AM because you can't sleep and need immediate validation that your code works.
@@ -48,7 +48,7 @@ Translation: "Hey GitHub, change my DP every 3 hours during reasonable human hou
 
 The Azure setup required resource groups, container registries, and a lot of praying. The GitHub Actions setup is: fork the repo, drop your photos in `assets/images/`, add two secrets, done. It runs itself.
 
-Other people can actually fork it now without needing a cloud computing degree or a trust fund — which was a completely accidental win. Making something simpler to run accidentally made it more useful. Revolutionary concept.
+Other people can fork it without a cloud-computing degree. Making it simpler to run also made it more useful.
 
 The bot is currently running smoother than my brain at 8 AM lectures — changing every 3 hours, sleeping from 11:30 PM to 6:30 AM (better than me), costing exactly $0.00. My friends still ask how my profile picture is always different, and now I can answer without having to explain what Azure is.
 

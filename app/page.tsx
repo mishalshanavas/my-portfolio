@@ -22,7 +22,6 @@ import { getTimelineEvents } from "./lib/activity";
 import ContributionSection from "./components/contribution-section";
 import ActivityTimeline from "./components/activity-timeline";
 import ProjectCard from "./components/project-card";
-import HorizontalScroll from "./components/horizontal-scroll";
 import LocalTime from "./components/local-time";
 
 function renderAbout(text: string) {
@@ -245,21 +244,13 @@ export default function Page() {
                   View all →
                 </Link>
               </div>
-              <HorizontalScroll>
-                {projects.map((project, idx) => (
-                  <div key={idx} className="flex-shrink-0 w-72">
+              <div className="divide-y divide-gray-200 border-t border-gray-200 dark:divide-gray-800 dark:border-gray-800">
+                {projects.slice(0, 4).map((project, idx) => (
+                  <div key={idx}>
                     <ProjectCard project={project} />
                   </div>
                 ))}
-                {/* View all card */}
-                <Link
-                  href="/projects"
-                  className="flex-shrink-0 w-36 flex flex-col items-center justify-center gap-2 border border-dashed border-gray-200 dark:border-gray-700 rounded-md hover:border-gray-300 dark:hover:border-gray-600 transition-colors duration-150 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
-                >
-                  <span className="text-2xl">→</span>
-                  <span className="text-xs font-light">View all</span>
-                </Link>
-              </HorizontalScroll>
+              </div>
             </section>
 
             {/* Activity Chart */}

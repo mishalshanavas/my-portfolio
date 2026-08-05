@@ -61,7 +61,6 @@
 }
 
 html {
-  min-width: 360px;
   scroll-behavior: smooth;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   overflow-x: hidden;
@@ -69,6 +68,7 @@ html {
 
 body {
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -79,8 +79,23 @@ body {
 /* ── Pajamas-inspired typography ── */
 .prose {
   @apply text-gray-900 dark:text-gray-100;
-  line-height: 1.6;
+  line-height: 1.65;
   font-weight: 400;
+}
+
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.prose li + li {
+  margin-top: 0.375rem;
 }
 
 .prose .anchor {
@@ -120,10 +135,12 @@ body {
 
 /* Inline code – Pajamas style */
 .prose :not(pre) > code {
-  @apply px-1.5 py-0.5 rounded-md bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700;
-  font-size: 0.85em;
-  font-family: ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, Consolas, monospace;
+  @apply bg-gray-100 dark:bg-gray-900;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 400;
+  padding: 0;
 }
 
 .prose code span {
@@ -142,7 +159,7 @@ body {
 .prose h5,
 .prose h6 {
   @apply font-medium text-gray-900 dark:text-gray-100;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .prose h1 {
@@ -174,6 +191,8 @@ body {
 /* Pajamas blockquote – clean left border */
 .prose blockquote {
   @apply border-l-2 border-gray-200 dark:border-gray-700 pl-5 text-gray-600 dark:text-gray-400;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
   font-style: normal;
   font-weight: 400;
 }
@@ -278,7 +297,11 @@ table {
 
 .title {
   text-wrap: balance;
-  @apply font-light tracking-tight;
+  @apply font-light;
+}
+
+.dark [data-shiki-token] {
+  color: var(--shiki-dark) !important;
 }
 
 /* Pajamas focus ring – blue, consistent */
