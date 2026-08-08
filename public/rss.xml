@@ -4,7 +4,7 @@
         <title>Mishal Shanavas</title>
         <link>https://www.mishalshanavas.in/</link>
         <description>Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS.</description>
-        <lastBuildDate>Mon, 08 Jun 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 08 Aug 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <copyright>All rights reserved 2026, mishal shanavas</copyright>
@@ -52,6 +52,20 @@
             <category>Automation</category>
             <category>Instagram</category>
             <category>Side Projects</category>
+        </item>
+        <item>
+            <title><![CDATA[I Set Up a Mail Server Because Life Was Too Peaceful]]></title>
+            <link>https://www.mishalshanavas.in/blog/personal-mail-server</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/personal-mail-server</guid>
+            <pubDate>Sat, 08 Aug 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[I wanted a cool email address, so naturally I gave myself Docker, DNS, reverse DNS, port 25 trauma, and several new ways to receive no email.]]></description>
+            <category>Mailcow</category>
+            <category>Azure</category>
+            <category>Docker</category>
+            <category>Cloudflare</category>
+            <category>SMTP</category>
+            <category>DNS</category>
+            <category>Self-Hosting</category>
         </item>
         <item>
             <title><![CDATA[I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy]]></title>

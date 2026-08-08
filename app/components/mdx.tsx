@@ -7,7 +7,9 @@ import { TweetComponent } from "./tweet";
 import { CaptionComponent } from "./caption";
 import { YouTubeComponent } from "./youtube";
 import { CopyButton } from "./code-block";
+import { Mermaid } from "./mermaid";
 import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import "katex/dist/katex.min.css";
 
@@ -52,25 +54,33 @@ function Code({ children, ...props }: CodeProps) {
 }
 
 type TableData = { headers: string[]; rows: string[][] };
+type TableProps = React.TableHTMLAttributes<HTMLTableElement> & {
+  children?: React.ReactNode;
+  data?: TableData;
+};
 
-function Table({ data }: { data: TableData }) {
-  let headers = data.headers.map((header, index) => (
-    <th key={index}>{header}</th>
-  ));
-  let rows = data.rows.map((row, index) => (
-    <tr key={index}>
-      {row.map((cell, cellIndex) => (
-        <td key={cellIndex}>{cell}</td>
-      ))}
-    </tr>
-  ));
-  return (
-    <table>
+function Table({ children, data, ...props }: TableProps) {
+  const content = data ? (
+    <>
       <thead>
-        <tr className="text-left">{headers}</tr>
+        <tr>
+          {data.headers.map((header, index) => <th key={index}>{header}</th>)}
+        </tr>
       </thead>
-      <tbody>{rows}</tbody>
-    </table>
+      <tbody>
+        {data.rows.map((row, index) => (
+          <tr key={index}>
+            {row.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)}
+          </tr>
+        ))}
+      </tbody>
+    </>
+  ) : children;
+
+  return (
+    <div className="not-prose my-6 w-full overflow-x-auto" data-table-wrapper="">
+      <table {...props}>{content}</table>
+    </div>
   );
 }
 
@@ -124,17 +134,17 @@ async function PreBlock({ children }: React.HTMLAttributes<HTMLPreElement>) {
 
   return (
     <div
-      className="not-prose my-7 overflow-hidden rounded-lg border border-gray-200 dark:border-[#3e4451]"
+      className="not-prose my-6 overflow-hidden rounded-md border border-gray-200 bg-white text-gray-950 shadow-sm dark:border-gray-800 dark:bg-[#18181b] dark:text-gray-50"
       data-code-wrapper=""
     >
-      <div className="flex h-9 items-center justify-between border-b border-gray-200 bg-gray-50 px-4 dark:border-[#3e4451] dark:bg-[#21252b]">
-        <span className="select-none font-mono text-xs text-gray-500 dark:text-gray-400">
+      <div className="flex h-9 items-center justify-between border-b border-gray-200 bg-gray-50/80 px-3 dark:border-gray-800 dark:bg-[#202024]">
+        <span className="select-none font-mono text-[11px] font-medium text-gray-500 dark:text-gray-400">
           {language || "text"}
         </span>
         <CopyButton />
       </div>
-      <div className="overflow-x-auto bg-white dark:bg-[#282c34]">
-        <pre className="m-0 border-0 bg-transparent px-4 py-4 text-sm leading-[1.65]">
+      <div className="overflow-x-auto bg-white dark:bg-[#18181b]">
+        <pre className="m-0 border-0 bg-transparent px-3 py-3 text-[13px] leading-6 sm:px-4">
           <code className="block min-w-max font-mono">
             {highlighted.tokens.map((line, lineIndex) => (
               <React.Fragment key={lineIndex}>
@@ -215,9 +225,11 @@ let components = {
   Caption: CaptionComponent,
   YouTube: YouTubeComponent,
   code: Code,
+  table: Table,
   Table,
   del: Strikethrough,
   Callout,
+  Mermaid,
 };
 
 export function CustomMDX(props: MDXRemoteProps) {
@@ -227,7 +239,7 @@ export function CustomMDX(props: MDXRemoteProps) {
       components={{ ...components, ...(props.components || {}) }}
       options={{
         mdxOptions: {
-          remarkPlugins: [remarkMath],
+          remarkPlugins: [remarkGfm, remarkMath],
           rehypePlugins: [rehypeKatex],
         },
       }}

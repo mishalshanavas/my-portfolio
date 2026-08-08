@@ -17,6 +17,11 @@
 
 /* Light theme colors - adjusted for better monochrome */
 :root {
+  --background: #ffffff;
+  --foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --border: #e4e4e7;
   --sh-class: #0550ae;
   --sh-identifier: #24292f;
   --sh-sign: #57606a;
@@ -40,6 +45,11 @@
 /* Dark theme colors - adjusted for better monochrome */
 .dark {
   background-color: #000000;
+  --background: #000000;
+  --foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
   --sh-class: #79c0ff;
   --sh-identifier: #e6edf3;
   --sh-sign: #8b949e;
@@ -67,7 +77,7 @@ html {
 }
 
 body {
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -79,19 +89,20 @@ body {
 /* ── Pajamas-inspired typography ── */
 .prose {
   @apply text-gray-900 dark:text-gray-100;
-  line-height: 1.65;
+  font-size: 0.9375rem;
+  line-height: 1.6;
   font-weight: 400;
 }
 
 .prose p {
   margin-top: 0;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .prose ul,
 .prose ol {
   margin-top: 0;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .prose li + li {
@@ -143,8 +154,22 @@ body {
   padding: 0;
 }
 
+/* Tailwind Typography adds decorative backticks around inline code by default.
+   The highlight itself already communicates code, so keep the text clean. */
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: none;
+}
+
 .prose code span {
   @apply font-normal;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 .prose img {
@@ -167,11 +192,11 @@ body {
 }
 
 .prose h2 {
-  @apply text-xl mb-4 mt-10;
+  @apply text-xl mb-3 mt-8;
 }
 
 .prose h3 {
-  @apply text-lg mb-3 mt-8;
+  @apply text-lg mb-2 mt-6;
 }
 
 .prose strong {
@@ -214,6 +239,16 @@ body {
 
 .dark ::-webkit-scrollbar-thumb {
   background: #374151;
+}
+
+/* Keep diagrams horizontally scrollable without showing a scrollbar. */
+.diagram-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.diagram-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 pre::-webkit-scrollbar {
@@ -265,26 +300,88 @@ button:focus-visible {
   font-weight: 400;
 }
 
-/* Pajamas tables – clean and flat */
-table {
-  display: block;
-  max-width: fit-content;
+/* Compact, shadcn-style article tables. The wrapper owns horizontal scrolling so
+   the table stays semantic and its border radius is not clipped on mobile. */
+.prose [data-table-wrapper] {
+  scrollbar-width: thin;
+}
+
+.prose [data-table-wrapper] table {
+  width: 100%;
+  min-width: 32rem;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+.prose [data-table-wrapper] th {
+  background: color-mix(in srgb, var(--muted) 65%, transparent);
+  color: var(--foreground);
+  padding: 0.5rem 0.625rem;
+  font-weight: 500;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.prose [data-table-wrapper] td {
+  padding: 0.5rem 0.625rem;
+  color: var(--muted-foreground);
+  vertical-align: top;
+}
+
+.prose [data-table-wrapper] :is(th, td) {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.prose [data-table-wrapper] :is(th, td):last-child {
+  border-right: 0;
+}
+
+.prose [data-table-wrapper] tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prose [data-table-wrapper] tbody tr {
+  background: var(--background);
+}
+
+.prose [data-table-wrapper] tbody tr:hover {
+  background: color-mix(in srgb, var(--muted) 45%, transparent);
+}
+
+.prose [data-table-wrapper] :not(pre) > code {
+  padding: 0.1rem 0.3rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background: var(--muted);
+  font-size: 0.75rem;
+}
+
+/* KaTeX needs its own responsive boundary: equations should scroll locally,
+   never widen the article or the page. */
+.prose .katex-display {
+  margin: 1.5rem 0;
   overflow-x: auto;
-  white-space: nowrap;
-  @apply border border-gray-200 dark:border-gray-700 rounded-md;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
+  text-align: left;
 }
 
-.prose table {
-  @apply w-full;
+.prose .katex-display > .katex {
+  display: inline-block;
+  min-width: max-content;
+  padding: 0.25rem 0;
 }
 
-.prose th {
-  @apply bg-gray-50 dark:bg-gray-900 font-medium text-left;
-}
-
-.prose td,
-.prose th {
-  @apply border-b border-gray-200 dark:border-gray-800 px-4 py-2;
+.prose .katex {
+  color: inherit;
+  font-size: 1em;
 }
 
 .prose .callout > p {

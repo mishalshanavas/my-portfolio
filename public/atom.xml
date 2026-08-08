@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.mishalshanavas.in/</id>
     <title>Mishal Shanavas</title>
-    <updated>2026-06-08T00:00:00.000Z</updated>
+    <updated>2026-08-08T00:00:00.000Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://www.mishalshanavas.in/"/>
     <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
@@ -51,6 +51,20 @@
         <category label="Automation" term="Automation"/>
         <category label="Instagram" term="Instagram"/>
         <category label="Side Projects" term="Side Projects"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[I Set Up a Mail Server Because Life Was Too Peaceful]]></title>
+        <id>https://www.mishalshanavas.in/blog/personal-mail-server</id>
+        <link href="https://www.mishalshanavas.in/blog/personal-mail-server"/>
+        <updated>2026-08-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[I wanted a cool email address, so naturally I gave myself Docker, DNS, reverse DNS, port 25 trauma, and several new ways to receive no email.]]></summary>
+        <category label="Mailcow" term="Mailcow"/>
+        <category label="Azure" term="Azure"/>
+        <category label="Docker" term="Docker"/>
+        <category label="Cloudflare" term="Cloudflare"/>
+        <category label="SMTP" term="SMTP"/>
+        <category label="DNS" term="DNS"/>
+        <category label="Self-Hosting" term="Self-Hosting"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy]]></title>

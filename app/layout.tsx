@@ -1,17 +1,11 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import { Navbar } from "./components/nav";
 import Footer from "./components/footer";
 import { ThemeProvider } from "./components/theme-switch";
 import { metaData } from "./lib/config";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(metaData.baseUrl),
@@ -70,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`scroll-smooth ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
         <link
           rel="alternate"
@@ -91,7 +85,7 @@ export default function RootLayout({
           title="JSON Feed"
         />
       </head>
-      <body className={`${inter.className} antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300`}>
+      <body className={`${GeistSans.className} antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-300`}>
         <div className="min-h-screen flex flex-col">
           <ThemeProvider
             attribute="class"
