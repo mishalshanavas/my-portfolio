@@ -38,8 +38,8 @@
   --chart-3: #4f78b5;
   --chart-4: #1f4b99;
   /* Accent – used only for interaction */
-  --accent: #1f4b99;
-  --accent-hover: #173b78;
+  --accent: #1e3a5f;
+  --accent-hover: #152b47;
 }
 
 /* Dark theme colors - adjusted for better monochrome */
@@ -66,8 +66,8 @@
   --chart-3: #4e7fc0;
   --chart-4: #8ab4f8;
   /* Accent – used only for interaction */
-  --accent: #8ab4f8;
-  --accent-hover: #b8d2ff;
+  --accent: #7694b8;
+  --accent-hover: #9db3cd;
 }
 
 html {

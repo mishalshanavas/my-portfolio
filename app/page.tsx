@@ -131,8 +131,15 @@ export default function Page() {
               {hero.title}
             </p>
             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 sm:hidden">
-              {profileMeta.location}
+              {profileMeta.location} · CS Major, 2028
             </p>
+            <a
+              href={socialLinks.email}
+              className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-[color:var(--accent)] sm:hidden"
+            >
+              <FiZap aria-hidden="true" />
+              Open to backend internships and junior roles
+            </a>
           </div>
 
           {/* Social text links */}
@@ -183,10 +190,10 @@ export default function Page() {
               </p>
             </section>
 
-            {/* Experience */}
+            {/* Experience and open source */}
             <section>
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Experience
+                Experience &amp; open source
               </h2>
               <div className="space-y-6">
                 {experiences.map((exp, idx) => (
@@ -257,22 +264,17 @@ export default function Page() {
               </div>
             </section>
 
-            {/* Activity Chart */}
+            {/* Open-source activity */}
             <section>
               <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Activity
+                Open-source activity
               </h2>
-              <Suspense fallback={<div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
-                <ContributionSection />
-              </Suspense>
-            </section>
-
-            {/* Contributions Timeline */}
-            <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                Contributions
-              </h2>
-              <ActivityTimeline events={timelineEvents} />
+              <div className="space-y-7">
+                <ActivityTimeline events={timelineEvents} />
+                <Suspense fallback={<div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
+                  <ContributionSection />
+                </Suspense>
+              </div>
             </section>
           </div>
 
@@ -304,7 +306,7 @@ export default function Page() {
                     className="font-normal hover:underline"
                     style={{ color: 'var(--accent)' }}
                   >
-                    Available for hire
+                    Open to backend roles
                   </a>
                 </li>
               </ul>

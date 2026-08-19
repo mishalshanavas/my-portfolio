@@ -1,0 +1,141 @@
+---
+title: "I Built a Tiny Public Library for My Digital Junk Drawer"
+publishedAt: "2026-08-09"
+summary: "A file portal for the things I keep, share, forget about, and eventually need at the least convenient possible moment."
+tags: "Cloudflare Workers, R2, JavaScript, Serverless, Self-Hosting"
+---
+
+[![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/file-spooder)
+
+Every computer eventually develops a drawer.
+
+Not a real drawer, obviously. A digital one. It contains wallpapers, ZIP files, old project builds, documents with names like `final-final-2-actually-final.pdf`, and at least one file you have been carrying between devices for so long that it has become a family heirloom.
+
+Mine had reached the point where finding something meant opening three cloud drives, checking a chat attachment, and asking myself why I had saved the same file in four different places. I did not need a startup. I needed one boring, dependable shelf on the internet where my files could live and where I could point people at a link without beginning a sentence with “wait, I need to change the permissions.”
+
+So I built **file-spooder**, a tiny file portal at [files.mishalshanavas.in](https://files.mishalshanavas.in).
+
+It is a public library for my digital junk drawer. The files can be reached by URL. The librarian controls—upload, rename, move, copy, delete—are behind a password, because no public library should let strangers reorganise the shelves with a flamethrower.
+
+## One shelf, two kinds of access
+
+The basic rule is pleasantly simple:
+
+```text
+Anyone with a file link can read it.
+Only I can rearrange the furniture.
+```
+
+Cloudflare R2 stores the files. A Cloudflare Worker sits in front of the bucket and does everything else: it renders the directory page, turns folders into a browseable interface, validates actions, and streams the actual file back when somebody asks for it.
+
+<Mermaid
+  title="The tiny library architecture"
+  code="flowchart LR
+    browser[Browser] --> worker[Cloudflare Worker]
+    worker --> r2[Cloudflare R2]
+    admin[Me with password] -->|manage files| worker"
+/>
+
+There is no database. There is no account system. There is no sign-up page desperately asking for a phone number. R2 object keys are the filing system: folders are prefixes, and a tiny `.folder` object makes an empty folder exist even when it has nothing interesting to say for itself.
+
+External bookmarks are `.link` files containing a URL. That means the file shelf can also hold pointers to useful things elsewhere, which is either organised or the beginning of a much larger problem. Time will tell.
+
+## The librarian has one password and zero patience
+
+Management requests carry an `x-password` header. The Worker compares it with an `ADMIN_PASSWORD` secret configured in Cloudflare:
+
+```js
+if (!env.ADMIN_PASSWORD || pass !== env.ADMIN_PASSWORD) {
+  return new Response("Unauthorized", { status: 401 });
+}
+```
+
+The missing-secret check is not decorative. Without it, a forgotten deployment secret could turn an empty password into a valid password, which is an extremely efficient way to become your own security incident.
+
+The browser keeps the password in session storage so I do not have to type it before every click. It disappears when the session ends. This is personal-tool security: enough friction for the internet, not enough friction to make me resent my own website.
+
+## The large-file chapter, or: apparently bytes need a committee
+
+A small upload is easy. The browser sends a file, the Worker validates its name and size, then streams it into R2.
+
+Then there are large files. A giant single request is where connections drop, timeouts appear, and serverless platforms begin looking at you with concern. So files above 50 MB are uploaded in 25 MB multipart chunks.
+
+```text
+large file
+   |
+   +--> chunk 1 --> R2
+   +--> chunk 2 --> R2
+   +--> chunk 3 --> R2
+   +--> R2 stitches them together
+```
+
+The browser starts an R2 multipart upload, sends each chunk, saves the ETag returned for it, and asks R2 to complete the object once every piece has arrived. If a chunk fails, it aborts the multipart upload instead of leaving a half-built file in the storage equivalent of a construction site.
+
+The funny part is that the original multipart implementation had all the right nouns and one very wrong verb. The Worker parsed every action as JSON, then tried to parse the chunk action as `FormData`.
+
+Request bodies do not respawn.
+
+After JSON read the body, the multipart handler got nothing. Large uploads failed because the Worker had already eaten the evidence. The repair was simply to let JSON actions parse JSON and multipart actions parse form data—one body, one reader, everyone goes home happier.
+
+<Callout>
+    If a request body has already been read, it is not “available for another parser.” It has gone to live on a farm upstate with all the other request bodies.
+</Callout>
+
+Uploads are capped at 5 GB, filenames are checked on the server, and a same-name upload is rejected rather than silently replacing something important. I would like future me to be mildly annoyed by a conflict message, not spiritually altered by an overwritten backup.
+
+## A video player noticed the Worker was bluffing
+
+The Worker used to send this header:
+
+```http
+Accept-Ranges: bytes
+```
+
+which is a bold promise. It says a browser can request a slice of a file, seek through video, or resume a download. The Worker did not actually handle a `Range` request yet, so it was essentially wearing a “yes, I support this” badge while returning the entire file from byte zero.
+
+That has been fixed. A range request now becomes a ranged R2 read and a proper partial response:
+
+```http
+HTTP/1.1 206 Partial Content
+Content-Range: bytes 1048576-2097151/734003200
+```
+
+Now a large video can seek without re-downloading its whole childhood, and an interrupted download can continue from where it left off. The `Accept-Ranges` header is no longer aspirational.
+
+## Moving a giant file should not require carrying it through the Worker
+
+In object storage, renaming a file is really copying it to a new key and deleting the old key. Moving is the same trick with a folder prefix involved.
+
+The bad version of that operation reads the whole source file into memory, writes it back, and hopes the runtime enjoys holding a multi-gigabyte object for a little while. That is not a workflow. That is asking a serverless function to become a very nervous USB stick.
+
+file-spooder streams the source object body straight into the new R2 object instead. Its content type, HTTP metadata, custom metadata, and storage class move along with it. The Worker handles the plumbing; it does not try to become the file.
+
+Folder renames are deliberately more careful:
+
+1. Make sure every destination name is unused.
+2. Copy every object under the old prefix.
+3. Delete originals only after every copy succeeds.
+
+If copying fails, the source folder is left alone. If deleting fails, there may be duplicates, but nothing disappears. Storage is cheaper than the sentence “I think the original might be gone.”
+
+## The catalogue also needed to learn restraint
+
+Object storage listings are paginated. The first directory browser eagerly collected every page and built one enormous HTML response, which was fine until the folder became large enough to turn a page visit into an accidental load test.
+
+The library now shows one page at a time and offers a cursor-based next page. Folder selection is iterative rather than recursive, so deeply nested folders do not eventually send the JavaScript call stack on a short holiday. Even the storage meter has a safe scanning limit; when the bucket is too large to count cheaply, it says `≥` rather than making a little progress bar the most expensive thing on the site.
+
+This is my favourite kind of optimisation: making the less-important feature politely give up before it makes the important feature fail.
+
+## The actual thing I ended up with
+
+file-spooder is not trying to replace Google Drive, Dropbox, S3 consoles, or a real document-management system with employees and quarterly objectives. It is a compact personal utility with a job description that fits in one sentence:
+
+> Put files on my own domain, make them easy to find, and do not let a 2 GB upload turn the site into a cautionary tale.
+
+It has drag-and-drop uploads, folders, link files, file actions, storage visibility, public URLs, multipart uploads for the heavy stuff, and byte-range downloads for media. Most importantly, it gives my digital junk drawer a label and a shelf instead of making it someone else’s folder hierarchy problem.
+
+The code is [on GitHub](https://github.com/mishalshanavas/file-spooder). Bring a Cloudflare account, an R2 bucket, a secret password, and the particular kind of optimism that begins with “I’ll just build a small file browser.”
+
+---
+
+*Built with Cloudflare Workers, R2, multipart uploads, byte ranges, and the stubborn belief that my downloads folder can still be saved.*

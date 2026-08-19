@@ -36,13 +36,13 @@ export const aboutMe = `Hey, I'm Mishal. A **backend developer**. I work with da
 
 export const experiences = [
   {
-    role: "AUR Package Maintainer",
+    role: "Open-source Package Maintainer",
     company: "networkmanager-git",
     companyUrl: "https://aur.archlinux.org/packages/networkmanager-git",
     period: "2026 - Present",
     startDate: "2026-06-10",
     description:
-      "Maintain the networkmanager-git AUR package for Arch Linux. Migrated the build to meson and resolved libsoup3 compatibility issues so it builds cleanly against upstream."
+      "Maintain a widely used Arch Linux package, keeping it compatible with upstream build-system and dependency changes. Migrated the build to Meson and resolved libsoup3 compatibility issues."
   },
   {
     role: "Backend Developer - Intern",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     slug: "hyperledger-fabric-ci",
     date: "2026-04-30",
     url: "https://github.com/hyperledger/fabric",
-    description: "Merged a CI fix into the Linux Foundation's flagship enterprise blockchain framework, the same codebase running in production at IBM, Walmart, and HSBC. PR reviewed by core maintainers.",
+    description: "Fixed a broken CI workflow in the Linux Foundation's Hyperledger Fabric project. The change was reviewed by core maintainers and merged upstream.",
     image: "/fabric.webp",
     imageAlignment: "object-contain",
     isContributor: true,
@@ -241,7 +241,7 @@ export const contributionHighlights = [
     date: "2026-04-30",
     title: "Linux Foundation Hyperledger Fabric: fixed CI workflow",
     description:
-      "Fixed a broken CI workflow in Hyperledger Fabric, the Linux Foundation's flagship blockchain framework. Runs in production at IBM, HSBC, and Walmart.",
+      "Fixed a broken CI workflow in Hyperledger Fabric. The change was reviewed by core maintainers and merged upstream.",
     url: "https://github.com/hyperledger/fabric/",
     openSource: true,
   },
