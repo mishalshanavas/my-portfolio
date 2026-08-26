@@ -3,12 +3,24 @@
     <channel>
         <title>Mishal Shanavas</title>
         <link>https://www.mishalshanavas.in/</link>
-        <description>Backend developer. Writes Python, Django, and MySQL. Ships APIs, open source tools, and cloud infra on GCP and AWS.</description>
-        <lastBuildDate>Sat, 08 Aug 2026 00:00:00 GMT</lastBuildDate>
+        <description>Backend developer from Kerala. I build APIs, automate things, mess with cloud infrastructure, and occasionally fix bugs in large open-source projects.</description>
+        <lastBuildDate>Sun, 09 Aug 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <copyright>All rights reserved 2026, mishal shanavas</copyright>
         <atom:link href="https://www.mishalshanavas.in/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[I Built a Tiny Public Library for My Digital Junk Drawer]]></title>
+            <link>https://www.mishalshanavas.in/blog/file-spooder</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/file-spooder</guid>
+            <pubDate>Sun, 09 Aug 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[A file portal for the things I keep, share, forget about, and eventually need at the least convenient possible moment.]]></description>
+            <category>Cloudflare Workers</category>
+            <category>R2</category>
+            <category>JavaScript</category>
+            <category>Serverless</category>
+            <category>Self-Hosting</category>
+        </item>
         <item>
             <title><![CDATA[A Bad Regex Got Me Into Hyperledger Fabric]]></title>
             <link>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</link>
@@ -22,7 +34,7 @@
             <category>Regex</category>
         </item>
         <item>
-            <title><![CDATA[We Built an AI Career Guider and Won 2nd Runner-Up]]></title>
+            <title><![CDATA[We Built an AI Career Guide and Won 2nd Runner-Up]]></title>
             <link>https://www.mishalshanavas.in/blog/ict-hackathon</link>
             <guid isPermaLink="false">https://www.mishalshanavas.in/blog/ict-hackathon</guid>
             <pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate>

@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     description,
     url: "/projects",
     type: "website",
+    siteName: metaData.name,
+    locale: "en_US",
     images: [`/og?title=${encodeURIComponent("Projects & open-source work")}`],
   },
   twitter: {
@@ -61,6 +63,7 @@ export default function Projects() {
             name: `Projects | ${metaData.name}`,
             description,
             url: `${metaData.baseUrl}/projects`,
+            isPartOf: { "@id": `${metaData.baseUrl}/#website` },
             mainEntity: {
               "@type": "ItemList",
               itemListElement: projects.map((project, index) => ({
@@ -77,7 +80,9 @@ export default function Projects() {
           }),
         }}
       />
-      <h1 className="mb-8 text-2xl font-semibold text-gray-900 dark:text-gray-100">Projects</h1>
+      <div className="mb-8 max-w-2xl">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Projects</h1>
+      </div>
       <div className="border-t border-gray-200 dark:border-gray-800 divide-y divide-gray-200 dark:divide-gray-800">
         {projects.map((project, index) => {
           const isExternal = project.url.startsWith("http");
@@ -94,7 +99,7 @@ export default function Projects() {
               {project.image ? (
                 <Image
                   src={project.image}
-                  alt={`${project.name} preview`}
+                  alt={project.imageAlt ?? `${project.name} preview`}
                   width={40}
                   height={40}
                   className={`object-cover ${project.imageAlignment ?? ""}`}
@@ -108,19 +113,21 @@ export default function Projects() {
               )}
             </div>
             <div className="min-w-0 flex-1">
-              {project.caseStudy ? (
-                <Link href={`/projects/${project.slug}`} className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug hover:underline">
-                  {project.name}
-                </Link>
-              ) : (
-                <Link
-                  href={project.url}
-                  className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug hover:underline"
-                  {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                >
-                  {project.name}
-                </Link>
-              )}
+              <h2 className="text-sm font-medium leading-snug">
+                {project.caseStudy ? (
+                  <Link href={`/projects/${project.slug}`} className="text-gray-900 hover:underline dark:text-gray-100">
+                    {project.name}
+                  </Link>
+                ) : (
+                  <Link
+                    href={project.url}
+                    className="text-gray-900 hover:underline dark:text-gray-100"
+                    {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    {project.name}
+                  </Link>
+                )}
+              </h2>
               <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 <span>{meta}</span>
                 {project.isContributor && (

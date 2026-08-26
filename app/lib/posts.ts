@@ -1,12 +1,16 @@
 import fs from "fs";
 import path from "path";
 
-type Metadata = {
+export type PostMetadata = {
   title: string;
+  seoTitle?: string;
   publishedAt: string;
+  updatedAt?: string;
   summary: string;
+  seoDescription?: string;
   tags: string;
   image?: string;
+  imageAlt?: string;
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -15,16 +19,16 @@ function parseFrontmatter(fileContent: string) {
   let frontMatterBlock = match![1];
   let content = fileContent.replace(frontmatterRegex, "").trim();
   let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<Metadata> = {};
+  let metadata: Partial<PostMetadata> = {};
 
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(": ");
     let value = valueArr.join(": ").trim();
     value = value.replace(/^['"](.*)['"]$/, "$1"); 
-    metadata[key.trim() as keyof Metadata] = value;
+    metadata[key.trim() as keyof PostMetadata] = value;
   });
 
-  return { metadata: metadata as Metadata, content };
+  return { metadata: metadata as PostMetadata, content };
 }
 
 function getMDXFiles(dir: string) {

@@ -30,6 +30,8 @@ function compactHorizontalCanvas(svg: string, code: string) {
 }
 
 export function Mermaid({ code, title }: MermaidProps) {
+  let renderedSvg: string;
+
   try {
     const svg = renderMermaidSVG(code, {
       bg: "var(--background)",
@@ -64,17 +66,18 @@ export function Mermaid({ code, title }: MermaidProps) {
       }
     </style>`;
     const compactSvg = compactHorizontalCanvas(svg, code);
-
-    return (
-      <div
-        aria-label={title}
-        className="diagram-scroll not-prose my-6 overflow-x-auto rounded-lg border border-gray-200 bg-white px-5 py-3 dark:border-gray-800 dark:bg-[#18181b] [&>svg]:mx-auto [&>svg]:block"
-        dangerouslySetInnerHTML={{ __html: compactSvg.replace("</svg>", `${sketchStyle}</svg>`) }}
-        role="img"
-      />
-    );
+    renderedSvg = compactSvg.replace("</svg>", `${sketchStyle}</svg>`);
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown rendering error";
     return <p className="my-6 text-sm text-red-600 dark:text-red-400">Could not render {title}: {message}</p>;
   }
+
+  return (
+    <div
+      aria-label={title}
+      className="diagram-scroll not-prose my-6 overflow-x-auto rounded-lg border border-gray-200 bg-white px-5 py-3 dark:border-gray-800 dark:bg-[#18181b] [&>svg]:mx-auto [&>svg]:block"
+      dangerouslySetInnerHTML={{ __html: renderedSvg }}
+      role="img"
+    />
+  );
 }

@@ -14,21 +14,17 @@ export const metadata: Metadata = {
     template: `%s | ${metaData.name}`,
   },
   description: metaData.description,
-  keywords: [
-    "Backend Developer",
-    "Cloud",
-    "Python",
-    "Django",
-    "MySQL",
-    "Terraform",
-    "GCP",
-    "API Development",
-    "Portfolio"
-  ],
-  authors: [{ name: metaData.name }],
+  authors: [{ name: metaData.name, url: metaData.baseUrl }],
   creator: metaData.name,
   openGraph: {
-    images: metaData.ogImage,
+    images: [
+      {
+        url: metaData.ogImage,
+        width: 1024,
+        height: 1040,
+        alt: `Portrait of ${metaData.name}`,
+      },
+    ],
     title: `${metaData.name} | Backend Developer`,
     description: metaData.description,
     url: metaData.baseUrl,
@@ -51,7 +47,8 @@ export const metadata: Metadata = {
     title: `${metaData.name} | Backend Developer`,
     card: "summary_large_image",
     creator: "@mishal_shanavas",
- },
+    images: [metaData.ogImage],
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

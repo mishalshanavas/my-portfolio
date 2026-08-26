@@ -24,12 +24,23 @@ const nextConfig: NextConfig = {
     // Cloudflare-specific: use unoptimized for static exports or loader for custom handling
     unoptimized: false,
   },
-  async rewrites() {
+  async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "mishalshanavas.in" }],
+        destination: "https://www.mishalshanavas.in/:path*",
+        permanent: true,
+      },
       {
         source: "/resume",
         destination: "/resume.pdf",
+        permanent: true,
       },
+    ];
+  },
+  async rewrites() {
+    return [
       {
         source: "/rss.xml",
         destination: "/feed/rss.xml",

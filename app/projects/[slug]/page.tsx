@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { metaData, projects } from "../../lib/config";
+import { formatDate } from "../../lib/posts";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -20,24 +22,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject(slug);
   if (!project) return {};
 
-  const title = `${project.name} case study`;
-  const image = `${metaData.baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const title = project.seoTitle ?? `${project.name} case study`;
+  const description = project.seoDescription ?? project.description;
+  const image = project.coverImage ?? project.image ?? `/og?title=${encodeURIComponent(title)}`;
   const canonicalUrl = `${metaData.baseUrl}/projects/${project.slug}`;
   return {
     title,
-    description: project.description,
+    description,
     authors: [{ name: metaData.name, url: metaData.baseUrl }],
-    keywords: project.tech,
     alternates: { canonical: canonicalUrl },
     openGraph: {
       title,
-      description: project.description,
+      description,
       type: "article",
       url: canonicalUrl,
       publishedTime: project.date,
-      images: [image],
+      modifiedTime: project.updatedAt ?? project.date,
+      siteName: metaData.name,
+      locale: "en_US",
+      images: [{ url: image, alt: project.coverImageAlt ?? project.imageAlt ?? `${project.name} case study` }],
     },
-    twitter: { card: "summary_large_image", title, description: project.description, images: [image] },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 
@@ -49,7 +54,11 @@ export default async function ProjectCaseStudy({ params }: Props) {
   const isExternal = project.url.startsWith("http");
   const study = project.caseStudy;
   const canonicalUrl = `${metaData.baseUrl}/projects/${project.slug}`;
-  const image = `${metaData.baseUrl}/og?title=${encodeURIComponent(`${project.name} case study`)}`;
+  const pageImage = project.coverImage ?? project.image;
+  const image = pageImage
+    ? `${metaData.baseUrl}${pageImage}`
+    : `${metaData.baseUrl}/og?title=${encodeURIComponent(`${project.name} case study`)}`;
+  const description = project.seoDescription ?? project.description;
 
   return (
     <article className="max-w-2xl">
@@ -59,21 +68,56 @@ export default async function ProjectCaseStudy({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "TechArticle",
-            headline: `${project.name} case study`,
-            description: project.description,
-            datePublished: project.date,
-            dateModified: project.date,
-            image,
-            url: canonicalUrl,
-            mainEntityOfPage: canonicalUrl,
-            keywords: project.tech,
-            about: project.tech,
-            author: {
-              "@type": "Person",
-              name: metaData.name,
-              url: metaData.baseUrl,
-            },
+            "@graph": [
+              {
+                "@type": "TechArticle",
+                "@id": `${canonicalUrl}#article`,
+                headline: project.seoTitle ?? `${project.name} case study`,
+                name: project.name,
+                description,
+                datePublished: project.date,
+                dateModified: project.updatedAt ?? project.date,
+                image,
+                url: canonicalUrl,
+                mainEntityOfPage: {
+                  "@type": "WebPage",
+                  "@id": canonicalUrl,
+                },
+                isPartOf: { "@id": `${metaData.baseUrl}/#website` },
+                keywords: project.tech,
+                about: project.tech,
+                author: {
+                  "@type": "Person",
+                  "@id": `${metaData.baseUrl}/#person`,
+                  name: metaData.name,
+                  url: `${metaData.baseUrl}/`,
+                },
+                publisher: {
+                  "@type": "Person",
+                  "@id": `${metaData.baseUrl}/#person`,
+                  name: metaData.name,
+                  url: `${metaData.baseUrl}/`,
+                },
+              },
+              {
+                "@type": "BreadcrumbList",
+                "@id": `${canonicalUrl}#breadcrumb`,
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Projects",
+                    item: `${metaData.baseUrl}/projects`,
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: project.name,
+                    item: canonicalUrl,
+                  },
+                ],
+              },
+            ],
           }),
         }}
       />
@@ -83,21 +127,59 @@ export default async function ProjectCaseStudy({ params }: Props) {
       <p className="mb-2 text-xs text-gray-500 dark:text-gray-400">Case study</p>
       <h1 className="text-balance text-2xl font-medium leading-tight text-gray-900 dark:text-gray-100">{project.name}</h1>
       <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{project.description}</p>
+      <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+        <span>
+          By <Link href="/" rel="author" className="hover:text-gray-700 hover:underline dark:hover:text-gray-300">{metaData.name}</Link>
+        </span>
+        <span aria-hidden="true">·</span>
+        <time dateTime={project.date}>{formatDate(project.date)}</time>
+        {project.updatedAt && project.updatedAt !== project.date ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>Updated <time dateTime={project.updatedAt}>{formatDate(project.updatedAt)}</time></span>
+          </>
+        ) : null}
+      </div>
+      {pageImage ? (
+        <figure className="relative mt-8 aspect-[16/9] overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
+          <Image
+            src={pageImage}
+            alt={project.coverImageAlt ?? project.imageAlt ?? `${project.name} project`}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 672px"
+            className={
+              project.imageAlignment?.includes("object-contain")
+                ? "object-contain p-8"
+                : `object-cover ${project.imageAlignment ?? ""}`
+            }
+          />
+        </figure>
+      ) : null}
 
       <dl className="mt-10 space-y-8 text-sm leading-relaxed">
         <div>
-          <dt className="font-semibold text-gray-900 dark:text-gray-100">Context</dt>
+          <dt className="font-semibold text-gray-900 dark:text-gray-100">What was going on</dt>
           <dd className="mt-2 text-gray-600 dark:text-gray-400">{study.context}</dd>
         </div>
         <div>
-          <dt className="font-semibold text-gray-900 dark:text-gray-100">My contribution</dt>
+          <dt className="font-semibold text-gray-900 dark:text-gray-100">What I did</dt>
           <dd className="mt-2 text-gray-600 dark:text-gray-400">{study.contribution}</dd>
         </div>
         <div>
-          <dt className="font-semibold text-gray-900 dark:text-gray-100">Outcome</dt>
+          <dt className="font-semibold text-gray-900 dark:text-gray-100">How it turned out</dt>
           <dd className="mt-2 text-gray-600 dark:text-gray-400">{study.outcome}</dd>
         </div>
       </dl>
+
+      <section className="mt-10">
+        <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">Technical details</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-gray-600 marker:text-gray-400 dark:text-gray-400">
+          {study.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+      </section>
 
       <div className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
         {project.tech.map((tech, index) => (
@@ -108,13 +190,23 @@ export default async function ProjectCaseStudy({ params }: Props) {
         ))}
       </div>
 
-      <Link
-        href={project.url}
-        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="inline-flex mt-10 text-sm font-medium text-[color:var(--accent)] hover:underline"
-      >
-        Visit project {isExternal ? "↗" : "→"}
-      </Link>
+      <div className="mt-10 flex flex-wrap gap-x-5 gap-y-3">
+        {project.articleSlug ? (
+          <Link
+            href={`/blog/${project.articleSlug}`}
+            className="text-sm font-medium text-[color:var(--accent)] hover:underline"
+          >
+            Read the full technical write-up →
+          </Link>
+        ) : null}
+        <Link
+          href={project.url}
+          {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          className="text-sm font-medium text-[color:var(--accent)] hover:underline"
+        >
+          Visit project {isExternal ? "↗" : "→"}
+        </Link>
+      </div>
     </article>
   );
 }

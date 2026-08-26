@@ -1,8 +1,13 @@
 ---
 title: "I Built a Bot to Change My Instagram DP So I Don't Have To"
+seoTitle: "Instagram Profile Picture Bot with Python and instagrapi"
 publishedAt: "2024-02-15"
+updatedAt: "2026-08-26"
 summary: "That time I got tired of manually updating my Instagram profile pic and decided to automate my entire aesthetic."
+seoDescription: "How I built an Instagram profile-picture bot with Python and instagrapi, including saved sessions, randomized timing, retry handling, and automation caveats."
 tags: "Python, Automation, Instagram, Side Projects"
+image: "/pfp.gif"
+imageAlt: "Demo of a Python bot automatically changing an Instagram profile picture"
 ---
 [![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/Instagram-dp)
 
@@ -10,21 +15,18 @@ Okay, so picture this: It's 2 AM, I'm scrolling through my camera roll, and I re
 
 That's how I ended up spending 6 hours building something that saves me 30 seconds. Make it make sense.
 
-<Image src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" width={1920} height={960} />
-<Caption>This is how it works at 100x speed.</Caption>
-
 ## The Plan
 
 Instead of rotating through 47 curated selfies like some kind of content creator, I took *one* random photo and made 11 versions of it — same face, different background colors. Same energy as buying the same shirt in 12 different colors, but make it *cloud-native*.
 
-The stack: Python, `instagrapi` (genuinely carrying the whole project), and my $100 Azure student credit, which I deployed with more confidence than I had any right to have.
+The stack: Python, `instagrapi` (genuinely carrying the whole project), and my $100 Azure student credit balance, which I deployed with more confidence than I had any right to have.
 
 <Callout emoji="🧠">
-    Pro tip: `instagrapi` sessions save your login state so you don’t get rate-limited or asked for 2FA every time. Learned that the hard way at 4AM.
+    Pro tip: `instagrapi` sessions save your login state so you don’t get rate-limited or asked for 2FA every time. Learned that the hard way at 4 AM.
 </Callout>
 
 
-Instead of changing photos every hour like a maniac, I added random delays — 1700 to 1900 seconds between changes — because Instagram's algorithm is watching 👀, and I didn't want my account yeeted into the shadow realm for looking too bot-like. Gotta keep it *natural*.
+Instead of changing photos every hour like a maniac, I added random delays—1,700 to 1,900 seconds between changes—because Instagram's algorithm is watching 👀, and I didn't want my account yeeted into the shadow realm for looking too bot-like. Gotta keep it *natural*.
 
 ## The Part Where It Broke
 
@@ -34,7 +36,7 @@ The first day was flawless. On the second, Instagram pushed back when the API ca
 try:
     self.change_dp()
 except Exception as e:
-    print(f"Oops, we faked up: {e}")
+    print(f"Oops, we messed up: {e}")
     time.sleep(10000)  # Touch some grass, then try again
     self.retry()
 ```
@@ -50,4 +52,4 @@ The code is [on GitHub](https://github.com/mishalshanavas/Instagram-dp). Variabl
 
 ---
 
-*Built with Python, powered by procrastination, and overnight engineering...* 
+*Built with Python, powered by procrastination, and overnight engineering...*

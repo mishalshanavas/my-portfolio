@@ -26,23 +26,37 @@ import ActivityTimeline from "./components/activity-timeline";
 import ProjectCard from "./components/project-card";
 import LocalTime from "./components/local-time";
 
+const description =
+  "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.";
+const socialImage = `/og?title=${encodeURIComponent(
+  "Mishal Shanavas — Backend Developer"
+)}`;
+
 export const metadata: Metadata = {
   title: "Mishal Shanavas | Backend Developer",
-  description:
-    "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.",
+  description,
   alternates: { canonical: "/" },
   openGraph: {
     title: "Mishal Shanavas | Backend Developer",
-    description:
-      "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.",
+    description,
     url: "/",
     type: "website",
+    siteName: metaData.name,
+    locale: "en_US",
+    images: [
+      {
+        url: socialImage,
+        width: 1200,
+        height: 630,
+        alt: `${metaData.name}, backend developer`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mishal Shanavas | Backend Developer",
-    description:
-      "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.",
+    description,
+    images: [socialImage],
   },
 };
 
@@ -71,28 +85,49 @@ export default function Page() {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "ProfilePage",
-              name: `${metaData.name} portfolio`,
-              description: metadata.description,
-              url: metaData.baseUrl,
-              mainEntity: {
-                "@type": "Person",
-                name: metaData.name,
-                url: metaData.baseUrl,
-                image: `${metaData.baseUrl}${hero.imageLight}`,
-                jobTitle: hero.title,
-                homeLocation: {
-                  "@type": "Place",
-                  name: profileMeta.location,
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": `${metaData.baseUrl}/#website`,
+                  url: `${metaData.baseUrl}/`,
+                  name: metaData.name,
+                  alternateName: `${metaData.name} portfolio`,
+                  description,
+                  inLanguage: "en",
+                  author: { "@id": `${metaData.baseUrl}/#person` },
                 },
-                sameAs: [
-                  socialLinks.github,
-                  socialLinks.linkedin,
-                  socialLinks.twitter,
-                  socialLinks.instagram,
-                ],
-                knowsAbout: skillGroups.flatMap((group) => group.skills),
-              },
+                {
+                  "@type": "ProfilePage",
+                  "@id": `${metaData.baseUrl}/#profile`,
+                  name: `${metaData.name} portfolio`,
+                  description,
+                  url: `${metaData.baseUrl}/`,
+                  dateCreated: `${profileMeta.memberSince}-01-01`,
+                  dateModified: "2026-08-26",
+                  isPartOf: { "@id": `${metaData.baseUrl}/#website` },
+                  mainEntity: { "@id": `${metaData.baseUrl}/#person` },
+                },
+                {
+                  "@type": "Person",
+                  "@id": `${metaData.baseUrl}/#person`,
+                  name: metaData.name,
+                  url: `${metaData.baseUrl}/`,
+                  image: `${metaData.baseUrl}${hero.imageLight}`,
+                  jobTitle: "Backend Developer",
+                  mainEntityOfPage: { "@id": `${metaData.baseUrl}/#profile` },
+                  homeLocation: {
+                    "@type": "Place",
+                    name: profileMeta.location,
+                  },
+                  sameAs: [
+                    socialLinks.github,
+                    socialLinks.linkedin,
+                    socialLinks.twitter,
+                    socialLinks.instagram,
+                  ],
+                  knowsAbout: skillGroups.flatMap((group) => group.skills),
+                },
+              ],
             }),
           }}
         />
@@ -102,7 +137,7 @@ export default function Page() {
           <div className="flex-shrink-0">
             <Image
               src={hero.imageLight}
-              alt="Profile photo"
+              alt={`Portrait of ${metaData.name}`}
               className="rounded-full border border-gray-200 dark:border-gray-700 transition-all duration-200 dark:hidden"
               width={90}
               height={90}
@@ -110,12 +145,11 @@ export default function Page() {
             />
             <Image
               src={hero.imageDark}
-              alt="Profile photo"
+              alt=""
               aria-hidden="true"
               className="rounded-full border border-gray-200 dark:border-gray-700 transition-all duration-200 hidden dark:block"
               width={90}
               height={90}
-              priority
             />
           </div>
 

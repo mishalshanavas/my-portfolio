@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     description,
     url: "/blog",
     type: "website",
+    siteName: metaData.name,
+    locale: "en_US",
     images: [`/og?title=${encodeURIComponent("Technical notes & project stories")}`],
   },
   twitter: {
@@ -138,6 +140,7 @@ export default function BlogPosts() {
             name: `Blog | ${metaData.name}`,
             description,
             url: `${metaData.baseUrl}/blog`,
+            isPartOf: { "@id": `${metaData.baseUrl}/#website` },
             mainEntity: {
               "@type": "ItemList",
               itemListElement: sortedBlogs.map((post, index) => ({
@@ -150,14 +153,16 @@ export default function BlogPosts() {
           }),
         }}
       />
-      <h1 className="mb-8 text-2xl font-semibold text-gray-900 dark:text-gray-100">Blog</h1>
+      <div className="mb-8 max-w-2xl">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Blog</h1>
+      </div>
       <div className="border-t border-gray-200 dark:border-gray-800 divide-y divide-gray-200 dark:divide-gray-800">
         {sortedBlogs.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="group flex gap-4 py-4 -mx-2 px-2 rounded-md transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
-          >
+          <article key={post.slug}>
+            <Link
+              href={`/blog/${post.slug}`}
+              className="group flex gap-4 py-4 -mx-2 px-2 rounded-md transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
+            >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={getCoverSVG(post.slug)}
@@ -166,9 +171,9 @@ export default function BlogPosts() {
               alt=""
             />
             <div className="min-w-0 flex-1">
-              <div className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug">
+              <h2 className="text-sm font-medium text-gray-900 dark:text-gray-100 leading-snug">
                 {post.metadata.title}
-              </div>
+              </h2>
               <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 <span>{formatDate(post.metadata.publishedAt, false)}</span>
                 <span aria-hidden="true">&middot;</span>
@@ -182,10 +187,10 @@ export default function BlogPosts() {
               aria-hidden="true"
               className="mt-1 flex-shrink-0 text-gray-300 dark:text-gray-600 group-hover:text-gray-500 dark:group-hover:text-gray-400 transition-all duration-150 group-hover:translate-x-0.5"
             />
-          </Link>
+            </Link>
+          </article>
         ))}
       </div>
     </section>
   );
 }
-

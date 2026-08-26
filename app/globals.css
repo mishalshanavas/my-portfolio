@@ -401,15 +401,15 @@ button:focus-visible {
   color: var(--shiki-dark) !important;
 }
 
-/* Pajamas focus ring – blue, consistent */
+/* Pajamas focus ring – follows the site's restrained accent */
 *:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(31, 117, 203, 0.35);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
   border-radius: 2px;
 }
 
 .dark *:focus-visible {
-  box-shadow: 0 0 0 3px rgba(95, 163, 227, 0.35);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 /* Print styles */

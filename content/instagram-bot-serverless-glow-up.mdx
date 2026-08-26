@@ -1,26 +1,28 @@
 ---
 title: "My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)"
+seoTitle: "Running a Python Instagram Bot on GitHub Actions"
 publishedAt: "2024-10-29"
+updatedAt: "2026-08-26"
 summary: "That time I migrated my Instagram DP bot from Azure to GitHub Actions because apparently I love over-engineering my own chaos."
+seoDescription: "How I moved a Python instagrapi profile-picture bot from Azure to a scheduled GitHub Actions workflow with repository secrets and manual runs."
 tags: "GitHub Actions, Serverless, Python, DevOps, Instagram Bot"
+image: "/pfp.gif"
+imageAlt: "Demo of the automated Instagram profile-picture bot"
 ---
 
 [![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/Instagram-dp)
 
 Remember that [Instagram DP bot](/blog/instagram-pfp) I built to avoid manually updating my profile picture like a functional human being? Well, plot twist: **it got a serverless makeover**, and now it's running on GitHub Actions instead of slowly draining my Azure student credits like some kind of digital vampire.
 
-It's 3 AM, I'm checking my Azure dashboard, and I see my $100 student credits going *poof* faster than my motivation to study for finals. Apparently, keeping a bot alive 24/7 just to change my Instagram DP every few hours is... expensive? Who could have seen that coming. 🤡
+It's 3 AM, I'm checking my Azure dashboard, and I see my $100 student credit balance going *poof* faster than my motivation to study for finals. Apparently, keeping a bot alive 24/7 just to change my Instagram DP every few hours is... expensive? Who could have seen that coming? 🤡
 
 ## Moving In With GitHub
 
-Moving from Azure to GitHub Actions is like moving from a fancy apartment to your friend's couch — except the couch is more comfortable, doesn't charge rent, and actually *wants* you there.
+Moving from Azure to GitHub Actions is like moving from a fancy apartment to your friend's couch—except the couch is more comfortable, doesn't charge rent, and actually *wants* you there.
 
 Azure made me feel like a real developer. Professional dashboard, cloud architecture diagrams, the whole thing. It also made me feel like a broke developer, which technically I was. GitHub Actions just lives in the repo, runs every 3 hours, and costs $0.00. It also somehow makes me look like I know what DevOps is, which is a bonus.
 
-The Python + instagrapi core stayed the same — if it ain't broke, etc. — but hosting, scheduling, and secrets all moved over. Azure Key Vault became GitHub Secrets (two fields, fight me). Azure Container Instances became GitHub runners. The cron trigger that used to cost me real money now costs me nothing.
-
-<Image src="https://github.com/user-attachments/assets/83b23108-116a-4a98-9d53-658ad9dec2a6" alt="Instagram DP Bot Demo" width={1920} height={960} />
-<Caption>Still doing this, now with GitHub handling the schedule.</Caption>
+The Python + `instagrapi` core stayed the same—if it ain't broke, etc.—but hosting, scheduling, and secrets all moved over. Azure Key Vault became GitHub Secrets (two fields, fight me). Azure Container Instances became GitHub runners. The cron trigger that used to cost me real money now costs me nothing.
 
 ## The YAML That Runs My Aesthetic
 
@@ -30,7 +32,7 @@ The workflow is basically a fancy cron job with better documentation:
 name: Update Instagram DP
 on:
   schedule:
-    - cron: '30 1,4,7,10,13,16 * * *'  # Every 3 hours, 6:30 AM - 10:30 PM IST
+    - cron: '30 1,4,7,10,13,16 * * *'  # Every 3 hours, 7 AM–10 PM IST
   workflow_dispatch:
     inputs:
       force_run:
@@ -50,7 +52,7 @@ The Azure setup required resource groups, container registries, and a lot of pra
 
 Other people can fork it without a cloud-computing degree. Making it simpler to run also made it more useful.
 
-The bot is currently running smoother than my brain at 8 AM lectures — changing every 3 hours, sleeping from 11:30 PM to 6:30 AM (better than me), costing exactly $0.00. My friends still ask how my profile picture is always different, and now I can answer without having to explain what Azure is.
+The bot is currently running smoother than my brain at 8 AM lectures—changing every three hours, sleeping from 10 PM to 7 AM (better than me), and costing exactly $0.00. My friends still ask how my profile picture is always different, and now I can answer without having to explain what Azure is.
 
 The code is [on GitHub](https://github.com/mishalshanavas/Instagram-dp). Fork it. Join the "my Instagram aesthetic is automated" club.
 

@@ -1,8 +1,12 @@
 ---
 title: "I Built a Tiny Public Library for My Digital Junk Drawer"
+seoTitle: "Building a Cloudflare R2 File Manager with Workers"
 publishedAt: "2026-08-09"
 summary: "A file portal for the things I keep, share, forget about, and eventually need at the least convenient possible moment."
+seoDescription: "How I built a Cloudflare Workers and R2 file manager with public links, password-protected admin actions, multipart uploads, range requests, and server-side copies."
 tags: "Cloudflare Workers, R2, JavaScript, Serverless, Self-Hosting"
+image: "/file-spooder-cover.webp"
+imageAlt: "Cloudflare Worker routing file uploads and downloads to an R2 object-storage library"
 ---
 
 [![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/file-spooder)
@@ -26,7 +30,7 @@ Anyone with a file link can read it.
 Only I can rearrange the furniture.
 ```
 
-Cloudflare R2 stores the files. A Cloudflare Worker sits in front of the bucket and does everything else: it renders the directory page, turns folders into a browseable interface, validates actions, and streams the actual file back when somebody asks for it.
+Cloudflare R2 stores the files. A Cloudflare Worker sits in front of the bucket and does everything else: it renders the directory page, turns folders into a browsable interface, validates actions, and streams the actual file back when somebody asks for it.
 
 <Mermaid
   title="The tiny library architecture"
@@ -75,7 +79,7 @@ The funny part is that the original multipart implementation had all the right n
 
 Request bodies do not respawn.
 
-After JSON read the body, the multipart handler got nothing. Large uploads failed because the Worker had already eaten the evidence. The repair was simply to let JSON actions parse JSON and multipart actions parse form data—one body, one reader, everyone goes home happier.
+After the JSON parser read the body, the multipart handler got nothing. Large uploads failed because the Worker had already eaten the evidence. The repair was simply to let JSON actions parse JSON and multipart actions parse form data—one body, one reader, everyone goes home happier.
 
 <Callout>
     If a request body has already been read, it is not “available for another parser.” It has gone to live on a farm upstate with all the other request bodies.

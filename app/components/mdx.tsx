@@ -174,10 +174,24 @@ type CalloutProps = { emoji?: React.ReactNode; children: React.ReactNode };
 
 function Callout({ emoji, children }: CalloutProps) {
   return (
-    <div className="my-6 border-l-2 border-gray-300 dark:border-gray-600 pl-4 py-0.5 text-sm text-gray-600 dark:text-gray-400 leading-relaxed [&_p]:m-0">
-      {children}
+    <div className="my-6 flex gap-3 border-l-2 border-gray-300 py-0.5 pl-4 text-sm leading-relaxed text-gray-600 dark:border-gray-600 dark:text-gray-400 [&_p]:m-0">
+      {emoji ? <span className="select-none" aria-hidden="true">{emoji}</span> : null}
+      <div className="min-w-0">{children}</div>
     </div>
   );
+}
+
+function headingText(node: React.ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") {
+    return String(node);
+  }
+  if (Array.isArray(node)) {
+    return node.map(headingText).join("");
+  }
+  if (React.isValidElement<{ children?: React.ReactNode }>(node)) {
+    return headingText(node.props.children);
+  }
+  return "";
 }
 
 function slugify(str: string): string {
@@ -192,8 +206,9 @@ function slugify(str: string): string {
 }
 
 function createHeading(level: number) {
-  const Heading = ({ children }: { children: string }) => {
-    let slug = slugify(children);
+  const Heading = ({ children }: { children: React.ReactNode }) => {
+    const text = headingText(children);
+    const slug = slugify(text);
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -202,6 +217,7 @@ function createHeading(level: number) {
           href: `#${slug}`,
           key: `link-${slug}`,
           className: "anchor",
+          "aria-label": `Link to ${text}`,
         }),
       ],
       children

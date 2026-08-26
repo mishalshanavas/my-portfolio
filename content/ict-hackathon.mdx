@@ -1,13 +1,17 @@
 ---
-title: "We Built an AI Career Guider and Won 2nd Runner-Up"
+title: "We Built an AI Career Guide and Won 2nd Runner-Up"
+seoTitle: "AI FYUGP Course Recommender at ICTAK Techathlon"
 publishedAt: "2024-08-05"
+updatedAt: "2026-08-26"
 summary: "How a last-minute hackathon turned into an accidental meme and a legit AI project."
+seoDescription: "How our team built an AI FYUGP course pathway recommender from psychometric profiles, Holland career codes, and academic records at ICTAK Techathlon 2024-25."
 tags: "Hackathon, AI"
+image: "/ict-hackathon.jpeg"
+imageAlt: "Team Rizzler receiving the award at ICTAK Techathlon 2024-25"
 ---
 
-<Image src="/ict-hackathon.jpeg" alt="Team Rizzler receiving the award at Techathlon 24-25" width={1600} height={1200} />
+It started with a Google Form.
 
-It started with a Google Form. 
 One minute we were zoning out in class, the next we were signing up for the **ICTAK Techathlon 2024-25**. The theme? **NextGenAI**. The location? Infopark, Koratty. The vibe? Pure chaos with a side of ambition.
 
 ## About the Team Name
@@ -18,7 +22,8 @@ Flashback to the initial roll call:
 
     "And next up... Team Rizzler?"
 
-The organizers paused, double-checked the list. We sheepishly raised our hands as the room burst into laughter.
+The organizers paused and double-checked the list. We sheepishly raised our hands as the room burst into laughter.
+
 A meme was born before the hackathon had even started.
 
 ## What We Built
@@ -29,7 +34,19 @@ We built an **AI-powered FYUGP Course Pathway Recommender** — it takes your ps
 
 > "We read your mind so your academic counselor doesn't have to."
 
-The stack was a Python backend (trained on Google Colab), NLP for processing what students actually mean, a React frontend, and Azure for deployment. Me, Mathew Geejo, and Shayen Thomas built it all in under 24 hours, which is either impressive or concerning.
+The stack was a Python backend (trained on Google Colab), NLP for processing what students actually mean, a React frontend, and Azure for deployment. Mathew Geejo, Shayen Thomas, and I built it all in under 24 hours, which is either impressive or concerning.
+
+## How the Recommendation Flow Worked
+
+The prototype combined three kinds of information instead of pretending one quiz could decide a student's future:
+
+1. A psychometric profile described preferences and working style.
+2. Holland career codes grouped those interests into familiar career-oriented categories.
+3. Academic records added evidence about the subjects in which the student was already performing well.
+
+The Python backend prepared those inputs for the recommendation model. The result was not just a course name: the interface returned a suggested FYUGP pathway and highlighted skill gaps the student could work on next. A React frontend kept that flow understandable during a very short judging demo, while Azure hosted the pieces we needed online.
+
+It was a hackathon prototype, not an academic counselling replacement. The useful part was showing how several signals could support a conversation instead of reducing a student to one score.
 
 ## The Tech Stack
 
@@ -51,4 +68,4 @@ For the official announcement, check out [this LinkedIn post](https://www.linked
 
 ---
 
-*This post is part of my Projects series – documenting the weird and wonderful things I build instead of sleeping (and accidentally naming).*
+*This post is part of my Projects series—documenting the weird and wonderful things I build instead of sleeping (and accidentally naming).*

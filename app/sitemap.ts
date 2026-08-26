@@ -18,19 +18,25 @@ function getBaseUrl(): string {
   return trimTrailingSlash(metaData.baseUrl);
 }
 
+function getPostModifiedDate(post: ReturnType<typeof getBlogPosts>[number]) {
+  return new Date(post.metadata.updatedAt ?? post.metadata.publishedAt);
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getBaseUrl();
   const blogPosts = getBlogPosts();
   const latestPostDate = blogPosts.reduce(
     (latest, post) =>
-      new Date(post.metadata.publishedAt) > latest
-        ? new Date(post.metadata.publishedAt)
+      getPostModifiedDate(post) > latest
+        ? getPostModifiedDate(post)
         : latest,
     new Date(0)
   );
   const latestProjectDate = projects.reduce(
     (latest, project) =>
-      new Date(project.date) > latest ? new Date(project.date) : latest,
+      new Date(project.updatedAt ?? project.date) > latest
+        ? new Date(project.updatedAt ?? project.date)
+        : latest,
     new Date(0)
   );
   const lastModified = new Date(
@@ -39,42 +45,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogs = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.metadata.publishedAt).toISOString(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    lastModified: getPostModifiedDate(post).toISOString(),
   }));
 
   const projectPages = projects
     .filter((project) => project.slug && project.caseStudy)
     .map((project) => ({
       url: `${baseUrl}/projects/${project.slug}`,
-      lastModified: new Date(project.date).toISOString(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+      lastModified: new Date(project.updatedAt ?? project.date).toISOString(),
     }));
 
   const routes = [
     {
       url: baseUrl,
       lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 1.0,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
+      lastModified: latestPostDate.toISOString(),
     },
     {
       url: `${baseUrl}/projects`,
-      lastModified,
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
+      lastModified: latestProjectDate.toISOString(),
     },
   ];
 
-  return [...routes, ...projectPages, ...blogs].sort(
-    (a, b) => (b.priority || 0) - (a.priority || 0)
-  );
+  return [...routes, ...projectPages, ...blogs];
 }
