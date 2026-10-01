@@ -5,7 +5,7 @@ import { FiChevronRight } from "react-icons/fi";
 import { metaData, projectCategories, projects, type Project } from "../lib/config";
 
 const description =
-  "Selected backend, infrastructure, open-source, automation, and interactive projects by Mishal Shanavas.";
+  "Backend projects, Hyperledger contributions, AUR package maintenance, and experiments by Mishal Shanavas.";
 
 export const metadata: Metadata = {
   title: "Projects",

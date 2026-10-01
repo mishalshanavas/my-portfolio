@@ -5,7 +5,7 @@ import { metaData } from "../lib/config";
 import { formatDate, getBlogPosts, getReadingTime } from "../lib/posts";
 
 const description =
-  "Technical notes and project stories about backend development, infrastructure, Linux, automation, and open source.";
+  "The stories behind my open-source fixes, cloud setups, automations, and experiments—what worked and what broke along the way.";
 
 export const metadata: Metadata = {
   title: "Blog",

@@ -6,14 +6,14 @@
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://www.mishalshanavas.in/"/>
     <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
-    <subtitle>Backend developer from Kerala. I build APIs, automate things, mess with cloud infrastructure, and occasionally fix bugs in large open-source projects.</subtitle>
+    <subtitle>Backend developer from Kerala working on APIs, infrastructure, Linux tooling, and open-source fixes.</subtitle>
     <rights>All rights reserved 2026, mishal shanavas</rights>
     <entry>
         <title type="html"><![CDATA[I Built a File Shelf Because Projectors Shouldn't See My Inbox]]></title>
         <id>https://www.mishalshanavas.in/blog/file-spooder</id>
         <link href="https://www.mishalshanavas.in/blog/file-spooder"/>
         <updated>2026-08-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A college seminar, a shared projector, and a small file shelf that opens anywhere without logging into my email.]]></summary>
+        <summary type="html"><![CDATA[I wanted to open files on a classroom projector without logging into my email. So I built a tiny file shelf with shareable links and private uploads.]]></summary>
         <category label="Cloudflare Workers" term="Cloudflare Workers"/>
         <category label="R2" term="R2"/>
         <category label="JavaScript" term="JavaScript"/>
@@ -25,7 +25,7 @@
         <id>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</id>
         <link href="https://www.mishalshanavas.in/blog/hyperledger-fabric-ci"/>
         <updated>2026-04-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[How I found a broken documentation workflow, got corrected in review, and merged my first fix into Hyperledger Fabric.]]></summary>
+        <summary type="html"><![CDATA[Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.]]></summary>
         <category label="Open Source" term="Open Source"/>
         <category label="Hyperledger Fabric" term="Hyperledger Fabric"/>
         <category label="GitHub Actions" term="GitHub Actions"/>
@@ -37,7 +37,7 @@
         <id>https://www.mishalshanavas.in/blog/ict-hackathon</id>
         <link href="https://www.mishalshanavas.in/blog/ict-hackathon"/>
         <updated>2024-08-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[How a last-minute hackathon turned into an accidental meme and a legit AI project.]]></summary>
+        <summary type="html"><![CDATA[We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.]]></summary>
         <category label="Hackathon" term="Hackathon"/>
         <category label="AI" term="AI"/>
     </entry>
@@ -46,7 +46,7 @@
         <id>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</id>
         <link href="https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up"/>
         <updated>2024-10-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[That time I migrated my Instagram DP bot from Azure to GitHub Actions because apparently I love over-engineering my own chaos.]]></summary>
+        <summary type="html"><![CDATA[Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.]]></summary>
         <category label="GitHub Actions" term="GitHub Actions"/>
         <category label="Serverless" term="Serverless"/>
         <category label="Python" term="Python"/>
@@ -58,7 +58,7 @@
         <id>https://www.mishalshanavas.in/blog/instagram-pfp</id>
         <link href="https://www.mishalshanavas.in/blog/instagram-pfp"/>
         <updated>2024-02-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[That time I got tired of manually updating my Instagram profile pic and decided to automate my entire aesthetic.]]></summary>
+        <summary type="html"><![CDATA[I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.]]></summary>
         <category label="Python" term="Python"/>
         <category label="Automation" term="Automation"/>
         <category label="Instagram" term="Instagram"/>
@@ -69,7 +69,7 @@
         <id>https://www.mishalshanavas.in/blog/personal-mail-server</id>
         <link href="https://www.mishalshanavas.in/blog/personal-mail-server"/>
         <updated>2026-08-08T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[I wanted a cool email address, so naturally I gave myself Docker, DNS, reverse DNS, port 25 trauma, and several new ways to receive no email.]]></summary>
+        <summary type="html"><![CDATA[I wanted email on my own domain and ended up debugging DNS, reverse DNS, and Azure's blocked SMTP port. Mailcow was the easy part, somehow.]]></summary>
         <category label="Mailcow" term="Mailcow"/>
         <category label="Azure" term="Azure"/>
         <category label="Docker" term="Docker"/>
@@ -83,7 +83,7 @@
         <id>https://www.mishalshanavas.in/blog/terramine</id>
         <link href="https://www.mishalshanavas.in/blog/terramine"/>
         <updated>2026-06-08T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[How a Minecraft server turned into Terraform, Docker, automatic TLS, Cloudflare DNS, and a backup system with trust issues.]]></summary>
+        <summary type="html"><![CDATA[I wanted a Minecraft server for friends. Terraform, Docker, HTTPS, and off-site backups happened because I also wanted to rebuild it when it broke.]]></summary>
         <category label="Terraform" term="Terraform"/>
         <category label="GCP" term="GCP"/>
         <category label="Docker" term="Docker"/>

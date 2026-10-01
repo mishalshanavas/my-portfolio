@@ -28,7 +28,7 @@ import ProjectTabs from "./components/project-tabs";
 import LocalTime from "./components/local-time";
 
 const description =
-  "Backend developer in Kerala building APIs, automation, and cloud infrastructure with Python, Django, MySQL, GCP, and AWS.";
+  "Mishal Shanavas is a backend developer in Kerala building APIs, cloud projects, and open-source fixes with Python, Django, and Linux.";
 const socialImage = `/og?title=${encodeURIComponent(
   "Mishal Shanavas — Backend Developer"
 )}`;
