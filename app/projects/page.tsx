@@ -167,17 +167,17 @@ export default function Projects() {
           }),
         }}
       />
-      <div className="mb-8 max-w-2xl">
+      <div className="mb-6 max-w-2xl">
         <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">Projects</h1>
       </div>
-      <nav aria-label="Project categories" className="mb-10 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      <nav aria-label="Project categories" className="mb-7 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {categorizedProjects.map((category) => (
           <a key={category.id} href={`#${category.id}`} className="text-[color:var(--accent)] underline-offset-4 hover:underline focus-visible:underline">
             {category.label}
           </a>
         ))}
       </nav>
-      <div className="space-y-12">
+      <div className="space-y-9">
         {categorizedProjects.map((category) => (
           <section key={category.id} id={category.id} aria-labelledby={`${category.id}-heading`} className="scroll-mt-8">
             <h2 id={`${category.id}-heading`} className="text-sm font-semibold text-gray-900 dark:text-gray-100">

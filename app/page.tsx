@@ -136,7 +136,7 @@ export default function Page() {
           }}
         />
         {/* HERO (full width top) */}
-        <section className="mb-8 flex flex-col gap-4 border-b border-gray-200 pb-8 dark:border-gray-800 sm:mb-10 sm:flex-row sm:items-center sm:gap-5 sm:pb-10">
+        <section className="mb-6 flex flex-col gap-4 border-b border-gray-200 pb-6 dark:border-gray-800 sm:mb-8 sm:flex-row sm:items-center sm:gap-5 sm:pb-8">
           {/* Avatar */}
           <div className="flex-shrink-0">
             <Image
@@ -176,7 +176,7 @@ export default function Page() {
               className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-[color:var(--accent)] sm:hidden"
             >
               <FiZap aria-hidden="true" />
-              Open to backend internships and junior roles
+              Open to work
             </a>
           </div>
 
@@ -213,14 +213,14 @@ export default function Page() {
 
 
         {/* ── TWO-COLUMN BODY ─────────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-10 items-start">
+        <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-[1fr_220px] lg:gap-10">
 
           {/* ── LEFT MAIN ─────────────────────────────────────── */}
-          <div className="space-y-14 min-w-0">
+          <div className="min-w-0 space-y-9 sm:space-y-10">
 
             {/* About */}
             <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
                 About
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed font-normal">
@@ -230,10 +230,10 @@ export default function Page() {
 
             {/* Experience and open source */}
             <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
                 Experience &amp; open source
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {experiences.map((exp, idx) => (
                   <div key={idx}>
                     <div className="font-medium text-sm text-gray-900 dark:text-gray-100 mb-0.5">
@@ -262,7 +262,7 @@ export default function Page() {
 
             {/* Skills */}
             <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
                 Skills
               </h2>
               <div className="flex flex-wrap gap-1.5">
@@ -287,10 +287,10 @@ export default function Page() {
 
             {/* Open-source activity */}
             <section>
-              <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">
+              <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
                 Open-source activity
               </h2>
-              <div className="space-y-7">
+              <div className="space-y-5">
                 <ActivityTimeline events={timelineEvents} />
                 <Suspense fallback={<div className="border border-gray-200 dark:border-gray-700 rounded-md p-4 h-32 animate-pulse bg-gray-50 dark:bg-gray-900" />}>
                   <ContributionSection />
@@ -300,7 +300,7 @@ export default function Page() {
           </div>
 
           {/* ── RIGHT SIDEBAR ──────────────────────────────────── */}
-          <aside className="space-y-6 lg:sticky lg:top-8">
+          <aside className="space-y-5 lg:sticky lg:top-8">
 
             {/* Info */}
             <div className="hidden lg:block">
@@ -327,7 +327,7 @@ export default function Page() {
                     className="font-normal hover:underline"
                     style={{ color: 'var(--accent)' }}
                   >
-                    Open to backend roles
+                    Open to work
                   </a>
                 </li>
               </ul>
@@ -397,7 +397,7 @@ export default function Page() {
               </ul>
             </div>
 
-            <div className="border-t border-gray-200 pt-6 dark:border-gray-700">
+            <div className="border-t border-gray-200 pt-5 dark:border-gray-700">
               <div className="mb-3 flex items-center justify-between gap-2">
                 <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
                   Recent writing

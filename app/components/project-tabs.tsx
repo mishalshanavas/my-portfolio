@@ -50,7 +50,7 @@ export default function ProjectTabs({
 
   return (
     <section aria-label="Selected work">
-      <div className="mb-4 flex items-end justify-between gap-3">
+      <div className="mb-3 flex items-end justify-between gap-3">
         <div role="tablist" aria-label="Selected work" className="flex gap-5 border-b border-gray-200 dark:border-gray-800">
           {tabs.map((tab, index) => (
             <button
