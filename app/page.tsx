@@ -247,7 +247,7 @@ export default function Page() {
                     >
                       {exp.company} · {exp.period}
                     </a>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 font-normal leading-relaxed">
+                    <p className="text-[13px] text-gray-600 dark:text-gray-400 font-normal leading-relaxed">
                       {exp.description}
                     </p>
                   </div>
