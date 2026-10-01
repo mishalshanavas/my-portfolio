@@ -61,7 +61,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </Fragment>
           ))}
         </div>
-        <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+        <p className="mt-1 line-clamp-4 text-[13px] leading-relaxed text-gray-600 dark:text-gray-400">
           {project.homeDescription ?? project.description}
         </p>
         {project.tech.length > 0 && (

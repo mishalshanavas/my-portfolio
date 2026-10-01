@@ -177,7 +177,7 @@ export default function Projects() {
           </a>
         ))}
       </nav>
-      <div className="space-y-9">
+      <div className="space-y-7">
         {categorizedProjects.map((category) => (
           <section key={category.id} id={category.id} aria-labelledby={`${category.id}-heading`} className="scroll-mt-8">
             <h2 id={`${category.id}-heading`} className="text-sm font-semibold text-gray-900 dark:text-gray-100">

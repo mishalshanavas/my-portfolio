@@ -136,7 +136,7 @@ export default function Page() {
           }}
         />
         {/* HERO (full width top) */}
-        <section className="mb-6 flex flex-col gap-4 border-b border-gray-200 pb-6 dark:border-gray-800 sm:mb-8 sm:flex-row sm:items-center sm:gap-5 sm:pb-8">
+        <section className="mb-5 flex flex-col gap-4 border-b border-gray-200 pb-5 dark:border-gray-800 sm:mb-6 sm:flex-row sm:items-center sm:gap-5 sm:pb-6">
           {/* Avatar */}
           <div className="flex-shrink-0">
             <Image
@@ -216,7 +216,7 @@ export default function Page() {
         <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-[1fr_220px] lg:gap-10">
 
           {/* ── LEFT MAIN ─────────────────────────────────────── */}
-          <div className="min-w-0 space-y-9 sm:space-y-10">
+          <div className="min-w-0 space-y-7 sm:space-y-8">
 
             {/* About */}
             <section>
@@ -300,7 +300,7 @@ export default function Page() {
           </div>
 
           {/* ── RIGHT SIDEBAR ──────────────────────────────────── */}
-          <aside className="space-y-5 lg:sticky lg:top-8">
+          <aside className="space-y-4 lg:sticky lg:top-8">
 
             {/* Info */}
             <div className="hidden lg:block">
