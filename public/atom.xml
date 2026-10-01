@@ -9,11 +9,11 @@
     <subtitle>Backend developer from Kerala. I build APIs, automate things, mess with cloud infrastructure, and occasionally fix bugs in large open-source projects.</subtitle>
     <rights>All rights reserved 2026, mishal shanavas</rights>
     <entry>
-        <title type="html"><![CDATA[I Built a Tiny Public Library for My Digital Junk Drawer]]></title>
+        <title type="html"><![CDATA[I Built a File Shelf Because Projectors Shouldn't See My Inbox]]></title>
         <id>https://www.mishalshanavas.in/blog/file-spooder</id>
         <link href="https://www.mishalshanavas.in/blog/file-spooder"/>
         <updated>2026-08-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A file portal for the things I keep, share, forget about, and eventually need at the least convenient possible moment.]]></summary>
+        <summary type="html"><![CDATA[A college seminar, a shared projector, and a small file shelf that opens anywhere without logging into my email.]]></summary>
         <category label="Cloudflare Workers" term="Cloudflare Workers"/>
         <category label="R2" term="R2"/>
         <category label="JavaScript" term="JavaScript"/>
@@ -33,7 +33,7 @@
         <category label="Regex" term="Regex"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[We Built an AI Career Guide and Won 2nd Runner-Up]]></title>
+        <title type="html"><![CDATA[We Built an AI Career Guide and Won the Hackathon]]></title>
         <id>https://www.mishalshanavas.in/blog/ict-hackathon</id>
         <link href="https://www.mishalshanavas.in/blog/ict-hackathon"/>
         <updated>2024-08-05T00:00:00.000Z</updated>

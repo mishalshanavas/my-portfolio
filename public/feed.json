@@ -7,9 +7,9 @@
     "items": [
         {
             "id": "https://www.mishalshanavas.in/blog/file-spooder",
-            "content_html": "A file portal for the things I keep, share, forget about, and eventually need at the least convenient possible moment.",
+            "content_html": "A college seminar, a shared projector, and a small file shelf that opens anywhere without logging into my email.",
             "url": "https://www.mishalshanavas.in/blog/file-spooder",
-            "title": "I Built a Tiny Public Library for My Digital Junk Drawer",
+            "title": "I Built a File Shelf Because Projectors Shouldn't See My Inbox",
             "date_modified": "2026-08-09T00:00:00.000Z",
             "tags": [
                 "Cloudflare Workers",
@@ -37,7 +37,7 @@
             "id": "https://www.mishalshanavas.in/blog/ict-hackathon",
             "content_html": "How a last-minute hackathon turned into an accidental meme and a legit AI project.",
             "url": "https://www.mishalshanavas.in/blog/ict-hackathon",
-            "title": "We Built an AI Career Guide and Won 2nd Runner-Up",
+            "title": "We Built an AI Career Guide and Won the Hackathon",
             "date_modified": "2024-08-05T00:00:00.000Z",
             "tags": [
                 "Hackathon",

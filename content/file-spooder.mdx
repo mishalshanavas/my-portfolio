@@ -1,25 +1,22 @@
 ---
-title: "I Built a Tiny Public Library for My Digital Junk Drawer"
+title: "I Built a File Shelf Because Projectors Shouldn't See My Inbox"
 seoTitle: "Building a Cloudflare R2 File Manager with Workers"
 publishedAt: "2026-08-09"
-summary: "A file portal for the things I keep, share, forget about, and eventually need at the least convenient possible moment."
-seoDescription: "How I built a Cloudflare Workers and R2 file manager with public links, password-protected admin actions, multipart uploads, range requests, and server-side copies."
+updatedAt: "2026-10-01"
+summary: "A college seminar, a shared projector, and a small file shelf that opens anywhere without logging into my email."
+seoDescription: "How a college seminar annoyance became a Cloudflare Workers and R2 file shelf with public links, private management, multipart uploads, and range requests."
 tags: "Cloudflare Workers, R2, JavaScript, Serverless, Self-Hosting"
-image: "/file-spooder-cover.webp"
-imageAlt: "Cloudflare Worker routing file uploads and downloads to an R2 object-storage library"
 ---
 
 [![View on GitHub](https://img.shields.io/badge/View_on_GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mishalshanavas/file-spooder)
 
-Every computer eventually develops a drawer.
+The idea started at college. I needed to pull up a file during a seminar, on a projector attached to a computer that wasn't mine. My choices were to sign into my email on a shared machine, send the file to someone else's inbox, or start a small ceremony involving phones and cables. None of those felt great for a two-minute presentation.
 
-Not a real drawer, obviously. A digital one. It contains wallpapers, ZIP files, old project builds, documents with names like `final-final-2-actually-final.pdf`, and at least one file you have been carrying between devices for so long that it has become a family heirloom.
+The same problem kept showing up in less serious places. I'd find something silly to show a friend, then realise it was on the wrong device. I wanted to put a file somewhere, copy a link, and open it on a phone, a friend's laptop, or the classroom projector without giving any of them a tour of my inbox.
 
-Mine had reached the point where finding something meant opening three cloud drives, checking a chat attachment, and asking myself why I had saved the same file in four different places. I did not need a startup. I needed one boring, dependable shelf on the internet where my files could live and where I could point people at a link without beginning a sentence with “wait, I need to change the permissions.”
+So I built **file-spooder**, a tiny file portal at [files.mishalshanavas.in](https://files.mishalshanavas.in). Naturally, I gave my internet shelf a spider name.
 
-So I built **file-spooder**, a tiny file portal at [files.mishalshanavas.in](https://files.mishalshanavas.in).
-
-It is a public library for my digital junk drawer. The files can be reached by URL. The librarian controls—upload, rename, move, copy, delete—are behind a password, because no public library should let strangers reorganise the shelves with a flamethrower.
+It's a small home for the files I want to keep or share. The files can be reached by URL. The librarian controls—upload, rename, move, copy, delete—are behind a password, because handing out a link should not also hand out the keys to the shelves.
 
 ## One shelf, two kinds of access
 
@@ -132,14 +129,14 @@ This is my favourite kind of optimisation: making the less-important feature pol
 
 ## The actual thing I ended up with
 
-file-spooder is not trying to replace Google Drive, Dropbox, S3 consoles, or a real document-management system with employees and quarterly objectives. It is a compact personal utility with a job description that fits in one sentence:
+file-spooder has a job description that fits in one sentence:
 
-> Put files on my own domain, make them easy to find, and do not let a 2 GB upload turn the site into a cautionary tale.
+> Put a file on my own domain, open it on whatever device is nearby, and keep my email account off the seminar projector.
 
-It has drag-and-drop uploads, folders, link files, file actions, storage visibility, public URLs, multipart uploads for the heavy stuff, and byte-range downloads for media. Most importantly, it gives my digital junk drawer a label and a shelf instead of making it someone else’s folder hierarchy problem.
+It has drag-and-drop uploads, folders, link files, file actions, storage visibility, public URLs, multipart uploads for the heavy stuff, and byte-range downloads for media. A lot of plumbing for a place to stash silly files? Absolutely. But now the link works wherever I need it, and nobody has to watch me log into Yahoo in front of a classroom.
 
 The code is [on GitHub](https://github.com/mishalshanavas/file-spooder). Bring a Cloudflare account, an R2 bucket, a secret password, and the particular kind of optimism that begins with “I’ll just build a small file browser.”
 
 ---
 
-*Built with Cloudflare Workers, R2, multipart uploads, byte ranges, and the stubborn belief that my downloads folder can still be saved.*
+*Built with Cloudflare Workers, R2, multipart uploads, byte ranges, and a healthy distrust of logging into email on shared computers.*

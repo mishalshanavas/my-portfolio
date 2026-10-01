@@ -21,9 +21,10 @@ import {
   metaData,
 } from "./lib/config";
 import { getTimelineEvents } from "./lib/activity";
+import { getBlogPosts } from "./lib/posts";
 import ContributionSection from "./components/contribution-section";
 import ActivityTimeline from "./components/activity-timeline";
-import ProjectCard from "./components/project-card";
+import ProjectTabs from "./components/project-tabs";
 import LocalTime from "./components/local-time";
 
 const description =
@@ -76,6 +77,9 @@ function renderAbout(text: string) {
 
 export default function Page() {
   const timelineEvents = getTimelineEvents();
+  const recentPosts = [...getBlogPosts()]
+    .sort((a, b) => b.metadata.publishedAt.localeCompare(a.metadata.publishedAt))
+    .slice(0, 3);
 
   return (
     <>
@@ -251,27 +255,10 @@ export default function Page() {
               </div>
             </section>
 
-            {/* Projects */}
-            <section>
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
-                  Projects
-                </h2>
-                <Link
-                  href="/projects"
-                  className="text-xs font-normal text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-150"
-                >
-                  View all →
-                </Link>
-              </div>
-              <div className="divide-y divide-gray-200 border-t border-gray-200 dark:divide-gray-800 dark:border-gray-800">
-                {projects.slice(0, 4).map((project, idx) => (
-                  <div key={idx}>
-                    <ProjectCard project={project} />
-                  </div>
-                ))}
-              </div>
-            </section>
+            <ProjectTabs
+              openSource={projects.filter((project) => project.category === "open-source")}
+              featured={projects.filter((project) => project.category === "featured")}
+            />
 
             {/* Skills */}
             <section>
@@ -313,10 +300,10 @@ export default function Page() {
           </div>
 
           {/* ── RIGHT SIDEBAR ──────────────────────────────────── */}
-          <aside className="hidden lg:block lg:sticky lg:top-8 space-y-6">
+          <aside className="space-y-6 lg:sticky lg:top-8">
 
             {/* Info */}
-            <div>
+            <div className="hidden lg:block">
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
                 Info
               </h3>
@@ -346,10 +333,10 @@ export default function Page() {
               </ul>
             </div>
 
-            <div className="border-t border-gray-200 dark:border-gray-700" />
+            <div className="hidden border-t border-gray-200 dark:border-gray-700 lg:block" />
 
             {/* Contact */}
-            <div>
+            <div className="hidden lg:block">
               <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
                 Contact
               </h3>
@@ -407,6 +394,29 @@ export default function Page() {
                     <span className="truncate">mishal_shanavas</span>
                   </a>
                 </li>
+              </ul>
+            </div>
+
+            <div className="border-t border-gray-200 pt-6 dark:border-gray-700">
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                  Recent writing
+                </h2>
+                <Link href="/blog" className="text-xs text-[color:var(--accent)] hover:underline">
+                  All →
+                </Link>
+              </div>
+              <ul className="space-y-3">
+                {recentPosts.map((post) => (
+                  <li key={post.slug}>
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="block text-xs leading-snug text-gray-600 hover:text-[color:var(--accent)] hover:underline dark:text-gray-400"
+                    >
+                      {post.metadata.title}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 

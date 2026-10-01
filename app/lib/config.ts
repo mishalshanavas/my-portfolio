@@ -23,7 +23,7 @@ export const socialLinks = {
 
 export const hero = {
   name: metaData.name,
-  title: "Backend developer who likes APIs, Linux, and cloud stuff",
+  title: "I build backends, tinker with Linux, and make small ideas bigger than they need to be.",
   imageLight: "/profile-wt.webp",
   imageDark: "/profile-bl.webp",
   resumeUrl: "/resume.pdf",
@@ -87,12 +87,23 @@ export type ProjectCaseStudy = {
   highlights: string[];
 };
 
+export const projectCategories = [
+  { id: "featured", label: "Featured", description: "My strongest engineering work." },
+  { id: "open-source", label: "Open Source", description: "External contributions and package maintenance." },
+  { id: "experiment", label: "Experiments", description: "Interesting things I build for fun and research." },
+  { id: "archive", label: "Archive", description: "Older projects and early experiments." },
+] as const;
+
+export type ProjectCategory = (typeof projectCategories)[number]["id"];
+
 export type Project = {
   name: string;
+  category: ProjectCategory;
   slug?: string;
   date: string;
   updatedAt?: string;
   url: string;
+  contributionUrl?: string;
   description: string;
   seoTitle?: string;
   seoDescription?: string;
@@ -102,9 +113,8 @@ export type Project = {
   coverImageAlt?: string;
   imageAlignment?: string;
   articleSlug?: string;
-  featured: boolean;
-  isContributor?: boolean;
-  isSideQuest?: boolean;
+  role?: string;
+  result?: string;
   tech: string[];
   caseStudy?: ProjectCaseStudy;
 };
@@ -112,18 +122,19 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: "Hyperledger Besu",
+    category: "open-source",
     slug: "hyperledger-besu-rlp",
     date: "2026-07-16",
     updatedAt: "2026-08-26",
     url: "https://github.com/besu-eth/besu/pull/10736",
-    description: "A tiny malformed Ethereum transaction was making Besu respond with a server error. I traced it through the Java code, fixed the validation, and added tests for eight different bad inputs.",
+    description: "Fixed malformed RLP transaction handling in Besu so bad client input returns Invalid params instead of a server error. Added regression tests for eight invalid payloads; the fix was merged upstream and released.",
     seoTitle: "Fixing Malformed RLP Transactions in Hyperledger Besu",
     seoDescription: "How I fixed malformed RLP transaction handling in Hyperledger Besu so invalid eth_sendRawTransaction input returns Invalid params, with regression tests for eight payloads.",
     image: "/besu.webp",
     imageAlt: "Hyperledger Besu project mark",
     imageAlignment: "object-contain",
-    isContributor: true,
-    featured: true,
+    role: "Open Source Contributor",
+    result: "Merged upstream",
     tech: ["Java", "Ethereum", "JSON-RPC", "RLP", "JUnit"],
     caseStudy: {
       context: "Besu is a Java Ethereum client. One odd input—an RLP payload containing no transaction bytes—was slipping through as if the server had broken, even though the client had simply sent bad data.",
@@ -138,19 +149,21 @@ export const projects: Project[] = [
   },
   {
     name: "Linux Foundation Hyperledger Fabric",
+    category: "open-source",
     slug: "hyperledger-fabric-ci",
     date: "2026-04-30",
     updatedAt: "2026-08-26",
     url: "https://github.com/hyperledger/fabric",
-    description: "I found a documentation checker with a few bad regexes and an enormous buffer. The cleanup survived maintainer review and became my first merged change in Hyperledger Fabric.",
+    contributionUrl: "https://github.com/hyperledger/fabric/pull/5468",
+    description: "Repaired Fabric's documentation link-check workflow: regex mistakes, an oversized response buffer, and a missing timeout. Revised the patch after maintainer review and got it merged upstream.",
     seoTitle: "Hyperledger Fabric Broken-Link CI Fix",
     seoDescription: "A Hyperledger Fabric case study covering broken-link checker regex fixes, safer response limits, workflow timeouts, maintainer review, and the merged upstream change.",
     image: "/fabric.webp",
     imageAlt: "Hyperledger Fabric project mark",
     imageAlignment: "object-contain",
     articleSlug: "hyperledger-fabric-ci",
-    isContributor: true,
-    featured: true,
+    role: "Open Source Contributor",
+    result: "Merged upstream",
     tech: ["Go", "GitHub Actions", "CI/CD", "Hyperledger Fabric"],
     caseStudy: {
       context: "Hyperledger Fabric has a scheduled workflow that checks links across several versions of its documentation. A handful of small mistakes meant the checker was not quite checking what it thought it was.",
@@ -164,17 +177,39 @@ export const projects: Project[] = [
     },
   },
   {
+    name: "networkmanager-git",
+    category: "open-source",
+    slug: "networkmanager-git",
+    date: "2026-06-10",
+    url: "https://aur.archlinux.org/packages/networkmanager-git",
+    description: "Maintain the networkmanager-git AUR package, updating its Meson build and libsoup3 compatibility as NetworkManager changes. This is Arch packaging work, separate from upstream NetworkManager development.",
+    seoTitle: "Maintaining the networkmanager-git AUR package",
+    seoDescription: "Arch Linux AUR package maintenance for networkmanager-git: Meson build changes and libsoup3 compatibility, separate from upstream NetworkManager development.",
+    role: "AUR Package Maintainer",
+    result: "Maintained in AUR",
+    tech: ["Arch Linux", "PKGBUILD", "Meson", "Bash", "libsoup3"],
+    caseStudy: {
+      context: "The networkmanager-git AUR package had been orphaned and needed updates to keep building against newer upstream NetworkManager sources.",
+      contribution: "I took over the AUR package, moved its build recipe to Meson, and fixed a libsoup3 compatibility issue. This work is in the Arch packaging recipe; it is not a change to NetworkManager's upstream code.",
+      outcome: "The package has a maintainer again and its build recipe tracks those upstream changes.",
+      highlights: [
+        "Adopted the orphaned networkmanager-git package in the Arch User Repository.",
+        "Updated the package build for Meson and fixed a libsoup3 compatibility issue.",
+        "Maintain the AUR packaging separately from upstream NetworkManager development.",
+      ],
+    },
+  },
+  {
     name: "Terramine",
+    category: "featured",
     slug: "terramine",
     date: "2026-06-01",
     updatedAt: "2026-08-26",
     url: "https://github.com/accidental-stuff/mc-server",
-    description: "It started as “let's host Minecraft” and somehow became Terraform, Docker, automatic TLS, Cloudflare DNS, and off-site backups. At least rebuilding the server is easy now.",
+    description: "Built a reproducible Minecraft server on GCP with Terraform, Docker, Caddy, Cloudflare DNS, and off-site R2 backups. The server can be rebuilt from code and restored from a backup.",
     seoTitle: "Terraform Minecraft Server on GCP",
     seoDescription: "A reproducible Minecraft server on GCP using Terraform, Docker Compose, Caddy, Cloudflare DNS, and automated off-site backups to Cloudflare R2.",
     articleSlug: "terramine",
-    featured: true,
-    isSideQuest: true,
     tech: ["Terraform", "GCP", "Docker", "Caddy", "Cloudflare"],
     caseStudy: {
       context: "The original plan was to put a Minecraft server online for friends. Clicking through cloud dashboards worked once, but it left no reliable way to rebuild the thing when I inevitably broke it.",
@@ -189,11 +224,12 @@ export const projects: Project[] = [
   },
   {
     name: "G-Tech MuLearn",
+    category: "featured",
     slug: "gtech-mulearn",
     date: "2025-03-01",
     updatedAt: "2026-08-26",
     url: "https://github.com/gtech-mulearn/mulearnbackend",
-    description: "My internship work on MuLearn's Launchpad: JWT login, company onboarding, and job-management APIs built with Django and MySQL.",
+    description: "Built Django and MySQL APIs for JWT login, company onboarding, and job management on MuLearn's Launchpad. Worked with frontend and design teammates as the real interface shaped those flows.",
     seoTitle: "Django APIs for MuLearn Launchpad",
     seoDescription: "Backend internship case study: Django and MySQL APIs for JWT authentication, company onboarding, and job-management workflows on MuLearn Launchpad.",
     image: "/mulogo.webp",
@@ -201,7 +237,6 @@ export const projects: Project[] = [
     coverImage: "/mulearn.png",
     coverImageAlt: "GTech MuLearn branding for the Launchpad platform",
     imageAlignment: "object-center",
-    featured: true,
     tech: ["Python", "Django", "Database Design", "MySQL", "JWT auth"],
     caseStudy: {
       context: "Launchpad connects students with companies and job opportunities. The frontend needed a backend that could handle accounts, company onboarding, and the full job flow without turning every request into a special case.",
@@ -215,19 +250,41 @@ export const projects: Project[] = [
     },
   },
   {
+    name: "file-spooder",
+    category: "featured",
+    slug: "file-spooder",
+    date: "2026-08-09",
+    updatedAt: "2026-10-01",
+    url: "https://files.mishalshanavas.in",
+    description: "Built a Cloudflare Workers and R2 file shelf so I can share files by link or open them on a college projector without signing into email. Added private management, multipart uploads, and byte-range downloads.",
+    seoTitle: "file-spooder: a file shelf for any device",
+    seoDescription: "How a college seminar annoyance became a small public file shelf built with Cloudflare Workers and R2.",
+    articleSlug: "file-spooder",
+    tech: ["Cloudflare Workers", "R2", "JavaScript", "HTTP"],
+    caseStudy: {
+      context: "At college, I wanted to open a file on a seminar projector without signing into my email on a shared machine or sending it to somebody else's inbox. I also wanted a quick place for the random things I share with friends.",
+      contribution: "I built a small file shelf on my own domain. Anyone with a link can open a file; upload and management actions need my password. A Cloudflare Worker handles the requests and R2 holds the files.",
+      outcome: "Now I can upload something once and open the link on my phone, a friend's device, or the classroom projector. The projector gets the file, not a tour of my inbox.",
+      highlights: [
+        "Built public file links with password-protected upload, rename, move, copy, and delete actions.",
+        "Added multipart uploads for large files and byte-range responses so videos can seek without downloading from the start.",
+        "Made folder listings paginated and copy operations careful about failures, because even a silly file shelf should keep the files intact.",
+      ],
+    },
+  },
+  {
     name: "Mappix",
+    category: "experiment",
     slug: "mappix",
     date: "2026-05-01",
     updatedAt: "2026-08-26",
     url: "https://mappix.isacool.monster",
-    description: "Point a webcam at sticky notes on a wall and projected balls bounce off them. It runs in the browser, which sounded much simpler before I learned about camera-projector calibration.",
+    description: "Built a browser projection-mapping experiment where webcam-detected sticky notes become obstacles for projected physics. Gray-code calibration and a homography align the camera and projector views.",
     seoTitle: "Browser Projection Mapping with Gray-Code Calibration",
     seoDescription: "How Mappix maps a webcam to a projector in the browser using Gray-code structured light, homography calibration, WebRTC, and Matter.js physics.",
     image: "/mappix.webp",
     imageAlt: "Mappix browser projection-mapping demonstration",
     imageAlignment: "object-center",
-    featured: true,
-    isSideQuest: true,
     tech: ["Vue.js", "JavaScript", "Computer Vision", "Matter.js", "WebRTC"],
     caseStudy: {
       context: "A projector and a webcam see the same wall from completely different angles. Before anything can bounce off a real sticky note, the browser has to work out how those two views line up.",
@@ -242,29 +299,25 @@ export const projects: Project[] = [
   },
   {
     name: "Notes Bot",
+    category: "archive",
     date: "2024-06-01",
     url: "https://github.com/mishalshanavas/notes-bot",
     description: "Python script that updates your Instagram notes with the current time. Because typing the time manually was too much work.",
     image: "/notes.gif",
     imageAlignment: "object-left",
-    featured: false,
-    isSideQuest: true,
     tech: ["Python"],
   },
   {
     name: "Instagram PFP Switcher",
+    category: "archive",
     date: "2024-02-15",
     url: "/blog/instagram-pfp",
     description: "Automates changing your Instagram profile picture. Python script that talks to Instagram so you don't have to.",
     image: "/pfp.gif",
-    featured: false,
     imageAlignment: "object-left",
-    isSideQuest: true,
     tech: ["Python"],
   },
 ];
-
-export const topProjects = projects.filter((p) => p.featured);
 
 export const launches = [
   {

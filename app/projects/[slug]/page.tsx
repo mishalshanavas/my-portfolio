@@ -206,6 +206,16 @@ export default async function ProjectCaseStudy({ params }: Props) {
         >
           Visit project {isExternal ? "↗" : "→"}
         </Link>
+        {project.contributionUrl ? (
+          <Link
+            href={project.contributionUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-[color:var(--accent)] hover:underline"
+          >
+            View merged PR ↗
+          </Link>
+        ) : null}
       </div>
     </article>
   );

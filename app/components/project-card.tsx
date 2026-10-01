@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
-import type { Project } from "../lib/config";
+import { projectCategories, type Project } from "../lib/config";
 
 interface ProjectCardProps {
   project: Project;
@@ -21,8 +21,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const isExternal = href.startsWith("http");
   const details = [
     formatCardDate(project.date),
-    project.isContributor ? "Contributor" : "",
-    project.isSideQuest ? "Side Quest" : "",
+    projectCategories.find((category) => category.id === project.category)?.label ?? "",
+    project.role ?? "",
   ].filter(Boolean);
 
   return (
@@ -61,7 +61,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </Fragment>
           ))}
         </div>
-        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+        <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
           {project.description}
         </p>
         {project.tech.length > 0 && (
