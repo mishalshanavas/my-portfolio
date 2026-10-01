@@ -62,7 +62,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
         <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-          {project.description}
+          {project.homeDescription ?? project.description}
         </p>
         {project.tech.length > 0 && (
           <p className="mt-1.5 truncate text-[11px] text-gray-400 dark:text-gray-500">
