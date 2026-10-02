@@ -23,7 +23,7 @@ export const socialLinks = {
 
 export const hero = {
   name: metaData.name,
-  title: "I build backends, fix things in open source, and give small ideas their own infrastructure.",
+  title: "I build backends, tinker with Linux, and make small ideas bigger than they need to be.",
   imageLight: "/profile-wt.webp",
   imageDark: "/profile-bl.webp",
   resumeUrl: "/resume.pdf",
