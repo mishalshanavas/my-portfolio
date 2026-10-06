@@ -30,11 +30,18 @@ export default {
         const headers = new Headers(asset.headers);
         headers.set("content-type", "text/x-component");
         headers.set("vary", "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch");
+        headers.set("x-portfolio-segment-source", "asset");
         return new Response(asset.body, { status: asset.status, headers });
       }
     }
 
-    return worker.fetch(request, env, ctx);
+    const response = await worker.fetch(request, env, ctx);
+    if (isProject || isBlog) {
+      const headers = new Headers(response.headers);
+      headers.set("x-portfolio-segment-source", "fallback");
+      return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+    }
+    return response;
   },
 };
 `);
