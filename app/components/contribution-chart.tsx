@@ -197,16 +197,15 @@ export default function ContributionChart({ data }: ContributionChartProps) {
       </div>}
 
       {/* Footer outside scroll — never clips */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mt-3">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <div className="flex items-center justify-between mt-3">
+        <div className="flex items-center" style={{ gap: 3 }}>
           {LEVEL_COLORS.map((color, i) => (
             <span
               key={i}
-              className="flex items-center gap-1 text-[10px] text-gray-500 dark:text-gray-400"
-            >
-              <span aria-hidden="true" style={{ width: 13, height: 13, borderRadius: 2, backgroundColor: color }} />
-              {LEVEL_LABELS[i]}
-            </span>
+              role="img"
+              aria-label={`${LEVEL_LABELS[i]} contributions`}
+              style={{ width: 13, height: 13, borderRadius: 2, backgroundColor: color }}
+            />
           ))}
         </div>
         <span className="text-[11px] text-gray-500 dark:text-gray-400">

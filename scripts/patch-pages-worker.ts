@@ -18,6 +18,9 @@ writeFileSync(entry, `import worker from "./generated.js";
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (url.pathname === "/__portfolio-patch-status") {
+      return new Response("next16-segment-patch-v1", { headers: { "content-type": "text/plain" } });
+    }
     const segment = request.headers.get("next-router-segment-prefetch");
     const isProject = url.pathname.startsWith("/projects/") && segment === "/projects/$d$slug";
     const isBlog = url.pathname.startsWith("/blog/") && segment === "/blog/$d$slug";
@@ -45,4 +48,3 @@ export default {
   },
 };
 `);
-writeFileSync(join(process.cwd(), ".vercel/output/static/segment-patch-version.txt"), "next16-segment-patch-v1\n");
