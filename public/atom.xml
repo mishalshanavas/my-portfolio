@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.mishalshanavas.in/</id>
     <title>Mishal Shanavas</title>
-    <updated>2026-08-09T00:00:00.000Z</updated>
+    <updated>2026-10-01T00:00:00.000Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://www.mishalshanavas.in/"/>
     <link rel="self" href="https://www.mishalshanavas.in/atom.xml"/>
@@ -12,57 +12,14 @@
         <title type="html"><![CDATA[I Built a File Shelf Because Projectors Shouldn't See My Inbox]]></title>
         <id>https://www.mishalshanavas.in/blog/file-spooder</id>
         <link href="https://www.mishalshanavas.in/blog/file-spooder"/>
-        <updated>2026-08-09T00:00:00.000Z</updated>
+        <updated>2026-10-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[I wanted to open files on a classroom projector without logging into my email. So I built a tiny file shelf with shareable links and private uploads.]]></summary>
         <category label="Cloudflare Workers" term="Cloudflare Workers"/>
         <category label="R2" term="R2"/>
         <category label="JavaScript" term="JavaScript"/>
         <category label="Serverless" term="Serverless"/>
         <category label="Self-Hosting" term="Self-Hosting"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[A Bad Regex Got Me Into Hyperledger Fabric]]></title>
-        <id>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</id>
-        <link href="https://www.mishalshanavas.in/blog/hyperledger-fabric-ci"/>
-        <updated>2026-04-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.]]></summary>
-        <category label="Open Source" term="Open Source"/>
-        <category label="Hyperledger Fabric" term="Hyperledger Fabric"/>
-        <category label="GitHub Actions" term="GitHub Actions"/>
-        <category label="CI" term="CI"/>
-        <category label="Regex" term="Regex"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[We Built an AI Career Guide and Won the Hackathon]]></title>
-        <id>https://www.mishalshanavas.in/blog/ict-hackathon</id>
-        <link href="https://www.mishalshanavas.in/blog/ict-hackathon"/>
-        <updated>2024-08-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.]]></summary>
-        <category label="Hackathon" term="Hackathon"/>
-        <category label="AI" term="AI"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
-        <id>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</id>
-        <link href="https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up"/>
-        <updated>2024-10-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.]]></summary>
-        <category label="GitHub Actions" term="GitHub Actions"/>
-        <category label="Serverless" term="Serverless"/>
-        <category label="Python" term="Python"/>
-        <category label="DevOps" term="DevOps"/>
-        <category label="Instagram Bot" term="Instagram Bot"/>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[I Built a Bot to Change My Instagram DP So I Don't Have To]]></title>
-        <id>https://www.mishalshanavas.in/blog/instagram-pfp</id>
-        <link href="https://www.mishalshanavas.in/blog/instagram-pfp"/>
-        <updated>2024-02-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.]]></summary>
-        <category label="Python" term="Python"/>
-        <category label="Automation" term="Automation"/>
-        <category label="Instagram" term="Instagram"/>
-        <category label="Side Projects" term="Side Projects"/>
+        <published>2026-08-09T00:00:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[I Set Up a Mail Server Because Life Was Too Peaceful]]></title>
@@ -77,6 +34,7 @@
         <category label="SMTP" term="SMTP"/>
         <category label="DNS" term="DNS"/>
         <category label="Self-Hosting" term="Self-Hosting"/>
+        <published>2026-08-08T00:00:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy]]></title>
@@ -90,5 +48,54 @@
         <category label="Cloudflare" term="Cloudflare"/>
         <category label="Caddy" term="Caddy"/>
         <category label="Minecraft" term="Minecraft"/>
+        <published>2026-06-08T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[A Bad Regex Got Me Into Hyperledger Fabric]]></title>
+        <id>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</id>
+        <link href="https://www.mishalshanavas.in/blog/hyperledger-fabric-ci"/>
+        <updated>2026-04-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.]]></summary>
+        <category label="Open Source" term="Open Source"/>
+        <category label="Hyperledger Fabric" term="Hyperledger Fabric"/>
+        <category label="GitHub Actions" term="GitHub Actions"/>
+        <category label="CI" term="CI"/>
+        <category label="Regex" term="Regex"/>
+        <published>2026-04-30T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
+        <id>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</id>
+        <link href="https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up"/>
+        <updated>2026-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.]]></summary>
+        <category label="GitHub Actions" term="GitHub Actions"/>
+        <category label="Serverless" term="Serverless"/>
+        <category label="Python" term="Python"/>
+        <category label="DevOps" term="DevOps"/>
+        <category label="Instagram Bot" term="Instagram Bot"/>
+        <published>2024-10-29T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[We Built an AI Career Guide and Won the Hackathon]]></title>
+        <id>https://www.mishalshanavas.in/blog/ict-hackathon</id>
+        <link href="https://www.mishalshanavas.in/blog/ict-hackathon"/>
+        <updated>2026-10-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.]]></summary>
+        <category label="Hackathon" term="Hackathon"/>
+        <category label="AI" term="AI"/>
+        <published>2024-08-05T00:00:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[I Built a Bot to Change My Instagram DP So I Don't Have To]]></title>
+        <id>https://www.mishalshanavas.in/blog/instagram-pfp</id>
+        <link href="https://www.mishalshanavas.in/blog/instagram-pfp"/>
+        <updated>2026-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.]]></summary>
+        <category label="Python" term="Python"/>
+        <category label="Automation" term="Automation"/>
+        <category label="Instagram" term="Instagram"/>
+        <category label="Side Projects" term="Side Projects"/>
+        <published>2024-02-15T00:00:00.000Z</published>
     </entry>
 </feed>

@@ -5,10 +5,11 @@
     "dev": "cross-env NODE_OPTIONS=--no-experimental-webstorage next dev",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "check": "pnpm typecheck && pnpm lint && pnpm build",
+    "test": "tsx --test tests/*.test.ts",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "build": "npx tsx scripts/generate-feeds.ts && next build",
     "start": "next start",
-    "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages",
+    "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages && npx tsx scripts/patch-pages-worker.ts",
     "pages:dev": "npx @cloudflare/next-on-pages --watch",
     "pages:deploy": "pnpm pages:build && wrangler pages deploy .vercel/output/static"
   },
@@ -30,7 +31,8 @@
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
-    "shiki": "^4.4.1"
+    "shiki": "^4.4.1",
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.13.16",

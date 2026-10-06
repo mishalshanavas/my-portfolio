@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import YAML from "yaml";
 
 export type PostMetadata = {
   title: string;
@@ -13,31 +14,58 @@ export type PostMetadata = {
   imageAlt?: string;
 };
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
-  let content = fileContent.replace(frontmatterRegex, "").trim();
-  let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<PostMetadata> = {};
+export function parseFrontmatter(fileContent: string, filePath: string) {
+  const match = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(fileContent);
+  if (!match) throw new Error(`${filePath}: missing YAML frontmatter`);
 
-  frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(": ");
-    let value = valueArr.join(": ").trim();
-    value = value.replace(/^['"](.*)['"]$/, "$1"); 
-    metadata[key.trim() as keyof PostMetadata] = value;
-  });
+  let parsed: unknown;
+  try {
+    parsed = YAML.parse(match[1], { uniqueKeys: true });
+  } catch (error) {
+    throw new Error(`${filePath}: invalid YAML frontmatter`, { cause: error });
+  }
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error(`${filePath}: frontmatter must be a mapping`);
+  }
 
-  return { metadata: metadata as PostMetadata, content };
+  const fields = parsed as Record<string, unknown>;
+  for (const key of ["title", "publishedAt", "summary", "tags"] as const) {
+    if (typeof fields[key] !== "string" || !fields[key].trim()) {
+      throw new Error(`${filePath}: ${key} must be a non-empty string`);
+    }
+  }
+  for (const key of ["seoTitle", "updatedAt", "seoDescription", "image", "imageAlt"] as const) {
+    if (fields[key] !== undefined && typeof fields[key] !== "string") {
+      throw new Error(`${filePath}: ${key} must be a string`);
+    }
+  }
+  for (const key of ["publishedAt", "updatedAt"] as const) {
+    const value = fields[key];
+    if (value === undefined) continue;
+    const date = typeof value === "string" ? new Date(`${value}T00:00:00Z`) : null;
+    if (
+      typeof value !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
+      !date || Number.isNaN(date.getTime()) ||
+      date.toISOString().slice(0, 10) !== value
+    ) {
+      throw new Error(`${filePath}: ${key} must be a valid YYYY-MM-DD date`);
+    }
+  }
+
+  return {
+    metadata: fields as PostMetadata,
+    content: fileContent.slice(match[0].length).trim(),
+  };
 }
 
 function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => [".mdx", ".md"].includes(path.extname(file)));
+  return fs.readdirSync(dir).filter((file) => [".mdx", ".md"].includes(path.extname(file))).sort();
 }
 
 function readMDXFile(filePath: string) {
   let rawContent = fs.readFileSync(filePath, "utf-8");
-  return parseFrontmatter(rawContent);
+  return parseFrontmatter(rawContent, filePath);
 }
 
 function getMDXData(dir: string) {
@@ -60,7 +88,7 @@ export function getBlogPosts() {
   if (!postsCache) {
     postsCache = getMDXData(path.join(process.cwd(), "content"));
   }
-  return postsCache;
+  return [...postsCache];
 }
 
 export function invalidatePostsCache() {

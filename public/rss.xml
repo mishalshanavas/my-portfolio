@@ -4,7 +4,7 @@
         <title>Mishal Shanavas</title>
         <link>https://www.mishalshanavas.in/</link>
         <description>Backend developer from Kerala working on APIs, infrastructure, Linux tooling, and open-source fixes.</description>
-        <lastBuildDate>Sun, 09 Aug 2026 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 01 Oct 2026 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>Feed for Node.js</generator>
         <copyright>All rights reserved 2026, mishal shanavas</copyright>
@@ -20,50 +20,7 @@
             <category>JavaScript</category>
             <category>Serverless</category>
             <category>Self-Hosting</category>
-        </item>
-        <item>
-            <title><![CDATA[A Bad Regex Got Me Into Hyperledger Fabric]]></title>
-            <link>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</link>
-            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</guid>
-            <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
-            <description><![CDATA[Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.]]></description>
-            <category>Open Source</category>
-            <category>Hyperledger Fabric</category>
-            <category>GitHub Actions</category>
-            <category>CI</category>
-            <category>Regex</category>
-        </item>
-        <item>
-            <title><![CDATA[We Built an AI Career Guide and Won the Hackathon]]></title>
-            <link>https://www.mishalshanavas.in/blog/ict-hackathon</link>
-            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/ict-hackathon</guid>
-            <pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.]]></description>
-            <category>Hackathon</category>
-            <category>AI</category>
-        </item>
-        <item>
-            <title><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
-            <link>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</link>
-            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</guid>
-            <pubDate>Tue, 29 Oct 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.]]></description>
-            <category>GitHub Actions</category>
-            <category>Serverless</category>
-            <category>Python</category>
-            <category>DevOps</category>
-            <category>Instagram Bot</category>
-        </item>
-        <item>
-            <title><![CDATA[I Built a Bot to Change My Instagram DP So I Don't Have To]]></title>
-            <link>https://www.mishalshanavas.in/blog/instagram-pfp</link>
-            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/instagram-pfp</guid>
-            <pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.]]></description>
-            <category>Python</category>
-            <category>Automation</category>
-            <category>Instagram</category>
-            <category>Side Projects</category>
+            <atom:updated>2026-10-01T00:00:00.000Z</atom:updated>
         </item>
         <item>
             <title><![CDATA[I Set Up a Mail Server Because Life Was Too Peaceful]]></title>
@@ -91,6 +48,53 @@
             <category>Cloudflare</category>
             <category>Caddy</category>
             <category>Minecraft</category>
+        </item>
+        <item>
+            <title><![CDATA[A Bad Regex Got Me Into Hyperledger Fabric]]></title>
+            <link>https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/hyperledger-fabric-ci</guid>
+            <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.]]></description>
+            <category>Open Source</category>
+            <category>Hyperledger Fabric</category>
+            <category>GitHub Actions</category>
+            <category>CI</category>
+            <category>Regex</category>
+        </item>
+        <item>
+            <title><![CDATA[My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)]]></title>
+            <link>https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up</guid>
+            <pubDate>Tue, 29 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.]]></description>
+            <category>GitHub Actions</category>
+            <category>Serverless</category>
+            <category>Python</category>
+            <category>DevOps</category>
+            <category>Instagram Bot</category>
+            <atom:updated>2026-08-26T00:00:00.000Z</atom:updated>
+        </item>
+        <item>
+            <title><![CDATA[We Built an AI Career Guide and Won the Hackathon]]></title>
+            <link>https://www.mishalshanavas.in/blog/ict-hackathon</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/ict-hackathon</guid>
+            <pubDate>Mon, 05 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.]]></description>
+            <category>Hackathon</category>
+            <category>AI</category>
+            <atom:updated>2026-10-01T00:00:00.000Z</atom:updated>
+        </item>
+        <item>
+            <title><![CDATA[I Built a Bot to Change My Instagram DP So I Don't Have To]]></title>
+            <link>https://www.mishalshanavas.in/blog/instagram-pfp</link>
+            <guid isPermaLink="false">https://www.mishalshanavas.in/blog/instagram-pfp</guid>
+            <pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.]]></description>
+            <category>Python</category>
+            <category>Automation</category>
+            <category>Instagram</category>
+            <category>Side Projects</category>
+            <atom:updated>2026-08-26T00:00:00.000Z</atom:updated>
         </item>
     </channel>
 </rss>

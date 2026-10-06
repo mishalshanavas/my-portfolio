@@ -10,11 +10,13 @@ async function generateFeeds() {
       ? metaData.baseUrl
       : `${metaData.baseUrl}/`;
 
-    const allPosts = getBlogPosts();
+    const allPosts = getBlogPosts().sort((a, b) =>
+      b.metadata.publishedAt.localeCompare(a.metadata.publishedAt)
+    );
     const latestPostDate = allPosts.reduce<Date>(
       (latest, post) => {
-        const publishedAt = new Date(post.metadata.publishedAt);
-        return publishedAt > latest ? publishedAt : latest;
+        const modifiedAt = new Date(post.metadata.updatedAt ?? post.metadata.publishedAt);
+        return modifiedAt > latest ? modifiedAt : latest;
       },
       new Date(0)
     );
@@ -38,27 +40,28 @@ async function generateFeeds() {
       console.log("⚠️  No blog posts found. Generating empty feeds.");
     }
 
+    const revisedItems = new Map<string, string>();
     allPosts.forEach((post) => {
-      try {
-        const postUrl = `${BaseUrl}blog/${post.slug}`;
-        const categories = post.metadata.tags
-          ? post.metadata.tags.split(",").map((tag) => tag.trim())
-          : [];
-
-        feed.addItem({
-          title: post.metadata.title,
-          id: postUrl,
-          link: postUrl,
-          description: post.metadata.summary,
-          category: categories.map((tag) => ({
-            name: tag,
-            term: tag,
-          })),
-          date: new Date(post.metadata.publishedAt),
-        });
-      } catch (error) {
-        console.error(`❌ Error adding post "${post.slug}" to feed:`, error);
+      const postUrl = `${BaseUrl}blog/${post.slug}`;
+      if (post.metadata.updatedAt) {
+        revisedItems.set(postUrl, new Date(post.metadata.updatedAt).toISOString());
       }
+      const categories = post.metadata.tags
+        ? post.metadata.tags.split(",").map((tag) => tag.trim())
+        : [];
+
+      feed.addItem({
+        title: post.metadata.title,
+        id: postUrl,
+        link: postUrl,
+        description: post.metadata.summary,
+        category: categories.map((tag) => ({
+          name: tag,
+          term: tag,
+        })),
+        date: new Date(post.metadata.updatedAt ?? post.metadata.publishedAt),
+        published: new Date(post.metadata.publishedAt),
+      });
     });
 
     // Create public/feed directory if it doesn't exist
@@ -66,9 +69,20 @@ async function generateFeeds() {
     mkdirSync(feedDir, { recursive: true });
 
     // Write feed files
+    const atom = feed.atom1();
+    const json = feed.json1();
+    for (const item of feed.items) {
+      const revisedAt = item.id ? revisedItems.get(item.id) : undefined;
+      if (revisedAt) {
+        item.extensions = [...(item.extensions ?? []), {
+          name: "atom:updated",
+          objects: { _text: revisedAt },
+        }];
+      }
+    }
     writeFileSync(join(feedDir, "rss.xml"), feed.rss2());
-    writeFileSync(join(feedDir, "atom.xml"), feed.atom1());
-    writeFileSync(join(feedDir, "feed.json"), feed.json1());
+    writeFileSync(join(feedDir, "atom.xml"), atom);
+    writeFileSync(join(feedDir, "feed.json"), json);
 
     console.log(`✅ RSS feeds generated successfully! (${allPosts.length} posts)`);
   } catch (error) {

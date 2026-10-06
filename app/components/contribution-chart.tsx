@@ -13,6 +13,11 @@ const LEVEL_COLORS = [
   "var(--chart-3)",
   "var(--chart-4)",
 ];
+const LEVEL_LABELS = ["0", "1–2", "3–5", "6–10", "11+"];
+
+export function dateKey(date: Date): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
 
 function getLevel(count: number): number {
   if (count === 0) return 0;
@@ -55,33 +60,35 @@ export default function ContributionChart({ data }: ContributionChartProps) {
   // Build a map of date string -> count
   const dataMap = new Map(data.map((d) => [d.date, d.count]));
 
-  // Determine date range: from ~364 days ago aligned to Sunday
+  // Show exactly 365 calendar days, padding only the first visual week.
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const start = new Date(today);
   start.setDate(start.getDate() - 364);
-  // Align start to the preceding Sunday
-  start.setDate(start.getDate() - start.getDay());
 
   // Build array of all days
   const days: { date: Date; count: number }[] = [];
   const cursor = new Date(start);
   while (cursor <= today) {
-    const key = cursor.toISOString().split("T")[0];
+    const key = dateKey(cursor);
     days.push({ date: new Date(cursor), count: dataMap.get(key) ?? 0 });
     cursor.setDate(cursor.getDate() + 1);
   }
 
   // Group into weeks (columns of 7)
-  const weeks: { date: Date; count: number }[][] = [];
-  for (let i = 0; i < days.length; i += 7) {
-    weeks.push(days.slice(i, i + 7));
+  const paddedDays: ({ date: Date; count: number } | null)[] = [
+    ...Array.from({ length: start.getDay() }, () => null),
+    ...days,
+  ];
+  const weeks: (typeof paddedDays)[] = [];
+  for (let i = 0; i < paddedDays.length; i += 7) {
+    weeks.push(paddedDays.slice(i, i + 7));
   }
 
   // Month labels: track which week each month starts
   const monthLabels: (string | null)[] = weeks.map((week) => {
     for (const day of week) {
-      if (day.date.getDate() === 1) {
+      if (day?.date.getDate() === 1) {
         return day.date.toLocaleString("en-US", { month: "short" });
       }
     }
@@ -92,10 +99,13 @@ export default function ContributionChart({ data }: ContributionChartProps) {
   const visibleWeeks = weeks.slice(-maxWeeks);
   const visibleMonthLabels = monthLabels.slice(-maxWeeks);
 
-  const totalContributions = days.reduce((sum, d) => sum + d.count, 0);
+  const visibleDays = visibleWeeks.flatMap((week) => week.filter((day) => day !== null));
+  const totalContributions = visibleDays.reduce((sum, d) => sum + d.count, 0);
+  const firstVisibleDate = visibleDays[0]?.date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const lastVisibleDate = visibleDays.at(-1)?.date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
   return (
-    <div className="w-full" ref={containerRef} aria-label={`${totalContributions} GitHub contributions in the last year`}>
+    <div className="w-full" ref={containerRef} role="group" aria-label={`${totalContributions} GitHub contributions shown from ${firstVisibleDate ?? "the past year"} to ${lastVisibleDate ?? "today"}`}>
       {maxWeeks === 0 ? (
         <div className="w-full overflow-hidden" aria-hidden>
           {/* skeleton month label row */}
@@ -161,11 +171,14 @@ export default function ContributionChart({ data }: ContributionChartProps) {
             <div className="flex" style={{ gap: 3 }}>
               {visibleWeeks.map((week, wi) => (
                 <div key={wi} className="flex flex-col" style={{ gap: 3 }}>
-                  {week.map((day, di) => (
-                    <div
+                  {week.map((day, di) => day ? (
+                    <span
                       key={di}
+                      role="img"
+                      tabIndex={0}
+                      aria-label={formatTooltip(day.date, day.count)}
                       title={formatTooltip(day.date, day.count)}
-                      className="cursor-default"
+                      className="cursor-default focus-visible:outline-2 focus-visible:outline-offset-1"
                       style={{
                         width: 13,
                         height: 13,
@@ -174,7 +187,7 @@ export default function ContributionChart({ data }: ContributionChartProps) {
                         flexShrink: 0,
                       }}
                     />
-                  ))}
+                  ) : <span key={di} aria-hidden="true" style={{ width: 13, height: 13 }} />)}
                 </div>
               ))}
             </div>
@@ -184,13 +197,16 @@ export default function ContributionChart({ data }: ContributionChartProps) {
       </div>}
 
       {/* Footer outside scroll — never clips */}
-      <div className="flex items-center justify-between mt-3">
-        <div className="flex items-center" style={{ gap: 3 }}>
+      <div className="flex flex-wrap items-center justify-between gap-2 mt-3">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {LEVEL_COLORS.map((color, i) => (
-            <div
+            <span
               key={i}
-              style={{ width: 13, height: 13, borderRadius: 2, backgroundColor: color }}
-            />
+              className="flex items-center gap-1 text-[10px] text-gray-500 dark:text-gray-400"
+            >
+              <span aria-hidden="true" style={{ width: 13, height: 13, borderRadius: 2, backgroundColor: color }} />
+              {LEVEL_LABELS[i]}
+            </span>
           ))}
         </div>
         <span className="text-[11px] text-gray-500 dark:text-gray-400">

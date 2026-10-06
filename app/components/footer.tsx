@@ -11,8 +11,6 @@ import {
 import { TbMailFilled } from "react-icons/tb";
 import { metaData, socialLinks } from "../lib/config";
 
-const YEAR = new Date().getFullYear();
-
 function SocialLink({ href, icon: Icon, title }: { href: string; icon: React.ComponentType; title?: string }) {
   return (
     <a 
@@ -45,7 +43,7 @@ export default function Footer() {
     <footer className="mt-16 sm:mt-24 pt-6 pb-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200 dark:border-gray-800">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <small className="text-gray-500 dark:text-gray-400 text-sm font-normal">
-          <time>© {YEAR}</time>{" "}
+          ©{" "}
           <Link
             className="hover:text-[color:var(--accent)] transition-colors duration-150"
             href="/"

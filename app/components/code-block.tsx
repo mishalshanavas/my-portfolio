@@ -11,15 +11,20 @@ export function CopyButton() {
     if (resetTimer.current) clearTimeout(resetTimer.current);
   }, []);
 
-  const handleCopy = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleCopy = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const wrapper = (e.currentTarget as HTMLElement).closest(
       "[data-code-wrapper]"
     );
     const raw = wrapper?.querySelector("pre")?.textContent ?? "";
-    navigator.clipboard?.writeText(raw).catch(() => {});
-    setCopied(true);
-    if (resetTimer.current) clearTimeout(resetTimer.current);
-    resetTimer.current = setTimeout(() => setCopied(false), 2000);
+    try {
+      if (!navigator.clipboard) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(raw);
+      setCopied(true);
+      if (resetTimer.current) clearTimeout(resetTimer.current);
+      resetTimer.current = setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   };
 
   return (

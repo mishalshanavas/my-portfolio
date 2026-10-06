@@ -25,10 +25,27 @@ export function Navbar() {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
         menuButtonRef.current?.focus();
+      } else if (event.key === "Tab") {
+        const focusable = [menuButtonRef.current, ...Array.from(menuRef.current?.querySelectorAll<HTMLAnchorElement>("a") ?? [])].filter((element) => element !== null);
+        const first = focusable[0];
+        const last = focusable.at(-1);
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
       }
     };
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const onResize = () => { if (desktop.matches) setIsMenuOpen(false); };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    desktop.addEventListener("change", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      desktop.removeEventListener("change", onResize);
+    };
   }, [isMenuOpen]);
 
   const closeMenu = () => {
@@ -37,7 +54,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="py-3 sm:py-4 mb-6 sm:mb-10 border-b border-gray-200 dark:border-gray-800">
+    <nav aria-label="Main navigation" className="py-3 sm:py-4 mb-6 sm:mb-10 border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link

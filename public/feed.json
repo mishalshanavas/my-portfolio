@@ -10,7 +10,8 @@
             "content_html": "I wanted to open files on a classroom projector without logging into my email. So I built a tiny file shelf with shareable links and private uploads.",
             "url": "https://www.mishalshanavas.in/blog/file-spooder",
             "title": "I Built a File Shelf Because Projectors Shouldn't See My Inbox",
-            "date_modified": "2026-08-09T00:00:00.000Z",
+            "date_modified": "2026-10-01T00:00:00.000Z",
+            "date_published": "2026-08-09T00:00:00.000Z",
             "tags": [
                 "Cloudflare Workers",
                 "R2",
@@ -20,63 +21,12 @@
             ]
         },
         {
-            "id": "https://www.mishalshanavas.in/blog/hyperledger-fabric-ci",
-            "content_html": "Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.",
-            "url": "https://www.mishalshanavas.in/blog/hyperledger-fabric-ci",
-            "title": "A Bad Regex Got Me Into Hyperledger Fabric",
-            "date_modified": "2026-04-30T00:00:00.000Z",
-            "tags": [
-                "Open Source",
-                "Hyperledger Fabric",
-                "GitHub Actions",
-                "CI",
-                "Regex"
-            ]
-        },
-        {
-            "id": "https://www.mishalshanavas.in/blog/ict-hackathon",
-            "content_html": "We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.",
-            "url": "https://www.mishalshanavas.in/blog/ict-hackathon",
-            "title": "We Built an AI Career Guide and Won the Hackathon",
-            "date_modified": "2024-08-05T00:00:00.000Z",
-            "tags": [
-                "Hackathon",
-                "AI"
-            ]
-        },
-        {
-            "id": "https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up",
-            "content_html": "Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.",
-            "url": "https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up",
-            "title": "My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)",
-            "date_modified": "2024-10-29T00:00:00.000Z",
-            "tags": [
-                "GitHub Actions",
-                "Serverless",
-                "Python",
-                "DevOps",
-                "Instagram Bot"
-            ]
-        },
-        {
-            "id": "https://www.mishalshanavas.in/blog/instagram-pfp",
-            "content_html": "I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.",
-            "url": "https://www.mishalshanavas.in/blog/instagram-pfp",
-            "title": "I Built a Bot to Change My Instagram DP So I Don't Have To",
-            "date_modified": "2024-02-15T00:00:00.000Z",
-            "tags": [
-                "Python",
-                "Automation",
-                "Instagram",
-                "Side Projects"
-            ]
-        },
-        {
             "id": "https://www.mishalshanavas.in/blog/personal-mail-server",
             "content_html": "I wanted email on my own domain and ended up debugging DNS, reverse DNS, and Azure's blocked SMTP port. Mailcow was the easy part, somehow.",
             "url": "https://www.mishalshanavas.in/blog/personal-mail-server",
             "title": "I Set Up a Mail Server Because Life Was Too Peaceful",
             "date_modified": "2026-08-08T00:00:00.000Z",
+            "date_published": "2026-08-08T00:00:00.000Z",
             "tags": [
                 "Mailcow",
                 "Azure",
@@ -93,6 +43,7 @@
             "url": "https://www.mishalshanavas.in/blog/terramine",
             "title": "I Terraformed a Minecraft Server Because Clicking Buttons Was Too Easy",
             "date_modified": "2026-06-08T00:00:00.000Z",
+            "date_published": "2026-06-08T00:00:00.000Z",
             "tags": [
                 "Terraform",
                 "GCP",
@@ -100,6 +51,62 @@
                 "Cloudflare",
                 "Caddy",
                 "Minecraft"
+            ]
+        },
+        {
+            "id": "https://www.mishalshanavas.in/blog/hyperledger-fabric-ci",
+            "content_html": "Fabric's documentation link checker had broken regexes and loose workflow limits. I fixed them, got a useful correction in review, and merged the patch upstream.",
+            "url": "https://www.mishalshanavas.in/blog/hyperledger-fabric-ci",
+            "title": "A Bad Regex Got Me Into Hyperledger Fabric",
+            "date_modified": "2026-04-30T00:00:00.000Z",
+            "date_published": "2026-04-30T00:00:00.000Z",
+            "tags": [
+                "Open Source",
+                "Hyperledger Fabric",
+                "GitHub Actions",
+                "CI",
+                "Regex"
+            ]
+        },
+        {
+            "id": "https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up",
+            "content_html": "Azure was eating my student credits, so I moved my Instagram profile picture bot to scheduled GitHub Actions. One less VM for a very silly job.",
+            "url": "https://www.mishalshanavas.in/blog/instagram-bot-serverless-glow-up",
+            "title": "My Instagram Bot Had a Serverless Glow-Up (RIP Azure Credits)",
+            "date_modified": "2026-08-26T00:00:00.000Z",
+            "date_published": "2024-10-29T00:00:00.000Z",
+            "tags": [
+                "GitHub Actions",
+                "Serverless",
+                "Python",
+                "DevOps",
+                "Instagram Bot"
+            ]
+        },
+        {
+            "id": "https://www.mishalshanavas.in/blog/ict-hackathon",
+            "content_html": "We joined a hackathon at the last minute, built an AI course pathway recommender, and somehow won with a team name we thought was a joke.",
+            "url": "https://www.mishalshanavas.in/blog/ict-hackathon",
+            "title": "We Built an AI Career Guide and Won the Hackathon",
+            "date_modified": "2026-10-01T00:00:00.000Z",
+            "date_published": "2024-08-05T00:00:00.000Z",
+            "tags": [
+                "Hackathon",
+                "AI"
+            ]
+        },
+        {
+            "id": "https://www.mishalshanavas.in/blog/instagram-pfp",
+            "content_html": "I got tired of changing my Instagram profile picture, so I wrote a Python bot to do it. It was an early project with more edge cases than the idea deserved.",
+            "url": "https://www.mishalshanavas.in/blog/instagram-pfp",
+            "title": "I Built a Bot to Change My Instagram DP So I Don't Have To",
+            "date_modified": "2026-08-26T00:00:00.000Z",
+            "date_published": "2024-02-15T00:00:00.000Z",
+            "tags": [
+                "Python",
+                "Automation",
+                "Instagram",
+                "Side Projects"
             ]
         }
     ]
