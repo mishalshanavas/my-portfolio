@@ -9,7 +9,7 @@
     "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build",
     "build": "npx tsx scripts/generate-feeds.ts && next build",
     "start": "next start",
-    "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages && npx tsx scripts/patch-pages-worker.ts",
+    "pages:build": "npx tsx scripts/generate-feeds.ts && npx @cloudflare/next-on-pages",
     "pages:dev": "npx @cloudflare/next-on-pages --watch",
     "pages:deploy": "pnpm pages:build && wrangler pages deploy .vercel/output/static"
   },

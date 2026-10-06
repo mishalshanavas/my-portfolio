@@ -1,12 +1,10 @@
 # Portfolio
 
-## Cloudflare Pages deployment
+## Deployment
 
-Set the Pages project's **Build command** to `pnpm pages:build` and its
-**Build output directory** to `.vercel/output/static`. Keep the `nodejs_compat`
-compatibility flag enabled as specified in `wrangler.toml`.
+The production site at `mishalshanavas.in` deploys through Vercel. Cloudflare
+proxies the public domain, so its response headers do not identify the origin.
 
-The `pages:build` script runs the Next.js adapter and then patches its worker
-to serve prerendered Next.js 16 segment requests. Running only `pnpm build` or
-`npx @cloudflare/next-on-pages` skips that patch and leaves dynamic project and
-blog prefetch requests returning 404.
+This repository also has a separate Cloudflare Pages preview deployment. Its
+build command is `pnpm pages:build`, with `.vercel/output/static` as the build
+output directory and the `nodejs_compat` flag from `wrangler.toml`.
