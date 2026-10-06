@@ -161,6 +161,7 @@ export default function BlogPosts() {
           <article key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
+              prefetch={false}
               className="group flex gap-4 py-4 -mx-2 px-2 rounded-md transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
             >
             {/* eslint-disable-next-line @next/next/no-img-element */}

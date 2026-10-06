@@ -85,7 +85,7 @@ function ProjectRow({ project }: { project: Project }) {
       <div className="min-w-0 flex-1">
         <h3 className="text-sm font-medium leading-snug">
           {project.caseStudy ? (
-            <Link href={`/projects/${project.slug}`} className="text-gray-900 hover:underline dark:text-gray-100">
+            <Link href={`/projects/${project.slug}`} prefetch={false} className="text-gray-900 hover:underline dark:text-gray-100">
               {project.name}
             </Link>
           ) : (
@@ -113,7 +113,7 @@ function ProjectRow({ project }: { project: Project }) {
         </p>
         <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
           {project.caseStudy ? (
-            <Link href={`/projects/${project.slug}`} className="font-medium text-[color:var(--accent)] hover:underline">
+            <Link href={`/projects/${project.slug}`} prefetch={false} className="font-medium text-[color:var(--accent)] hover:underline">
               Case study →
             </Link>
           ) : null}

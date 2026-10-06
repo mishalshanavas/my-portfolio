@@ -194,6 +194,7 @@ export default async function ProjectCaseStudy({ params }: Props) {
         {project.articleSlug ? (
           <Link
             href={`/blog/${project.articleSlug}`}
+            prefetch={false}
             className="text-sm font-medium text-[color:var(--accent)] hover:underline"
           >
             Read the full technical write-up →

@@ -411,6 +411,7 @@ export default function Page() {
                   <li key={post.slug}>
                     <Link
                       href={`/blog/${post.slug}`}
+                      prefetch={false}
                       className="block text-xs leading-snug text-gray-600 hover:text-[color:var(--accent)] hover:underline dark:text-gray-400"
                     >
                       {post.metadata.title}

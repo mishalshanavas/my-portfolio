@@ -226,7 +226,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
       </article>
       {relatedProject ? (
         <aside className="mt-10 border-t border-gray-200 pt-6 text-sm dark:border-gray-800">
-          <Link href={`/projects/${relatedProject.slug}`} className="font-medium text-[color:var(--accent)] hover:underline">
+          <Link href={`/projects/${relatedProject.slug}`} prefetch={false} className="font-medium text-[color:var(--accent)] hover:underline">
             View the concise {relatedProject.name} project case study →
           </Link>
         </aside>
@@ -237,7 +237,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           <ul className="mt-3 space-y-2 text-sm">
             {relatedPosts.map((related) => (
               <li key={related.slug}>
-                <Link href={`/blog/${related.slug}`} className="text-[color:var(--accent)] hover:underline">
+                <Link href={`/blog/${related.slug}`} prefetch={false} className="text-[color:var(--accent)] hover:underline">
                   {related.metadata.title}
                 </Link>
               </li>

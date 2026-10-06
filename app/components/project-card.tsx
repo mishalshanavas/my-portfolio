@@ -28,6 +28,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link
       href={href}
+      prefetch={false}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="group flex gap-3 rounded-md py-4 transition-colors duration-150 hover:bg-gray-50 dark:hover:bg-gray-900"
     >
