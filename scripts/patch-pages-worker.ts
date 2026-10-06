@@ -45,3 +45,4 @@ export default {
   },
 };
 `);
+writeFileSync(join(process.cwd(), ".vercel/output/static/segment-patch-version.txt"), "next16-segment-patch-v1\n");
