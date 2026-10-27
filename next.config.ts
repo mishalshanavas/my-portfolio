@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
         destination: "/resume.pdf",
         permanent: true,
       },
+      {
+        source: "/resume-old",
+        destination: "/resume-old.pdf",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
