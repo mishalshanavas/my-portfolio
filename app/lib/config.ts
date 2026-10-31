@@ -341,6 +341,22 @@ export const launches = [
 
 export const contributionHighlights = [
   {
+    date: "2026-10-31",
+    title: "Fastfetch: pinned musl amd64 CI builds to Ubuntu 24.04",
+    description:
+      "Pinned musl amd64 builds to Ubuntu 24.04 in CI. Merged upstream.",
+    url: "https://github.com/fastfetch-cli/fastfetch/pull/2688",
+    openSource: true,
+  },
+  {
+    date: "2026-09-04",
+    title: "Flow: limited concurrent Kotlin compilations in CI",
+    description:
+      "Limited concurrent Kotlin compilations in the CI workflow. Merged upstream.",
+    url: "https://github.com/Flow-Tube/Flow/pull/1011",
+    openSource: true,
+  },
+  {
     date: "2026-07-16",
     title: "Hyperledger Besu: fixed malformed RLP transaction handling",
     description:
